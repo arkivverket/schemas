@@ -1,0 +1,2113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  DTD for KyrreML - hovudformatet for data som foelgjer Kyrre - Standard for dataregistrering av kyrkjeboeker i Noreg
+  
+  Versjon 1.0, 04.08.2005 (utarbeidd av Lars Nygaard, Riksarkivet)
+-->
+<!-- Overordna element: -->
+<grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" 
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    
+    <include href="generelt.rng"/>
+    <start combine="choice">
+        <ref name="kyrre"></ref>
+    </start>
+<define name="kyrre">
+    <element name="kyrre">
+      <ref name="attlist.kyrre"/>
+      <ref name="kjelde"/>
+      <ref name="registrering"/>
+      <zeroOrMore>
+        <ref name="dp"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="kf"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="vi"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="gr"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="df"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="va"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="if"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="uf"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="pa"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="ko"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="in"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="im"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="um"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.kyrre" combine="interleave">
+    <optional>
+      <attribute name="versjon" a:defaultValue="1.2">
+        <value type="string">1.2</value>
+      </attribute>
+    </optional>
+  </define>
+  <!-- Versjonsnummer av KYRRE -->
+  <!-- Felles underelement for fleire hovudelement: -->
+  <define name="merknader"  combine="choice">
+    <element name="merknader">
+      <ref name="attlist.merknader"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.merknader" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Evt. merknader til kjelda, registreringa eller ei handling -->
+  <define name="side" combine="choice">
+    <element name="side">
+      <ref name="attlist.side"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.side" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Sidetalet i kyrkjeboka -->
+  <define name="lopenr">
+    <element name="lopenr">
+      <ref name="attlist.lopenr"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.lopenr" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Handlinga sitt loepenummer i kyrkjeboka, innafor aaret -->
+  <define name="aar" combine="choice">
+    <element name="aar">
+      <ref name="attlist.aar"/>
+      <data type="gYear"></data>
+    </element>
+  </define>
+  <define name="attlist.aar" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Aaret handlinga vart foert i kyrkjeboka -->
+  <define name="sokn_kyrkje">
+    <element name="sokn_kyrkje">
+      <ref name="attlist.sokn_kyrkje"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.sokn_kyrkje" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Namn paa sokn eller kyrkje for handlinga -->
+  <define name="sokn">
+    <element name="sokn">
+      <ref name="attlist.sokn"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.sokn" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Namn paa sokn for verdsleg handling -->
+  <define name="meldar">
+    <element name="meldar">
+      <ref name="attlist.meldar"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.meldar" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om melding av doedfoedsel -->
+  <define name="rolle" combine="choice">
+    <element name="rolle">
+      <ref name="attlist.rolle"/>
+      <ref name="rolleliste"/>
+    </element>
+  </define>
+  <define name="attlist.rolle" combine="interleave">
+    <empty/>
+  </define>
+  <!--
+    Personen si rolle i handlinga. Lovlige verdiar: barn, far, mor,
+    fadder, heimedoeypar, daapsvitne, daapsmeldar, konfirmant, brudgom,
+    brur, brudgommens far, bruras far, trulovar, lysingsforlangar,
+    avdoed, paaroerande, meldar, foedselshjelpar, vaksinert, vaksinatoer,
+    innflyttar, utflyttar, syndar, kommunikant, introdusert, ektemann,
+    innmeld, utmeld
+  -->
+  <define name="stilling_stand">
+    <element name="stilling_stand">
+      <ref name="attlist.stilling_stand"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.stilling_stand" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personen si stilling eller stand viss oppgjeve i kjelda -->
+  <define name="forenamn">
+    <element name="forenamn">
+      <ref name="attlist.forenamn"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.forenamn" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personen sitt foerenamn -->
+  <define name="etternamn">
+    <element name="etternamn">
+      <ref name="attlist.etternamn"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.etternamn" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personen sitt etternamn -->
+  <define name="kjonn">
+    <element name="kjonn">
+      <ref name="attlist.kjonn"/>
+      <choice>
+          <value>k</value>
+          <value>m</value>
+          <value>??</value>
+          <value></value>
+        </choice>
+    </element>
+  </define>
+  <define name="attlist.kjonn" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personen sitt kjoenn. Lovlige verdiar: m, k, ??, m!!, k!! -->
+  <define name="bustad">
+    <element name="bustad">
+      <ref name="attlist.bustad"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.bustad" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personen sin bustad eller opphaldsstad -->
+  <define name="fodestad">
+    <element name="fodestad">
+      <ref name="attlist.fodestad"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.fodestad" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personen sin foedestad -->
+  <define name="fodselsdato">
+    <element name="fodselsdato">
+      <ref name="attlist.fodselsdato"/>
+      <choice>
+        <data type="gMonthDay"></data> <!--ISO-dato, er antaglig ikke brukt noe sted -->
+        <data type="NMTOKEN">
+            <param name="pattern">[0-3][0-9].[0-1][0-9].?[0-9]?[0-9]?[*]?</param>
+        </data>
+        </choice>
+    </element>
+  </define>
+  <define name="attlist.fodselsdato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personen sin foedselsdato viss oppgjeve, format: dd.mm -->
+  <define name="fodselsaar">
+    <element name="fodselsaar">
+      <ref name="attlist.fodselsaar"/>
+      <data type="gYear"></data>
+    </element>
+  </define>
+  <define name="attlist.fodselsaar" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personen sitt foedselsaar viss oppgjeve, format: 4 siffer -->
+  <define name="alder">
+    <element name="alder">
+      <ref name="attlist.alder"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.alder" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personen sin alder viss oppgjeve -->
+  <define name="ekte_uekte">
+    <element name="ekte_uekte">
+      <ref name="attlist.ekte_uekte"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.ekte_uekte" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Om barnet er ekte eller uekte foedd. Verdiar: E eller U -->
+  <define name="vaksin">
+    <element name="vaksin">
+      <ref name="attlist.vaksin"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.vaksin" combine="interleave">
+    <empty/>
+  </define>
+  <!--
+    Opplysningar om konfirmanten, brudgommen eller brura sin koppe-
+    vaksinasjon etc.
+  -->
+  <!-- Dokumentasjon om kyrkjeboka og den aktuelle lista i denne: -->
+  <define name="kjelde">
+    <element name="kjelde">
+      <ref name="attlist.kjelde"/>
+      <ref name="prgjeld"/>
+      <optional>
+        <ref name="ksokn"/>
+      </optional>
+      <ref name="kommnr"/>
+      <optional>
+        <ref name="soknenr"/>
+      </optional>
+      <ref name="ktype"/>
+      <optional>
+        <ref name="signatur"/>
+      </optional>
+      <ref name="ltype"/>
+      <ref name="startaar"/>
+      <ref name="sluttaar"/>
+      <optional>
+        <ref name="oppbstad"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.kjelde" combine="interleave">
+    <attribute name="kjeldeID">
+        <text/>
+</attribute>
+  </define>
+  <define name="prgjeld">
+    <element name="prgjeld">
+      <ref name="attlist.prgjeld"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.prgjeld" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Prestegjeldets eller byens namn -->
+  <define name="ksokn">
+    <element name="ksokn">
+      <ref name="attlist.ksokn"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.ksokn" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Soknets eller kyrkjelydens namn -->
+  <define name="kommnr">
+    <element name="kommnr">
+      <ref name="attlist.kommnr"/>
+      <data type="NMTOKEN">
+        <param name="pattern">[0-9]{4}</param>
+      </data>
+    </element>
+  </define>
+  <define name="attlist.kommnr" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Kommunenummer til prestegjeldet eller soknet -->
+  <define name="soknenr">
+    <element name="soknenr">
+      <ref name="attlist.soknenr"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.soknenr" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Soknenummer til prestegjeldet (6 siffer) eller soknet (8 s.) -->
+  <define name="ktype"><!-- Kjeldetype ): MINI, KLOK, FREG, LYSN osb. -->
+    <element name="ktype">
+      <ref name="attlist.ktype"/>
+      <choice>
+          <value>MINI</value>
+<value>KLOK</value>
+<value>FREG</value>
+<value>LYSN</value>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.ktype" combine="interleave">
+    <empty/> 
+  </define>
+ 
+  <define name="signatur">
+    <element name="signatur">
+      <ref name="attlist.signatur"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.signatur" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Arkivsignatur ): referanse/nummer i Arkivverkets katalog -->
+  <define name="ltype"> <!-- Listetype ): dp, kf, vi, gr, df, va, if, uf osb. -->
+    <element name="ltype">
+      <ref name="attlist.ltype"/>
+      <ref name="liste.type"></ref>
+    </element>
+  </define>
+  <define name="attlist.ltype" combine="interleave">
+    <empty/>
+  </define>
+ 
+  <define name="startaar">
+    <element name="startaar">
+      <ref name="attlist.startaar"/>
+        <data type="gYear">
+            <param name="pattern">[1-2][5-9][0-9]{2}</param>
+        </data>
+    </element>
+  </define>
+  <define name="attlist.startaar" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Startaar for (kjelda eller) lista -->
+  <define name="sluttaar">
+    <element name="sluttaar">
+      <ref name="attlist.sluttaar"/>
+        <data type="gYear">
+            <param name="pattern">[1-2][5-9][0-9]{2}</param>
+        </data>
+    </element>
+  </define>
+  <define name="attlist.sluttaar" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Sluttaar for (kjelda eller) lista -->
+  <define name="oppbstad">
+    <element name="oppbstad">
+      <ref name="attlist.oppbstad"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.oppbstad" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Oppbevaringsstad for originalkjelda ): statsarkivkode e.a. -->
+  <!-- Dokumentasjon om registreringa: -->
+  <define name="registrering">
+    <element name="registrering">
+      <ref name="attlist.registrering"/>
+      <optional>
+        <ref name="reg_av"/>
+      </optional>
+      <optional>
+        <ref name="reg_naar"/>
+      </optional>
+      <optional>
+        <ref name="korr_av"/>
+      </optional>
+      <optional>
+        <ref name="korr_naar"/>
+      </optional>
+      <ref name="foretak"/>
+      <optional>
+        <ref name="kontakt"/>
+      </optional>
+      <optional>
+        <ref name="grunnlag"/>
+      </optional>
+      <optional>
+        <ref name="program"/>
+      </optional>
+      <optional>
+        <ref name="fildato"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.registrering" combine="interleave">
+    <empty/>
+  </define>
+  <define name="reg_av">
+    <element name="reg_av">
+      <ref name="attlist.reg_av"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.reg_av" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Namn paa person(er) som har registrert kjelda/lista -->
+  <define name="reg_naar">
+    <element name="reg_naar">
+      <ref name="attlist.reg_naar"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.reg_naar" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Aar for eller anna tidfesting av registreringsarbeidet -->
+  <define name="korr_av">
+    <element name="korr_av">
+      <ref name="attlist.korr_av"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.korr_av" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Namn paa person(er) som har korrekturlese kjelda/lista -->
+  <define name="korr_naar">
+    <element name="korr_naar">
+      <ref name="attlist.korr_naar"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.korr_naar" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Aar for eller anna tidfesting av korrekturarbeidet -->
+  <define name="foretak">
+    <element name="foretak">
+      <ref name="attlist.foretak"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.foretak" combine="interleave">
+    <empty/>
+  </define>
+  <!--
+    Organisasjon/institusjon eller person som staar bak
+    registreringa; rettshavar
+  -->
+  <define name="kontakt">
+    <element name="kontakt">
+      <ref name="attlist.kontakt"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.kontakt" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Namn (evt.), adresse, telefon eller e-post til kontaktperson -->
+  <define name="grunnlag">
+    <element name="grunnlag">
+      <ref name="attlist.grunnlag"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.grunnlag" combine="interleave">
+    <empty/>
+  </define>
+  <!--
+    Grunnlag for registreringa ): Papirkopi, Mikrofilm, Mikrofiche,
+    Skanning eller Original
+  -->
+  <define name="program">
+    <element name="program">
+      <ref name="attlist.program"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.program" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Registreringsprogram ): Augustus, Access, Excel, BD87 osb. -->
+  <define name="fildato">
+    <element name="fildato">
+      <ref name="attlist.fildato"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.fildato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Dato for ferdigstilling av datafila, format: "dd.mm aaaa" -->
+  <!-- Daap: Handling -->
+  <define name="dp">
+    <element name="dp">
+      <ref name="attlist.dp"/>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="dpdato"/>
+      </optional>
+      <optional>
+        <ref name="stadfesta"/>
+      </optional>
+      <optional>
+        <ref name="dpstad"/>
+      </optional>
+      <optional>
+        <ref name="introd"/>
+      </optional>
+      <optional>
+        <ref name="melding"/>
+      </optional>
+      <optional>
+        <ref name="sokn_kyrkje"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <oneOrMore>
+        <ref name="dp_person"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.dp" combine="interleave">
+    <optional>
+      <attribute name="dpnr"/>
+    </optional>
+  </define>
+  <!-- Handlingsnummer (daapsnummer) innafor fila -->
+  <define name="dpdato">
+    <element name="dpdato">
+      <ref name="attlist.dpdato"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.dpdato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Dato for daapen, anten i kyrkja eller heime, format: dd.mm -->
+  <define name="stadfesta">
+    <element name="stadfesta">
+      <ref name="attlist.stadfesta"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.stadfesta" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Dato for evt. stadfesting i kyrkja, format: dd.mm -->
+  <define name="dpstad">
+    <element name="dpstad">
+      <ref name="attlist.dpstad"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.dpstad" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Stad for daapen, anten i kyrkja eller heime -->
+  <define name="introd">
+    <element name="introd">
+      <ref name="attlist.introd"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.introd" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om introduksjon av mora -->
+  <define name="melding">
+    <element name="melding">
+      <ref name="attlist.melding"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.melding" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om melding av uekte barn -->
+  <!-- Daap: Person -->
+  <define name="dp_person">
+    <element name="dp_person">
+      <ref name="attlist.dp_person"/>
+      <ref name="rolle"/>
+      <optional>
+        <ref name="stilling_stand"/>
+      </optional>
+      <optional>
+        <ref name="forenamn"/>
+      </optional>
+      <optional>
+        <ref name="etternamn"/>
+      </optional>
+      <ref name="kjonn"/>
+      <optional>
+        <ref name="bustad"/>
+      </optional>
+      <optional>
+        <ref name="fodestad"/>
+      </optional>
+      <optional>
+        <ref name="fodselsdato"/>
+      </optional>
+      <optional>
+        <ref name="fodselsaar"/>
+      </optional>
+      <optional>
+        <ref name="alder"/>
+      </optional>
+      <optional>
+        <ref name="ekte_uekte"/>
+      </optional>
+      <optional>
+        <ref name="vigd"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.dp_person" combine="interleave">
+    <optional>
+      <attribute name="pnr"/>
+    </optional>
+  </define>
+  <!-- Personen sitt nummer innafor handlinga -->
+  <define name="vigd">
+    <element name="vigd">
+      <ref name="attlist.vigd"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.vigd" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Foreldra sitt vigselsaar e.a. -->
+  <!-- Konfirmasjon: Handling -->
+  <define name="kf">
+    <element name="kf">
+      <ref name="attlist.kf"/>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="kfdato"/>
+      </optional>
+      <optional>
+        <ref name="sokn_kyrkje"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <oneOrMore>
+        <ref name="kf_person"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.kf" combine="interleave">
+    <optional>
+      <attribute name="kfnr"/>
+    </optional>
+  </define>
+  <!-- Handlingsnummer (konfirmasjonsnummer) innafor fila -->
+  <define name="kfdato">
+    <element name="kfdato">
+      <ref name="attlist.kfdato"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.kfdato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Dato for konfirmasjonen, format: dd.mm -->
+  <!-- Konfirmasjon: Person -->
+  <define name="kf_person">
+    <element name="kf_person">
+      <ref name="attlist.kf_person"/>
+      <ref name="rolle"/>
+      <optional>
+        <ref name="stilling_stand"/>
+      </optional>
+      <optional>
+        <ref name="forenamn"/>
+      </optional>
+      <optional>
+        <ref name="etternamn"/>
+      </optional>
+      <ref name="kjonn"/>
+      <optional>
+        <ref name="bustad"/>
+      </optional>
+      <optional>
+        <ref name="fodestad"/>
+      </optional>
+      <optional>
+        <ref name="fodselsdato"/>
+      </optional>
+      <optional>
+        <ref name="fodselsaar"/>
+      </optional>
+      <optional>
+        <ref name="alder"/>
+      </optional>
+      <optional>
+        <ref name="doypt"/>
+      </optional>
+      <optional>
+        <ref name="karakter"/>
+      </optional>
+      <optional>
+        <ref name="vaksin"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.kf_person" combine="interleave">
+    <optional>
+      <attribute name="pnr"/>
+    </optional>
+  </define>
+  <!-- Personen sitt nummer innafor handlinga -->
+  <define name="doypt">
+    <element name="doypt">
+      <ref name="attlist.doypt"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.doypt" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om konfirmanten sin daap -->
+  <define name="karakter">
+    <element name="karakter">
+      <ref name="attlist.karakter"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.karakter" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om konfirmanten sin kunnskap, flid osb. -->
+  <!-- Vigsel: Handling -->
+  <define name="vi">
+    <element name="vi">
+      <ref name="attlist.vi"/>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="trdato"/>
+      </optional>
+      <optional>
+        <ref name="vidato"/>
+      </optional>
+      <optional>
+        <ref name="lysning"/>
+      </optional>
+      <optional>
+        <ref name="vistad"/>
+      </optional>
+      <optional>
+        <ref name="sokn_kyrkje"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <oneOrMore>
+        <ref name="vi_person"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.vi" combine="interleave">
+    <optional>
+      <attribute name="vinr"/>
+    </optional>
+  </define>
+  <!-- Handlingsnummer (vigselsnummer) innafor fila -->
+  <define name="trdato">
+    <element name="trdato">
+      <ref name="attlist.trdato"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.trdato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Dato for trulovinga, format: dd.mm -->
+  <define name="vidato">
+    <element name="vidato">
+      <ref name="attlist.vidato"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.vidato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Dato for vigselen, format: dd.mm -->
+  <define name="lysning">
+    <element name="lysning">
+      <ref name="attlist.lysning"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.lysning" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Datoar og annan informasjon om lysningane etc. -->
+  <define name="vistad">
+    <element name="vistad">
+      <ref name="attlist.vistad"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.vistad" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Stad for vigselen, anten i kyrkja eller heime -->
+  <!-- Vigsel: Person -->
+  <define name="vi_person">
+    <element name="vi_person">
+      <ref name="attlist.vi_person"/>
+      <ref name="rolle"/>
+      <optional>
+        <ref name="stilling_stand"/>
+      </optional>
+      <optional>
+        <ref name="forenamn"/>
+      </optional>
+      <optional>
+        <ref name="etternamn"/>
+      </optional>
+      <ref name="kjonn"/>
+      <optional>
+        <ref name="bustad"/>
+      </optional>
+      <optional>
+        <ref name="fodselsdato"/>
+      </optional>
+      <optional>
+        <ref name="fodselsaar"/>
+      </optional>
+      <optional>
+        <ref name="alder"/>
+      </optional>
+      <optional>
+        <ref name="fodestad"/>
+      </optional>
+      <optional>
+        <ref name="konfirm"/>
+      </optional>
+      <optional>
+        <ref name="altergang"/>
+      </optional>
+      <optional>
+        <ref name="vaksin"/>
+      </optional>
+      <optional>
+        <ref name="legitim"/>
+      </optional>
+      <optional>
+        <ref name="tidl_gift"/>
+      </optional>
+      <optional>
+        <ref name="ektesknr"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.vi_person" combine="interleave">
+    <optional>
+      <attribute name="pnr"/>
+    </optional>
+  </define>
+  <!-- Personen sitt nummer innafor handlinga -->
+  <define name="konfirm">
+    <element name="konfirm">
+      <ref name="attlist.konfirm"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.konfirm" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om brudgom/brur sin konfirmasjon -->
+  <define name="altergang">
+    <element name="altergang">
+      <ref name="attlist.altergang"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.altergang" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om brudgom/brur sin seinaste altergang -->
+  <define name="legitim">
+    <element name="legitim">
+      <ref name="attlist.legitim"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.legitim" combine="interleave">
+    <empty/>
+  </define>
+  <!--
+    Opplysningar om "legitimasjon" for pensjonsinnskot eller
+    giftarmaalsloeyving for brudgom/brur
+  -->
+  <define name="tidl_gift">
+    <element name="tidl_gift">
+      <ref name="attlist.tidl_gift"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.tidl_gift" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om brudgom/brur sitt evt. tidlegare ekteskap -->
+  <define name="ektesknr">
+    <element name="ektesknr">
+      <ref name="attlist.ektesknr"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.ektesknr" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Brudgommen/brura sitt giftarmaalsnummer viss oppgjeve -->
+  <!-- Gravferd: Handling -->
+  <define name="gr">
+    <element name="gr">
+      <ref name="attlist.gr"/>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="grdato"/>
+      </optional>
+      <optional>
+        <ref name="jfdato"/>
+      </optional>
+      <optional>
+        <ref name="meldar"/>
+      </optional>
+      <optional>
+        <ref name="sokn_kyrkje"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <oneOrMore>
+        <ref name="gr_person"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.gr" combine="interleave">
+    <optional>
+      <attribute name="grnr"/>
+    </optional>
+  </define>
+  <!-- Handlingsnummer (gravferdsnummer) innafor fila -->
+  <define name="grdato">
+    <element name="grdato">
+      <ref name="attlist.grdato"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.grdato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Dato for gravferda, format: dd.mm -->
+  <define name="jfdato">
+    <element name="jfdato">
+      <ref name="attlist.jfdato"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.jfdato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Dato for jordfestinga, format: dd.mm -->
+  <!-- Gravferd: Person -->
+  <define name="gr_person">
+    <element name="gr_person">
+      <ref name="attlist.gr_person"/>
+      <ref name="rolle"/>
+      <optional>
+        <ref name="stilling_stand"/>
+      </optional>
+      <optional>
+        <ref name="forenamn"/>
+      </optional>
+      <optional>
+        <ref name="etternamn"/>
+      </optional>
+      <ref name="kjonn"/>
+      <optional>
+        <ref name="bustad"/>
+      </optional>
+      <optional>
+        <ref name="fodestad"/>
+      </optional>
+      <optional>
+        <ref name="fodselsdato"/>
+      </optional>
+      <optional>
+        <ref name="fodselsaar"/>
+      </optional>
+      <optional>
+        <ref name="alder"/>
+      </optional>
+      <optional>
+        <ref name="dodsdato"/>
+      </optional>
+      <optional>
+        <ref name="dodsaar"/>
+      </optional>
+      <optional>
+        <ref name="aarsak"/>
+      </optional>
+      <optional>
+        <ref name="laekjar"/>
+      </optional>
+      <optional>
+        <ref name="meldt"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.gr_person" combine="interleave">
+    <optional>
+      <attribute name="pnr"/>
+    </optional>
+  </define>
+  <!-- Personen sitt nummer innafor handlinga -->
+  <define name="dodsdato">
+    <element name="dodsdato">
+      <ref name="attlist.dodsdato"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.dodsdato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Avdoede sin doedsdato, format: dd.mm -->
+  <define name="dodsaar">
+    <element name="dodsaar">
+      <ref name="attlist.dodsaar"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.dodsaar" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Avdoede sitt doedsaar, format: 4 siffer -->
+  <define name="aarsak">
+    <element name="aarsak">
+      <ref name="attlist.aarsak"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.aarsak" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om aarsaken til doedsfallet -->
+  <define name="laekjar">
+    <element name="laekjar">
+      <ref name="attlist.laekjar"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.laekjar" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om laekjar var tilkalla eller ikkje -->
+  <define name="meldt">
+    <element name="meldt">
+      <ref name="attlist.meldt"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.meldt" combine="interleave">
+    <empty/>
+  </define>
+  <!--
+     Opplysningar om doedsfallet vart meldt til lensmannen eller
+    skifteretten eller ikkje
+  -->
+  <!-- Doedfoedsel: Handling -->
+  <define name="df">
+    <element name="df">
+      <ref name="attlist.df"/>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="meldar"/>
+      </optional>
+      <optional>
+        <ref name="sokn_kyrkje"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <oneOrMore>
+        <ref name="df_person"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.df" combine="interleave">
+    <optional>
+      <attribute name="dfnr"/>
+    </optional>
+  </define>
+  <!-- Handlingsnummer (doedfoedselsnummer) innafor fila -->
+  <!-- Doedfoedsel: Person -->
+  <define name="df_person">
+    <element name="df_person">
+      <ref name="attlist.df_person"/>
+      <ref name="rolle"/>
+      <optional>
+        <ref name="stilling_stand"/>
+      </optional>
+      <optional>
+        <ref name="forenamn"/>
+      </optional>
+      <optional>
+        <ref name="etternamn"/>
+      </optional>
+      <ref name="kjonn"/>
+      <optional>
+        <ref name="bustad"/>
+      </optional>
+      <optional>
+        <ref name="fodestad"/>
+      </optional>
+      <optional>
+        <ref name="fodselsdato"/>
+      </optional>
+      <optional>
+        <ref name="fodselsaar"/>
+      </optional>
+      <optional>
+        <ref name="alder"/>
+      </optional>
+      <optional>
+        <ref name="ekte_uekte"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.df_person" combine="interleave">
+    <optional>
+      <attribute name="pnr"/>
+    </optional>
+  </define>
+  <!-- Personen sitt nummer innafor handlinga -->
+  <!-- Vaksinasjon: Handling -->
+  <define name="va">
+    <element name="va">
+      <ref name="attlist.va"/>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="vadato"/>
+      </optional>
+      <optional>
+        <ref name="atdato"/>
+      </optional>
+      <optional>
+        <ref name="sokn"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <oneOrMore>
+        <ref name="va_person"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.va" combine="interleave">
+    <optional>
+      <attribute name="vanr"/>
+    </optional>
+  </define>
+  <!-- Handlingsnummer (vaksinasjonsnummer) innafor fila -->
+  <define name="vadato">
+    <element name="vadato">
+      <ref name="attlist.vadato"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.vadato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Dato for vaksinasjonen, format: dd.mm -->
+  <define name="atdato">
+    <element name="atdato">
+      <ref name="attlist.atdato"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.atdato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Dato for vaksinasjonsattesten etc., format: dd.mm -->
+  <!-- Vaksinasjon: Person -->
+  <define name="va_person">
+    <element name="va_person">
+      <ref name="attlist.va_person"/>
+      <ref name="rolle"/>
+      <optional>
+        <ref name="stilling_stand"/>
+      </optional>
+      <optional>
+        <ref name="forenamn"/>
+      </optional>
+      <optional>
+        <ref name="etternamn"/>
+      </optional>
+      <ref name="kjonn"/>
+      <optional>
+        <ref name="bustad"/>
+      </optional>
+      <optional>
+        <ref name="fodestad"/>
+      </optional>
+      <optional>
+        <ref name="fodselsdato"/>
+      </optional>
+      <optional>
+        <ref name="fodselsaar"/>
+      </optional>
+      <optional>
+        <ref name="alder"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.va_person" combine="interleave">
+    <optional>
+      <attribute name="pnr"/>
+    </optional>
+  </define>
+  <!-- Personen sitt nummer innafor handlinga -->
+  <!-- Innflytting: Handling -->
+  <define name="if">
+    <element name="if">
+      <ref name="attlist.if"/>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="ifdato"/>
+      </optional>
+      <optional>
+        <ref name="sokn"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <oneOrMore>
+        <ref name="if_person"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.if" combine="interleave">
+    <optional>
+      <attribute name="ifnr"/>
+    </optional>
+  </define>
+  <!-- Handlingsnummer (innflyttingsnummer) innafor fila -->
+  <define name="ifdato">
+    <element name="ifdato">
+      <ref name="attlist.ifdato"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.ifdato" combine="interleave">
+    <empty/>
+  </define>
+  <!--
+    Dato for innflyttinga, attesten eller foeringa i kyrkje-
+    boka, format: dd.mm
+  -->
+  <!-- Innflytting: Person -->
+  <define name="if_person">
+    <element name="if_person">
+      <ref name="attlist.if_person"/>
+      <ref name="rolle"/>
+      <optional>
+        <ref name="stilling_stand"/>
+      </optional>
+      <optional>
+        <ref name="forenamn"/>
+      </optional>
+      <optional>
+        <ref name="etternamn"/>
+      </optional>
+      <ref name="kjonn"/>
+      <optional>
+        <ref name="fraa_stad"/>
+      </optional>
+      <optional>
+        <ref name="til_stad"/>
+      </optional>
+      <optional>
+        <ref name="formaal"/>
+      </optional>
+      <optional>
+        <ref name="fodestad"/>
+      </optional>
+      <optional>
+        <ref name="fodselsdato"/>
+      </optional>
+      <optional>
+        <ref name="fodselsaar"/>
+      </optional>
+      <optional>
+        <ref name="alder"/>
+      </optional>
+      <optional>
+        <ref name="attestar"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.if_person" combine="interleave">
+    <optional>
+      <attribute name="pnr"/>
+    </optional>
+  </define>
+  <!-- Personen sitt nummer innafor handlinga -->
+  <define name="fraa_stad">
+    <element name="fraa_stad">
+      <ref name="attlist.fraa_stad"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.fraa_stad" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om kvar innflyttaren kom fraa -->
+  <define name="til_stad">
+    <element name="til_stad">
+      <ref name="attlist.til_stad"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.til_stad" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om kvar flyttaren busette seg -->
+  <define name="formaal">
+    <element name="formaal">
+      <ref name="attlist.formaal"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.formaal" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om personen sitt formaal med flyttinga -->
+  <define name="attestar">
+    <element name="attestar">
+      <ref name="attlist.attestar"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.attestar" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om flyttaren sine attestar -->
+  <!-- Utflytting: Handling -->
+  <define name="uf">
+    <element name="uf">
+      <ref name="attlist.uf"/>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="ufdato"/>
+      </optional>
+      <optional>
+        <ref name="sokn"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <oneOrMore>
+        <ref name="uf_person"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.uf" combine="interleave">
+    <optional>
+      <attribute name="ufnr"/>
+    </optional>
+  </define>
+  <!-- Handlingsnummer (utflyttingsnummer) innafor fila -->
+  <define name="ufdato">
+    <element name="ufdato">
+      <ref name="attlist.ufdato"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.ufdato" combine="interleave">
+    <empty/>
+  </define>
+  <!--
+    Dato for utflyttinga, attesten eller foeringa i kyrkje-
+    boka, format: dd.mm
+  -->
+  <!-- Utflytting: Person -->
+  <define name="uf_person">
+    <element name="uf_person">
+      <ref name="attlist.uf_person"/>
+      <ref name="rolle"/>
+      <optional>
+        <ref name="stilling_stand"/>
+      </optional>
+      <optional>
+        <ref name="forenamn"/>
+      </optional>
+      <optional>
+        <ref name="etternamn"/>
+      </optional>
+      <ref name="kjonn"/>
+      <optional>
+        <ref name="bustad"/>
+      </optional>
+      <optional>
+        <ref name="til_stad"/>
+      </optional>
+      <optional>
+        <ref name="formaal"/>
+      </optional>
+      <optional>
+        <ref name="fodestad"/>
+      </optional>
+      <optional>
+        <ref name="fodselsdato"/>
+      </optional>
+      <optional>
+        <ref name="fodselsaar"/>
+      </optional>
+      <optional>
+        <ref name="alder"/>
+      </optional>
+      <optional>
+        <ref name="attestar"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.uf_person" combine="interleave">
+    <optional>
+      <attribute name="pnr"/>
+    </optional>
+  </define>
+  <!-- Personen sitt nummer innafor handlinga -->
+  <!-- Elementet "til_stad" definert under Innflytting. -->
+  <!-- Elementet "formaal" definert under Innflytting. -->
+  <!-- Elementet "attestar" definert under Innflytting. -->
+  <!-- Offentleg skrifte: Handling -->
+  <define name="pa">
+    <element name="pa">
+      <ref name="attlist.pa"/>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="padato"/>
+      </optional>
+      <optional>
+        <ref name="grunn"/>
+      </optional>
+      <optional>
+        <ref name="sokn_kyrkje"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <oneOrMore>
+        <ref name="pa_person"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.pa" combine="interleave">
+    <optional>
+      <attribute name="panr"/>
+    </optional>
+  </define>
+  <!-- Handlingsnummer (skriftemaalsnummer) innafor fila -->
+  <define name="padato">
+    <element name="padato">
+      <ref name="attlist.padato"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.padato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Dato for skriftemaalet, format: dd.mm -->
+  <define name="grunn">
+    <element name="grunn">
+      <ref name="attlist.grunn"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.grunn" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Grunnen til skriftemaalet -->
+  <!-- Offentleg skrifte: Person -->
+  <define name="pa_person">
+    <element name="pa_person">
+      <ref name="attlist.pa_person"/>
+      <ref name="rolle"/>
+      <optional>
+        <ref name="stilling_stand"/>
+      </optional>
+      <optional>
+        <ref name="forenamn"/>
+      </optional>
+      <optional>
+        <ref name="etternamn"/>
+      </optional>
+      <optional>
+        <ref name="bustad"/>
+      </optional>
+      <ref name="kjonn"/>
+      <optional>
+        <ref name="fodestad"/>
+      </optional>
+      <optional>
+        <ref name="fodselsdato"/>
+      </optional>
+      <optional>
+        <ref name="fodselsaar"/>
+      </optional>
+      <optional>
+        <ref name="alder"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.pa_person" combine="interleave">
+    <optional>
+      <attribute name="pnr"/>
+    </optional>
+  </define>
+  <!-- Personen sitt nummer innafor handlinga -->
+  <!-- Nattverd, betjening og beretting: Handling -->
+  <define name="ko">
+    <element name="ko">
+      <ref name="attlist.ko"/>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="kodato"/>
+      </optional>
+      <optional>
+        <ref name="sokn_kyrkje"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <oneOrMore>
+        <ref name="ko_person"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.ko" combine="interleave">
+    <optional>
+      <attribute name="konr"/>
+    </optional>
+  </define>
+  <!-- Handlingsnummer (nattverdsnummer) innafor fila -->
+  <define name="kodato">
+    <element name="kodato">
+      <ref name="attlist.kodato"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.kodato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Dato for nattverden, betjeninga eller berettinga -->
+  <!-- Nattverd, betjening og beretting: Person -->
+  <define name="ko_person">
+    <element name="ko_person">
+      <ref name="attlist.ko_person"/>
+      <ref name="rolle"/>
+      <optional>
+        <ref name="stilling_stand"/>
+      </optional>
+      <optional>
+        <ref name="forenamn"/>
+      </optional>
+      <optional>
+        <ref name="etternamn"/>
+      </optional>
+      <ref name="kjonn"/>
+      <optional>
+        <ref name="bustad"/>
+      </optional>
+      <optional>
+        <ref name="fodselsdato"/>
+      </optional>
+      <optional>
+        <ref name="fodselsaar"/>
+      </optional>
+      <optional>
+        <ref name="alder"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.ko_person" combine="interleave">
+    <optional>
+      <attribute name="pnr"/>
+    </optional>
+  </define>
+  <!-- Personen sitt nummer innafor handlinga -->
+  <!-- Introduksjon: Handling -->
+  <define name="in">
+    <element name="in">
+      <ref name="attlist.in"/>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="indato"/>
+      </optional>
+      <optional>
+        <ref name="sokn_kyrkje"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <oneOrMore>
+        <ref name="in_person"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.in" combine="interleave">
+    <optional>
+      <attribute name="innr"/>
+    </optional>
+  </define>
+  <!-- Handlingsnummer (introduksjonsnummer) innafor fila -->
+  <define name="indato">
+    <element name="indato">
+      <ref name="attlist.indato"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.indato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Dato for introduksjonen, format: dd.mm -->
+  <!-- Introduksjon: Person -->
+  <define name="in_person">
+    <element name="in_person">
+      <ref name="attlist.in_person"/>
+      <ref name="rolle"/>
+      <optional>
+        <ref name="stilling_stand"/>
+      </optional>
+      <optional>
+        <ref name="forenamn"/>
+      </optional>
+      <optional>
+        <ref name="etternamn"/>
+      </optional>
+      <ref name="kjonn"/>
+      <optional>
+        <ref name="bustad"/>
+      </optional>
+      <optional>
+        <ref name="fodselsdato"/>
+      </optional>
+      <optional>
+        <ref name="fodselsaar"/>
+      </optional>
+      <optional>
+        <ref name="alder"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.in_person" combine="interleave">
+    <optional>
+      <attribute name="pnr"/>
+    </optional>
+  </define>
+  <!-- Personen sitt nummer innafor handlinga -->
+  <!-- Innmelding i statskyrkja: Handling -->
+  <define name="im">
+    <element name="im">
+      <ref name="attlist.im"/>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="imdato"/>
+      </optional>
+      <optional>
+        <ref name="sokn"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <oneOrMore>
+        <ref name="im_person"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.im" combine="interleave">
+    <optional>
+      <attribute name="imnr"/>
+    </optional>
+  </define>
+  <!-- Handlingsnummer (innmeldingsnummer) innafor fila -->
+  <define name="imdato">
+    <element name="imdato">
+      <ref name="attlist.imdato"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.imdato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Dato for innmeldinga i statskyrkja, format: dd.mm -->
+  <!-- Innmelding i statskyrkja: Person -->
+  <define name="im_person">
+    <element name="im_person">
+      <ref name="attlist.im_person"/>
+      <ref name="rolle"/>
+      <optional>
+        <ref name="stilling_stand"/>
+      </optional>
+      <optional>
+        <ref name="forenamn"/>
+      </optional>
+      <optional>
+        <ref name="etternamn"/>
+      </optional>
+      <ref name="kjonn"/>
+      <optional>
+        <ref name="bustad"/>
+      </optional>
+      <optional>
+        <ref name="fodestad"/>
+      </optional>
+      <optional>
+        <ref name="fodselsdato"/>
+      </optional>
+      <optional>
+        <ref name="fodselsaar"/>
+      </optional>
+      <optional>
+        <ref name="alder"/>
+      </optional>
+      <optional>
+        <ref name="tdoypt"/>
+      </optional>
+      <optional>
+        <ref name="fraa_samf"/>
+      </optional>
+      <optional>
+        <ref name="erklaering"/>
+      </optional>
+      <optional>
+        <ref name="ekt_samf"/>
+      </optional>
+      <optional>
+        <ref name="born"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.im_person" combine="interleave">
+    <optional>
+      <attribute name="pnr"/>
+    </optional>
+  </define>
+  <!-- Personen sitt nummer innafor handlinga -->
+  <define name="tdoypt">
+    <element name="tdoypt">
+      <ref name="attlist.tdoypt"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.tdoypt" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om personen sin evt. tidlegare daap -->
+  <define name="fraa_samf">
+    <element name="fraa_samf">
+      <ref name="attlist.fraa_samf"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.fraa_samf" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Kva for eit kyrkjesamfunn personen kjem fraa -->
+  <define name="erklaering">
+    <element name="erklaering">
+      <ref name="attlist.erklaering"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.erklaering" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om personens innmeldingserklaering -->
+  <define name="ekt_samf">
+    <element name="ekt_samf">
+      <ref name="attlist.ekt_samf"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.ekt_samf" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Kva for eit kyrkjesamfunn ektefellen hoeyrer til -->
+  <define name="born">
+    <element name="born">
+      <ref name="attlist.born"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.born" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om personens born -->
+  <!-- Utmelding av statskyrkja: Handling -->
+  <define name="um">
+    <element name="um">
+      <ref name="attlist.um"/>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="umdato"/>
+      </optional>
+      <optional>
+        <ref name="sokn"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <oneOrMore>
+        <ref name="um_person"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.um" combine="interleave">
+    <optional>
+      <attribute name="umnr"/>
+    </optional>
+  </define>
+  <!-- Handlingsnummer (innmeldingsnummer) innafor fila -->
+  <define name="umdato">
+    <element name="umdato">
+      <ref name="attlist.umdato"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.umdato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Dato for utmeldinga av statskyrkja, format: dd.mm -->
+  <!-- Utmelding av statskyrkja: Person -->
+  <define name="um_person">
+    <element name="um_person">
+      <ref name="attlist.um_person"/>
+      <ref name="rolle"/>
+      <optional>
+        <ref name="stilling_stand"/>
+      </optional>
+      <optional>
+        <ref name="forenamn"/>
+      </optional>
+      <optional>
+        <ref name="etternamn"/>
+      </optional>
+      <ref name="kjonn"/>
+      <optional>
+        <ref name="bustad"/>
+      </optional>
+      <optional>
+        <ref name="fodestad"/>
+      </optional>
+      <optional>
+        <ref name="fodselsdato"/>
+      </optional>
+      <optional>
+        <ref name="fodselsaar"/>
+      </optional>
+      <optional>
+        <ref name="alder"/>
+      </optional>
+      <optional>
+        <ref name="tkonfirm"/>
+      </optional>
+      <optional>
+        <ref name="til_samf"/>
+      </optional>
+      <optional>
+        <ref name="ekt_samf"/>
+      </optional>
+      <optional>
+        <ref name="born"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.um_person" combine="interleave">
+    <optional>
+      <attribute name="pnr"/>
+    </optional>
+  </define>
+  <!-- Personen sitt nummer innafor handlinga -->
+  <define name="tkonfirm">
+    <element name="tkonfirm">
+      <ref name="attlist.tkonfirm"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.tkonfirm" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Opplysningar om personen sin evt. tidlegare konfirmasjon -->
+  <define name="til_samf">
+    <element name="til_samf">
+      <ref name="attlist.til_samf"/>
+      <ref name="tekst"/>
+    </element>
+  </define>
+  <define name="attlist.til_samf" combine="interleave">
+    <empty/>
+  </define>
+
+    <define name="liste.type">
+        <choice>
+            <value>dp</value>
+            <value>kf</value>
+            <value>vi</value>
+            <value>gr</value>
+            <value>df</value>
+            <value>va</value>
+            <value>if</value>
+            <value>uf</value>
+            <value>pa</value>
+            <value>ko</value>
+            <value>in</value>
+            <value>im</value>
+            <value>um</value>
+            
+            <!-- Nye mulige verdier -->
+           <!-- <value>bo</value>
+            <value>el</value>
+            <value>mi</value>
+            <value>an</value>-->
+        </choice>
+    </define>
+
+    <define name="rolleliste" combine="choice">
+        <choice>
+            <value>barn</value>
+            <value>far</value>
+            <value>mor</value>
+            <value>fadder</value>
+            <value>heimedoeypar</value>
+            <value>dåpsvitne</value>
+            <value>dåpsmeldar</value>
+            <value>konfirmant</value>
+            <value>brudgom</value>
+            <value>brur</value>
+            <value>brudgommens far</value>
+            <value>bruras far</value>
+            <value>trulovar</value>
+            <value>lysingsforlangar</value>
+            <value>avdød</value>
+            <value>pårørande</value>
+            <value>meldar</value>
+            <value>fødselshjelpar</value>
+            <value>vaksinert</value>
+            <value>vaksinatoer</value>
+            <value>innflyttar</value>
+            <value>utflyttar</value>
+            <value>syndar</value>
+            <value>kommunikant</value>
+            <value>introdusert</value>
+            <value>ektemann</value>
+
+<!-- Kan også være skrevet med stor forbokstav -->
+            <value>Barn</value>
+            <value>Far</value>
+            <value>Mor</value>
+            <value>Fadder</value>
+            <value>Heimedoeypar</value>
+            <value>Dåpsvitne</value>
+            <value>Dåpsmeldar</value>
+            <value>Konfirmant</value>
+            <value>Brudgom</value>
+            <value>Brur</value>
+            <value>Brudgommens far</value>
+            <value>Bruras far</value>
+            <value>Trulovar</value>
+            <value>Lysingsforlangar</value>
+            <value>Avdød</value>
+            <value>Pårørande</value>
+            <value>Meldar</value>
+            <value>Fødselshjelpar</value>
+            <value>Vaksinert</value>
+            <value>Vaksinatoer</value>
+            <value>Innflyttar</value>
+            <value>Utflyttar</value>
+            <value>Syndar</value>
+            <value>Kommunikant</value>
+            <value>Introdusert</value>
+            <value>Ektemann</value>
+            <!--<value>elev</value>
+            <value>lærar</value>
+            <value>klassestyrar</value>
+            <value>arbeidar</value>-->
+        </choice>
+    </define>
+</grammar>
+
+

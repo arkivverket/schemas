@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD utviklet for Digitalarkivet, bygger på to eksistrende DTDer, Kyrre og Histform. Begge disse er tatt inn her, slik
+at denen DTD skal kunne dekke matriale kodet i den formen, og i tillegg andre data som inngår i Digitalarkivet som ikke er kirkeboksdata (dekket av Kyrre) og folketellinger (dekket av Histform). 
+
+Vesjon 1.0 beta, 8. juni 2012, Tone Merete Bruvik, Digitalarkivet, Bergen.
+-->
+
+<!-- Overordnet element: -->
+<!ELEMENT histform (kilde, registrering, (tellingskrets | informasjon)*, (dp | kf | vi | gr | df | va | if | uf | pa | ko | in | im | um)*)>
+<!ATTLIST histform
+		versjon CDATA #FIXED "2.0">		<!-- Versjonsnummer av HistformML -->
+		
+		
+
+<!--	DTD for HistformML - en XML-versjon av utvekslingsformatet i Histform - Norsk standard for registrering og utveksling av
+	nominative folketellingsdata for aarene 1865-1910. (Registreringssentral for historiske data, Tromsoe, januar 1995,
+	ISBN 82-7663-419-2)
+	HistformML er noe utvidet i forhold til Histform-standarden som en foelge av harmonisering med kirkebokstandarden Kyrre
+	og dennes hovedformat KyrreML. (Digitalarkivet, Bergen, desember 2005)
+
+	Versjon 1.0, Riksarkivet, 19.04.2010 (utarbeidet av Lars Nygaard)
+-->
+
+
+
+
+<!-- Felles feltelementer for flere postelementer: -->
+<!ELEMENT kretsnummer (#PCDATA)>			<!-- Tellingskretsens nummer i kilden -->
+<!ELEMENT bostedsnummer (#PCDATA)>			<!-- Bostedets (gaardens/husets) listenummer i kilden -->
+<!ELEMENT leilighetsnummer (#PCDATA)>			<!-- Leilighetens listenummer i kilden -->
+<!ELEMENT personnummer (#PCDATA)>			<!-- Personens nummer innenfor bostedet/leiligheten/skipet -->
+<!ELEMENT antall_tilstedevarende_personer (#PCDATA)>	<!-- Antall tilstedevaerende personer -->
+<!ELEMENT antall_hjemmehorende_personer (#PCDATA)>	<!-- Antall hjemmehoerende personer  -->
+<!ELEMENT merknader (#PCDATA)>				<!-- Evt. merknader til kilden, registreringen, bosteder eller personer -->
+<!ELEMENT side (#PCDATA)>				<!-- Sidetalet i folketellingslisten -->
+
+
+<!-- Dokumentasjon om den aktuelle folketellingen paa kommune- eller prestegjeldsnivaa: -->
+<!ELEMENT kilde ((kommune | prgjeld), kommnr, soknenr?, ktype, aar, dato?, signatur?, asta_streng?, oppbsted?, merknader?)>
+<!ATTLIST kilde
+		kildeid CDATA #REQUIRED>		<!-- Kildens ID i Digitalarkivet -->
+<!ELEMENT kommune (#PCDATA)>				<!-- Herredets eller byens navn -->
+<!ELEMENT prgjeld (#PCDATA)>				<!-- Prestegjeldets eller byens navn -->
+<!ELEMENT kommnr (#PCDATA)>				<!-- Kommunenummer til kommunen eller prestegjeldet -->
+<!ELEMENT soknenr (#PCDATA)>				<!-- Soknenummer til prestegjeldet (6 siffer) -->
+<!ELEMENT ktype (#PCDATA)>				<!-- Kildetype ): FOLK -->
+<!ELEMENT aar (#PCDATA)>				<!-- Folketellingsaaret med 4 siffer -->
+<!ELEMENT dato (#PCDATA)>				<!-- Folketellingsdatoen paa formatet "mm.dd" -->
+<!ELEMENT signatur (#PCDATA)>				<!-- Arkivsignatur ): gammelt katalognummer i Arkivverket -->
+<!ELEMENT asta_streng (#PCDATA)>			<!-- Asta-streng ): nytt katalognummer paa formen S-1344/Hab/L0001 -->
+<!ELEMENT oppbsted (#PCDATA)>				<!-- Oppbevaringssted for originalkilden ): statsarkivkode -->
+
+
+<!-- Dokumentasjon om registreringen: -->
+<!ELEMENT registrering (reg_av?, reg_naar?, korr_av?, korr_naar?, foretak, kontakt?, grunnlag?, program?, fildato?, merknader?)>
+<!ELEMENT reg_av (#PCDATA)>				<!-- Navn paa person(er) eller foretak som har registrert kilden -->
+<!ELEMENT reg_naar (#PCDATA)>				<!-- Aar for eller annen tidfesting av registreringsarbeidet -->
+<!ELEMENT korr_av (#PCDATA)>				<!-- Navn paa person(er) eller foretak som har korrekturlest kilden -->
+<!ELEMENT korr_naar (#PCDATA)>				<!-- Aar for eller annen tidfesting av korrekturarbeidet -->
+<!ELEMENT foretak (#PCDATA)>				<!-- Organisasjon/institusjon eller person som staar bak
+								registreringen; rettighetshaver -->
+<!ELEMENT kontakt (#PCDATA)>				<!-- Navn (evt.), adresse, telefon eller e-post til kontaktperson -->
+<!ELEMENT grunnlag (#PCDATA)>				<!-- Kildegrunnlag for registreringen ): Papirkopi, Mikrofilm, Mikrofiche,
+								Skanning eller Original -->
+<!ELEMENT program (#PCDATA)>				<!-- Registreringsprogram ): CensIn, Access, Excel, BD87 osv. -->
+<!ELEMENT fildato (#PCDATA)>				<!-- Dato for ferdigstilling av datafilen, format: "yyyy.mm.dd" -->
+
+
+<!-- Tellingskrets (1) -->
+<!ELEMENT tellingskrets (kretsnummer, tellingskretsens_navn?, sogn?, prestegjeld?, herred_by?, merknader?,
+(bosted_land | bosted_by | skip | informasjon)*)>
+<!ATTLIST tellingskrets
+		id CDATA #IMPLIED>			<!-- Globalt unik postID for kretsposten -->
+<!ELEMENT tellingskretsens_navn (#PCDATA)>		<!-- Tellingskretsens navn i kilden -->
+<!ELEMENT sogn (#PCDATA)>				<!-- Denne kretsens tilhoerighet til sokn -->
+<!ELEMENT prestegjeld (#PCDATA)>			<!-- Denne kretsens tilhoerighet til prestegjeld -->
+<!ELEMENT herred_by (#PCDATA)>				<!-- Denne kretsens tilhoerighet til herred eller by -->
+
+
+<!-- Bosted_land (2a) -->
+<!ELEMENT bosted_land (bostedsnummer, bostedets_navn?, matrnr_gnr?, lopenr_bnr?, antall_tilstedevarende_personer?,
+antall_hjemmehorende_personer?, antall_personsedler?, antall_husholdninger?, sidebygning_med_natteopphold?,
+antall_slike_bygninger?, hvilke_slike_bygninger?, jordbrukssporsmaal?, antall_personer_i_fjos?, antall_personer_i_stall?,
+tredje_sidebygning?, antall_personer_i_tredje_sidebygning?, fjerde_sidebygning?, antall_personer_i_fjerde_sidebygning?, merknader?,
+(person | hjemvendt_norsk_amerikaner | jordbruk | informasjon)*)>
+<!ATTLIST bosted_land
+		id CDATA #IMPLIED>			<!-- Globalt unik postID for bostedposten -->
+<!ELEMENT bostedets_navn (#PCDATA)>			<!-- Bostedets navn i kilden -->
+<!ELEMENT matrnr_gnr (#PCDATA)>				<!-- Bostedets matrikkelnummer eller gaardsnummer -->
+<!ELEMENT lopenr_bnr (#PCDATA)>				<!-- Bostedets loepenummer eller bruksnummer -->
+<!ELEMENT antall_personsedler (#PCDATA)>		<!-- Antall personsedler (1891) -->
+<!ELEMENT antall_husholdninger (#PCDATA)>		<!-- Antall husholdninger -->
+<!ELEMENT sidebygning_med_natteopphold (#PCDATA)>	<!-- Side-/uthusbygning med natteopphold? (j/n) -->
+<!ELEMENT antall_slike_bygninger (#PCDATA)>		<!-- Antall slike bygninger -->
+<!ELEMENT hvilke_slike_bygninger (#PCDATA)>		<!-- Hvilke slike bygninger -->
+<!ELEMENT jordbrukssporsmaal (#PCDATA)>			<!-- Jordbruksspoersmaal -->
+<!ELEMENT antall_personer_i_fjos (#PCDATA)>		<!-- Antall personer i fjoes -->
+<!ELEMENT antall_personer_i_stall (#PCDATA)>		<!-- Antall personer i stall -->
+<!ELEMENT tredje_sidebygning (#PCDATA)>			<!-- 3. sidebygning -->
+<!ELEMENT antall_personer_i_tredje_sidebygning (#PCDATA)> <!-- Antall personer i 3. sidebygning -->
+<!ELEMENT fjerde_sidebygning (#PCDATA)>			<!-- 4. sidebygning -->
+<!ELEMENT antall_personer_i_fjerde_sidebygning (#PCDATA)> <!-- Antall personer i 4. sidebygning -->
+
+
+<!-- Bosted_by (2b) -->
+<!ELEMENT bosted_by (bostedsnummer, gatenavn_og_nummer_i_gata?, bydel?, gaardens_nummer?, gaardens_eier?,
+antall_tilstedevarende_personer?, antall_hjemmehorende_personer?, antall_personsedler_personlister?, hustype?,
+sidebygninger?, ubebodd?, antall_etasjer?, antall_leiligheter_til_beboelse?, antall_leiligheter_med_naringslokaler?,
+antall_verksted_forretningslokaler?, antall_ledige_bekvemmeligheter?, antall_kvistleiligheter?,
+antall_kjellerbekvemmeligheter?, merknader?, (leilighet | jordbruk | informasjon | person)*)>
+<!ATTLIST bosted_by
+		id CDATA #IMPLIED>			<!-- Globalt unik postID for gaardsposten (by) -->
+<!ELEMENT gatenavn_og_nummer_i_gata (#PCDATA)>		<!-- Gatenavn og gaardens/husets nummer i gata -->
+<!ELEMENT bydel (#PCDATA)>				<!-- Bydelens navn eller (rode)nummer -->
+<!ELEMENT gaardens_nummer (#PCDATA)>			<!-- Gaardens/husets nummer i bymatrikkel, branntakst etc. -->
+<!ELEMENT gaardens_eier (#PCDATA)>			<!-- Gaardens/husets eier(e) -->
+<!ELEMENT antall_personsedler_personlister (#PCDATA)>	<!-- Antall personsedler (1891), personlister (1900), familielister (1910) -->
+<!ELEMENT hustype (#PCDATA)>				<!-- Husets type -->
+<!ELEMENT sidebygninger (#PCDATA)>			<!-- Side-/uthusbygninger med natteopphold -->
+<!ELEMENT ubebodd (#PCDATA)>				<!-- Er huset ubebodd? (j/n) -->
+<!ELEMENT antall_etasjer (#PCDATA)>			<!-- Antall etasjer i huset -->
+<!ELEMENT antall_leiligheter_til_beboelse (#PCDATA)>
+<!ELEMENT antall_leiligheter_med_naringslokaler (#PCDATA)>
+<!ELEMENT antall_verksted_forretningslokaler (#PCDATA)>
+<!ELEMENT antall_ledige_bekvemmeligheter (#PCDATA)>
+<!ELEMENT antall_kvistleiligheter (#PCDATA)>
+<!ELEMENT antall_kjellerbekvemmeligheter (#PCDATA)>
+
+
+<!-- Leilighet (3) -->
+<!ELEMENT leilighet (leilighetsnummer, antall_bebodde_bekvemmeligheter?, bekvemmelighetens_beliggenhet?, etasje?,
+antall_varelser_i_kjeller?, antall_personer_i_kjeller?, antall_varelser_i_etasjene?, antall_personer_i_etasjene?,
+antall_varelser_paa_kvist_loft?, antall_personer_paa_kvist_loft?, antall_kjokkener?, antall_badevarelser?,
+antall_tilstedevarende_personer?, antall_hjemmehorende_personer?, antall_tjenervarelser?, antall_varelser_til_losjerende?,
+husleie?, merknader?, (person | hjemvendt_norsk_amerikaner | informasjon)*)>
+<!ATTLIST leilighet
+		id CDATA #IMPLIED>			<!-- Globalt unik postID for leilighetsposten -->
+<!ELEMENT antall_bebodde_bekvemmeligheter (#PCDATA)>
+<!ELEMENT bekvemmelighetens_beliggenhet (#PCDATA)>	<!-- Hvilken bygning leiligheten ligger i -->
+<!ELEMENT etasje (#PCDATA)>				<!-- Hvilken etasje leiligheten ligger i -->
+<!ELEMENT antall_varelser_i_kjeller (#PCDATA)>
+<!ELEMENT antall_personer_i_kjeller (#PCDATA)>
+<!ELEMENT antall_varelser_i_etasjene (#PCDATA)>
+<!ELEMENT antall_personer_i_etasjene (#PCDATA)>
+<!ELEMENT antall_varelser_paa_kvist_loft (#PCDATA)>
+<!ELEMENT antall_personer_paa_kvist_loft (#PCDATA)>
+<!ELEMENT antall_kjokkener (#PCDATA)>
+<!ELEMENT antall_badevarelser (#PCDATA)>
+<!ELEMENT antall_tjenervarelser (#PCDATA)>
+<!ELEMENT antall_varelser_til_losjerende (#PCDATA)>
+<!ELEMENT husleie (#PCDATA)>
+
+
+<!-- Skip (4) -->
+<!ELEMENT skip (skipsnummer, skipstype?, skipets_navn?, hjemsted?, drektighet?, skipsforer?, oppholdssted?,
+bestemmelsessted?, listeforer?, avleveringsdato?, mottaker?, antall_ombordvarende_personer?, antall_ilandvarende_personer?,
+merknader?, (person | hjemvendt_norsk_amerikaner | informasjon)*)>
+<!ATTLIST skip
+		id CDATA #IMPLIED>			<!-- Globalt unik postID for skipsposten -->
+<!ELEMENT skipsnummer (#PCDATA)>			<!-- Skipets listenummer i kilden -->
+<!ELEMENT skipstype (#PCDATA)>				<!-- Typebetegnelse for skipet -->
+<!ELEMENT skipets_navn (#PCDATA)>			<!-- Skipets navn i kilden -->
+<!ELEMENT hjemsted (#PCDATA)>				<!-- Skipets hjemsted -->
+<!ELEMENT drektighet (#PCDATA)>				<!-- Skipets stoerrelse (drektighet) -->
+<!ELEMENT skipsforer (#PCDATA)>				<!-- Skipets foerer/kaptein -->
+<!ELEMENT oppholdssted (#PCDATA)>			<!-- Skipets oppholdssted paa tellingstidspunktet -->
+<!ELEMENT bestemmelsessted (#PCDATA)>			<!-- Skipets bestemmelsessted paa tellingstidspunktet -->
+<!ELEMENT listeforer (#PCDATA)>				<!-- Navnet paa personen som har foert tellingslisten -->
+<!ELEMENT avleveringsdato (#PCDATA)>			<!-- Dato for avlevering av tellingslisten -->
+<!ELEMENT mottaker (#PCDATA)>				<!-- Mottaker av tellingslisten -->
+<!ELEMENT antall_ombordvarende_personer (#PCDATA)>	<!-- Antall ombordvaerende personer -->
+<!ELEMENT antall_ilandvarende_personer (#PCDATA)>	<!-- Antall ilandvaerende personer  -->
+
+
+<!-- Person (5) -->
+<!ELEMENT person (personnummer, husholdningsnummer, ny_husholdning?, rolle,
+fornavn, patronymikon?, slektsnavn?, kjonn, familiestilling?, sivilstand?, yrke?, alder?, fodselsaar?, fodested?, bostatus?,
+sedvanlig_bosted?, antatt_oppholdssted?, statsborgerskap?, trossamfunn?, sykdomstilstand?, varighet_av_sykdomstilstand?,
+bygning_for_natteopphold?, bo_etasje?, slektskap_med_ektemann?, forsorgers_livsstilling?, arbeidsledig?,
+etnisitet_egen_fars?, etnisitet_mors?, spraak?, merknader?)>
+<!ATTLIST person
+		id CDATA #IMPLIED>			<!-- Globalt unik postID for personposten -->
+<!ELEMENT husholdningsnummer (#PCDATA)>			<!-- Husholdningens nummer innenfor bostedet/leiligheten -->
+<!ELEMENT ny_husholdning (#PCDATA)>			<!-- Markering av foerste person i ny husholdning (eller enslig person) -->
+<!ELEMENT rolle (#PCDATA)>				<!-- Personens rolle i handlingen. Lovlig verdi: folketelt -->
+<!ELEMENT fornavn (#PCDATA)>				<!-- Personens fornavn og evt. mellomnavn -->
+<!ELEMENT patronymikon (#PCDATA)>			<!-- Personens patronymikon (farsnavn) -->
+<!ELEMENT slektsnavn (#PCDATA)>				<!-- Personens slektsnavn (fast etternavn) -->
+<!ELEMENT kjonn (#PCDATA)>				<!-- Personens kjoenn. Lovlige verdiar: m, k, ??, m!!, k!! -->
+<!ELEMENT familiestilling (#PCDATA)>			<!-- Personens stilling i familien -->
+<!ELEMENT sivilstand (#PCDATA)>				<!-- Personens sivilstand (ekteskapelige stilling) -->
+<!ELEMENT yrke (#PCDATA)>				<!-- Personens yrke, naeringsvei etc. -->
+<!ELEMENT alder (#PCDATA)>				<!-- Personens alder oppgitte i kilden -->
+<!ELEMENT fodselsaar (#PCDATA)>				<!-- Personens foedselsaar oppgitt i kilden eller beregnet fra oppgitt
+								alder, eller foedselsdato paa formen 'yyyy.mm.dd' -->
+<!ELEMENT fodested (#PCDATA)>				<!-- Personens foedested -->
+<!ELEMENT bostatus (#PCDATA)>				<!-- Personens tilknytning til dette bostedet paa tellingstidspunktet.
+								Lovlige verdier: b, f eller mt. -->
+<!ELEMENT sedvanlig_bosted (#PCDATA)>			<!-- Sedvanlig bosted for midlertidig tilstedevaerende personer -->
+<!ELEMENT antatt_oppholdssted (#PCDATA)>		<!-- Antatt oppholdssted for (midlertidig) fravaerende personer -->
+<!ELEMENT statsborgerskap (#PCDATA)>			<!-- Personens statsborgeskap -->
+<!ELEMENT trossamfunn (#PCDATA)>			<!-- Personens trossamfunn -->
+<!ELEMENT sykdomstilstand (#PCDATA)>			<!-- Om personen har noen somatisk eller mental sykdom -->
+<!ELEMENT varighet_av_sykdomstilstand (#PCDATA)>	<!-- Om varigheten av denne sykdomstilstanden -->
+<!ELEMENT bygning_for_natteopphold (#PCDATA)>		<!-- Den bygningen personen har sitt natteopphold i -->
+<!ELEMENT bo_etasje (#PCDATA)>				<!-- Hvilken etasje i huset personen bor i (1875 og 1885) -->
+<!ELEMENT slektskap_med_ektemann (#PCDATA)>		<!-- Om en gift kvinne er i slekt med sin ektemann (1891) -->
+<!ELEMENT forsorgers_livsstilling (#PCDATA)>		<!-- Personens forsoergers livsstilling (1891) -->
+<!ELEMENT arbeidsledig (#PCDATA)>			<!-- Om personen er arbeidsledig (1910) -->
+<!ELEMENT etnisitet_egen_fars (#PCDATA)>		<!-- Personens egen eller farens etnisitet -->
+<!ELEMENT etnisitet_mors (#PCDATA)>			<!-- Personens mors etnisitet -->
+<!ELEMENT spraak (#PCDATA)>				<!-- Hvilke(t) spraak personen daglig snakker -->
+
+
+<!-- Hjemvendt norsk-amerikaner (6) -->
+<!ELEMENT hjemvendt_norsk_amerikaner (personnummer, utflyttingsaar?,
+tilbakeflyttingsaar?, bosted_i_norge?, siste_bosted_i_amerika?, stilling_i_amerika?, merknader?)>
+<!ATTLIST hjemvendt_norsk_amerikaner
+		id CDATA #IMPLIED>			<!-- Globalt unik postID for norskamerikanerposten -->
+<!ELEMENT utflyttingsaar (#PCDATA)>			<!-- Aar for utflytting til Amerika -->
+<!ELEMENT tilbakeflyttingsaar (#PCDATA)>		<!-- Aar for tilbakeflytting til Norge -->
+<!ELEMENT bosted_i_norge (#PCDATA)>			<!-- Bosted i Norge foer utflyttingen -->
+<!ELEMENT siste_bosted_i_amerika (#PCDATA)>		<!-- Siste bosted i Amerika foer tilbakeflyttingen -->
+<!ELEMENT stilling_i_amerika (#PCDATA)>			<!-- Siste stilling i Amerika foer tilbakeflyttingen -->
+
+
+<!-- Jordbruk (7) -->
+<!ELEMENT jordbruk (eierens_nummer, eierens_fornavn?, eierens_patronymikon?, eierens_slektsnavn?, eierens_yrke?,
+utsad?, kreaturhold?, hage_og_frukttrar?, kjoretoy_og_maskiner?, merknader?)>
+<!ATTLIST jordbruk
+		id CDATA #IMPLIED>			<!-- Globalt unik postID for jordbruksposten -->
+<!ELEMENT eierens_nummer (#PCDATA)>			<!-- Eierens nummer innenfor bostedet/leiligheten -->
+<!ELEMENT eierens_fornavn (#PCDATA)>			<!-- Eierens fornavn og evt. mellomnavn -->
+<!ELEMENT eierens_patronymikon (#PCDATA)>		<!-- Eierens patronymikon (farsnavn) -->
+<!ELEMENT eierens_slektsnavn (#PCDATA)>			<!-- Eierens slektsnavn (fast etternavn) -->
+<!ELEMENT eierens_yrke (#PCDATA)>			<!-- Eierens yrke, naeringsvei etc. -->
+<!ELEMENT utsad (#PCDATA)>				<!-- Utsaed av korn, froe og poteter siste aar -->
+<!ELEMENT kreaturhold (#PCDATA)>			<!-- Antall dyr av ulike typer -->
+<!ELEMENT hage_og_frukttrar (#PCDATA)>
+<!ELEMENT kjoretoy_og_maskiner (#PCDATA)>
+
+
+<!-- Informasjon (9) -->
+<!ELEMENT informasjon (kretsnummer, bostedsnummer, leilighetsnummer, personnummer, posttype_for_forrige_post,
+overskrift_kommentar)>
+<!ATTLIST informasjon
+		id CDATA #IMPLIED>			<!-- Globalt unik postID for informasjonsposten -->
+<!ELEMENT posttype_for_forrige_post (#PCDATA)>		<!-- Posttype for forrige post -->
+<!ELEMENT overskrift_kommentar (#PCDATA)>		<!-- Selve informasjonen som skal formidles her -->
+
+
+<!--	DTD for KyrreML - hovudformatet for data som foelgjer Kyrre - Standard for dataregistrering av kyrkjeboeker i Noreg
+Versjon 1.0, 04.08.2005 (utarbeidd av Lars Nygaard, Riksarkivet)
+-->
+<!-- Overordna element: -->
+<!ELEMENT kyrre (kjelde, registrering, dp*, kf*, vi*, gr*, df*, va*, if*, uf*, pa*, ko*, in*, im*, um*)>
+<!ATTLIST kyrre
+		versjon CDATA #FIXED "2.0">		<!-- Versjonsnummer av KYRRE -->
+
+
+<!-- Felles underelement for fleire hovudelement: -->
+<!--<!ELEMENT merknader (#PCDATA)>				<!-\- Evt. merknader til kjelda, registreringa eller ei handling -\->-->
+<!--<!ELEMENT side (#PCDATA)>				<!-\- Sidetalet i kyrkjeboka -\->-->
+<!ELEMENT lopenr (#PCDATA)>				<!-- Handlinga sitt loepenummer i kyrkjeboka, innafor aaret -->
+<!--<!ELEMENT aar (#PCDATA)>				<!-\- Aaret handlinga vart foert i kyrkjeboka -\->-->
+<!ELEMENT sokn_kyrkje (#PCDATA)>			<!-- Namn paa sokn eller kyrkje for handlinga -->
+<!ELEMENT sokn (#PCDATA)>				<!-- Namn paa sokn for verdsleg handling -->
+<!ELEMENT meldar (#PCDATA)>				<!-- Opplysningar om melding av doedfoedsel -->
+<!--<!ELEMENT rolle (#PCDATA)>-->				<!-- Personen si rolle i handlinga. Lovlige verdiar: barn, far, mor,
+							fadder, heimedoeypar, daapsvitne, daapsmeldar, konfirmant, brudgom,
+							brur, brudgommens far, bruras far, trulovar, lysingsforlangar,
+							avdoed, paaroerande, meldar, foedselshjelpar, vaksinert, vaksinatoer,
+							innflyttar, utflyttar, syndar, kommunikant, introdusert, ektemann,
+							innmeld, utmeld -->
+<!ELEMENT stilling_stand (#PCDATA)>			<!-- Personen si stilling eller stand viss oppgjeve i kjelda -->
+<!ELEMENT forenamn (#PCDATA)>				<!-- Personen sitt foerenamn -->
+<!ELEMENT etternamn (#PCDATA)>				<!-- Personen sitt etternamn  -->
+<!--<!ELEMENT kjonn (#PCDATA)>-->				<!-- Personen sitt kjoenn. Lovlige verdiar: m, k, ??, m!!, k!! -->
+<!ELEMENT bustad (#PCDATA)>				<!-- Personen sin bustad eller opphaldsstad -->
+<!ELEMENT fodestad (#PCDATA)>				<!-- Personen sin foedestad -->
+<!ELEMENT fodselsdato (#PCDATA)>			<!-- Personen sin foedselsdato viss oppgjeve, format: dd.mm -->
+<!--<!ELEMENT fodselsaar (#PCDATA)>-->				<!-- Personen sitt foedselsaar viss oppgjeve, format: 4 siffer -->
+<!--<!ELEMENT alder (#PCDATA)>	-->			<!-- Personen sin alder viss oppgjeve -->
+<!ELEMENT ekte_uekte (#PCDATA)>				<!-- Om barnet er ekte eller uekte foedd. Verdiar: E eller U -->
+<!ELEMENT vaksin (#PCDATA)>				<!-- Opplysningar om konfirmanten, brudgommen eller brura sin koppe-
+							vaksinasjon etc. -->
+
+
+<!-- Dokumentasjon om kyrkjeboka og den aktuelle lista i denne: -->
+<!ELEMENT kjelde (prgjeld, ksokn?, kommnr, soknenr?, ktype, signatur?, ltype, startaar, sluttaar, oppbstad?, merknader?)>
+<!--<!ELEMENT prgjeld (#PCDATA)>-->				<!-- Prestegjeldets eller byens namn -->
+<!ELEMENT ksokn (#PCDATA)>				<!-- Soknets eller kyrkjelydens namn -->
+<!--<!ELEMENT kommnr (#PCDATA)>				<!-\- Kommunenummer til prestegjeldet eller soknet -\->
+<!ELEMENT soknenr (#PCDATA)>				<!-\- Soknenummer til prestegjeldet (6 siffer) eller soknet (8 s.) -\->
+<!ELEMENT ktype (#PCDATA)>				<!-\- Kjeldetype ): MINI, KLOK, FREG, LYSN osb. -\->
+<!ELEMENT signatur (#PCDATA)>	-->			<!-- Arkivsignatur ): referanse/nummer i Arkivverkets katalog -->
+<!ELEMENT ltype (#PCDATA)>				<!-- Listetype ): dp, kf, vi, gr, df, va, if, uf osb. -->
+<!ELEMENT startaar (#PCDATA)>				<!-- Startaar for (kjelda eller) lista -->
+<!ELEMENT sluttaar (#PCDATA)>				<!-- Sluttaar for (kjelda eller) lista -->
+<!ELEMENT oppbstad (#PCDATA)>				<!-- Oppbevaringsstad for originalkjelda ): statsarkivkode e.a. -->
+
+
+<!-- Dokumentasjon om registreringa: -->
+<!--<!ELEMENT registrering (reg_av?, reg_naar?, korr_av?, korr_naar?, foretak, kontakt?, grunnlag?, program?, fildato?, merknader?)>
+<!ELEMENT reg_av (#PCDATA)>				<!-\- Namn paa person(er) som har registrert kjelda/lista -\->
+<!ELEMENT reg_naar (#PCDATA)>				<!-\- Aar for eller anna tidfesting av registreringsarbeidet -\->
+<!ELEMENT korr_av (#PCDATA)>				<!-\- Namn paa person(er) som har korrekturlese kjelda/lista -\->
+<!ELEMENT korr_naar (#PCDATA)>				<!-\- Aar for eller anna tidfesting av korrekturarbeidet -\->
+<!ELEMENT foretak (#PCDATA)>				<!-\- Organisasjon/institusjon eller person som staar bak
+							registreringa; rettshavar -\->
+<!ELEMENT kontakt (#PCDATA)>				<!-\- Namn (evt.), adresse, telefon eller e-post til kontaktperson -\->
+<!ELEMENT grunnlag (#PCDATA)>				<!-\- Grunnlag for registreringa ): Papirkopi, Mikrofilm, Mikrofiche,
+							Skanning eller Original -\->
+<!ELEMENT program (#PCDATA)>				<!-\- Registreringsprogram ): Augustus, Access, Excel, BD87 osb. -\->
+<!ELEMENT fildato (#PCDATA)>				<!-\- Dato for ferdigstilling av datafila, format: "dd.mm aaaa" -\->
+-->
+
+<!-- Daap: Handling -->
+<!ELEMENT dp (side, lopenr?, aar, dpdato?, stadfesta?, dpstad?, introd?, melding?, sokn_kyrkje?, merknader?, dp_person+)>
+<!ATTLIST dp
+		dpnr CDATA #IMPLIED>			<!-- Handlingsnummer (daapsnummer) innafor fila -->
+<!ELEMENT dpdato (#PCDATA)>				<!-- Dato for daapen, anten i kyrkja eller heime, format: dd.mm -->
+<!ELEMENT stadfesta (#PCDATA)>				<!-- Dato for evt. stadfesting i kyrkja, format: dd.mm -->
+<!ELEMENT dpstad (#PCDATA)>				<!-- Stad for daapen, anten i kyrkja eller heime -->
+<!ELEMENT introd (#PCDATA)>				<!-- Opplysningar om introduksjon av mora -->
+<!ELEMENT melding (#PCDATA)>				<!-- Opplysningar om melding av uekte barn -->
+
+
+<!-- Daap: Person -->
+<!ELEMENT dp_person (rolle, stilling_stand?, forenamn?, etternamn?, kjonn, bustad?, fodestad?, fodselsdato?, fodselsaar?, alder?, ekte_uekte?, vigd?)>
+<!ATTLIST dp_person
+		pnr CDATA #IMPLIED>			<!-- Personen sitt nummer innafor handlinga -->
+<!ELEMENT vigd (#PCDATA)>				<!-- Foreldra sitt vigselsaar e.a. -->
+
+
+<!-- Konfirmasjon: Handling -->
+<!ELEMENT kf (side, lopenr?, aar, kfdato?, sokn_kyrkje?, merknader?, kf_person+)>
+<!ATTLIST kf
+		kfnr CDATA #IMPLIED>			<!-- Handlingsnummer (konfirmasjonsnummer) innafor fila -->
+<!ELEMENT kfdato (#PCDATA)>				<!-- Dato for konfirmasjonen, format: dd.mm -->
+
+
+<!-- Konfirmasjon: Person -->
+<!ELEMENT kf_person (rolle, stilling_stand?, forenamn?, etternamn?, kjonn, bustad?, fodestad?, fodselsdato?, fodselsaar?, alder?, doypt?, karakter?, vaksin?)>
+<!ATTLIST kf_person
+		pnr CDATA #IMPLIED>			<!-- Personen sitt nummer innafor handlinga -->
+<!ELEMENT doypt (#PCDATA)>				<!-- Opplysningar om konfirmanten sin daap -->
+<!ELEMENT karakter (#PCDATA)>				<!-- Opplysningar om konfirmanten sin kunnskap, flid osb. -->
+
+
+<!-- Vigsel: Handling -->
+<!ELEMENT vi (side, lopenr?, aar, trdato?, vidato?, lysning?, vistad?, sokn_kyrkje?, merknader?, vi_person+)>
+<!ATTLIST vi
+		vinr CDATA #IMPLIED>			<!-- Handlingsnummer (vigselsnummer) innafor fila -->
+<!ELEMENT trdato (#PCDATA)>				<!-- Dato for trulovinga, format: dd.mm -->
+<!ELEMENT vidato (#PCDATA)>				<!-- Dato for vigselen, format: dd.mm -->
+<!ELEMENT lysning (#PCDATA)>				<!-- Datoar og annan informasjon om lysningane etc. -->
+<!ELEMENT vistad (#PCDATA)>				<!-- Stad for vigselen, anten i kyrkja eller heime -->
+
+
+<!-- Vigsel: Person -->
+<!ELEMENT vi_person (rolle, stilling_stand?, forenamn?, etternamn?, kjonn, bustad?, fodselsdato?, fodselsaar?, alder?, fodestad?, konfirm?, altergang?, vaksin?, legitim?, tidl_gift?, ektesknr?)>
+<!ATTLIST vi_person
+		pnr CDATA #IMPLIED>			<!-- Personen sitt nummer innafor handlinga -->
+<!ELEMENT konfirm (#PCDATA)>				<!-- Opplysningar om brudgom/brur sin konfirmasjon -->
+<!ELEMENT altergang (#PCDATA)>				<!-- Opplysningar om brudgom/brur sin seinaste altergang -->
+<!ELEMENT legitim (#PCDATA)>				<!-- Opplysningar om "legitimasjon" for pensjonsinnskot eller
+							giftarmaalsloeyving for brudgom/brur -->
+<!ELEMENT tidl_gift (#PCDATA)>				<!-- Opplysningar om brudgom/brur sitt evt. tidlegare ekteskap -->
+<!ELEMENT ektesknr (#PCDATA)>				<!-- Brudgommen/brura sitt giftarmaalsnummer viss oppgjeve -->
+
+
+<!-- Gravferd: Handling -->
+<!ELEMENT gr (side, lopenr?, aar, grdato?, jfdato?, meldar?, sokn_kyrkje?, merknader?, gr_person+)>
+<!ATTLIST gr
+		grnr CDATA #IMPLIED>			<!-- Handlingsnummer (gravferdsnummer) innafor fila -->
+<!ELEMENT grdato (#PCDATA)>				<!-- Dato for gravferda, format: dd.mm -->
+<!ELEMENT jfdato (#PCDATA)>				<!-- Dato for jordfestinga, format: dd.mm -->
+
+
+<!-- Gravferd: Person -->
+<!ELEMENT gr_person (rolle, stilling_stand?, forenamn?, etternamn?, kjonn, bustad?, fodestad?, fodselsdato?, fodselsaar?, alder?, dodsdato?, dodsaar?, aarsak?, laekjar?, meldt?)>
+<!ATTLIST gr_person
+		pnr CDATA #IMPLIED>			<!-- Personen sitt nummer innafor handlinga -->
+<!ELEMENT dodsdato (#PCDATA)>				<!-- Avdoede sin doedsdato, format: dd.mm -->
+<!ELEMENT dodsaar (#PCDATA)>				<!-- Avdoede sitt doedsaar, format: 4 siffer -->
+<!ELEMENT aarsak (#PCDATA)>				<!-- Opplysningar om aarsaken til doedsfallet -->
+<!ELEMENT laekjar (#PCDATA)>				<!-- Opplysningar om laekjar var tilkalla eller ikkje -->
+<!ELEMENT meldt (#PCDATA)>				<!-- Opplysningar om doedsfallet vart meldt til lensmannen eller
+							skifteretten eller ikkje-->
+
+
+<!-- Doedfoedsel: Handling -->
+<!ELEMENT df (side, lopenr?, aar, meldar?, sokn_kyrkje?, merknader?, df_person+)>
+<!ATTLIST df
+		dfnr CDATA #IMPLIED>			<!-- Handlingsnummer (doedfoedselsnummer) innafor fila -->
+
+
+<!-- Doedfoedsel: Person -->
+<!ELEMENT df_person (rolle, stilling_stand?, forenamn?, etternamn?, kjonn, bustad?, fodestad?, fodselsdato?, fodselsaar?, alder?, ekte_uekte?)>
+<!ATTLIST df_person
+		pnr CDATA #IMPLIED>			<!-- Personen sitt nummer innafor handlinga -->
+
+
+<!-- Vaksinasjon: Handling -->
+<!ELEMENT va (side, lopenr?, aar, vadato?, atdato?, sokn?, merknader?, va_person+)>
+<!ATTLIST va
+		vanr CDATA #IMPLIED>			<!-- Handlingsnummer (vaksinasjonsnummer) innafor fila -->
+<!ELEMENT vadato (#PCDATA)>				<!-- Dato for vaksinasjonen, format: dd.mm -->
+<!ELEMENT atdato (#PCDATA)>				<!-- Dato for vaksinasjonsattesten etc., format: dd.mm -->
+
+
+<!-- Vaksinasjon: Person -->
+<!ELEMENT va_person (rolle, stilling_stand?, forenamn?, etternamn?, kjonn, bustad?, fodestad?, fodselsdato?, fodselsaar?, alder?)>
+<!ATTLIST va_person
+		pnr CDATA #IMPLIED>			<!-- Personen sitt nummer innafor handlinga -->
+
+
+<!-- Innflytting: Handling -->
+<!ELEMENT if (side, lopenr?, aar, ifdato?, sokn?, merknader?, if_person+)>
+<!ATTLIST if
+		ifnr CDATA #IMPLIED>			<!-- Handlingsnummer (innflyttingsnummer) innafor fila -->
+<!ELEMENT ifdato (#PCDATA)>				<!-- Dato for innflyttinga, attesten eller foeringa i kyrkje-
+							boka, format: dd.mm -->
+
+
+<!-- Innflytting: Person -->
+<!ELEMENT if_person (rolle, stilling_stand?, forenamn?, etternamn?, kjonn, fraa_stad?, til_stad?, formaal?, fodestad?, fodselsdato?, fodselsaar?, alder?, attestar?)>
+<!ATTLIST if_person
+		pnr CDATA #IMPLIED>			<!-- Personen sitt nummer innafor handlinga -->
+<!ELEMENT fraa_stad (#PCDATA)>				<!-- Opplysningar om kvar innflyttaren kom fraa -->
+<!ELEMENT til_stad (#PCDATA)>				<!-- Opplysningar om kvar flyttaren busette seg -->
+<!ELEMENT formaal (#PCDATA)>				<!-- Opplysningar om personen sitt formaal med flyttinga -->
+<!ELEMENT attestar (#PCDATA)>				<!-- Opplysningar om flyttaren sine attestar -->
+
+
+<!-- Utflytting: Handling -->
+<!ELEMENT uf (side, lopenr?, aar, ufdato?, sokn?, merknader?, uf_person+)>
+<!ATTLIST uf
+		ufnr CDATA #IMPLIED>			<!-- Handlingsnummer (utflyttingsnummer) innafor fila -->
+<!ELEMENT ufdato (#PCDATA)>				<!-- Dato for utflyttinga, attesten eller foeringa i kyrkje-
+							boka, format: dd.mm -->
+
+
+<!-- Utflytting: Person -->
+<!ELEMENT uf_person (rolle, stilling_stand?, forenamn?, etternamn?, kjonn, bustad?, til_stad?, formaal?, fodestad?, fodselsdato?, fodselsaar?, alder?, attestar?)>
+<!ATTLIST uf_person
+		pnr CDATA #IMPLIED>			<!-- Personen sitt nummer innafor handlinga -->
+<!-- Elementet "til_stad" definert under Innflytting. -->
+<!-- Elementet "formaal" definert under Innflytting. -->
+<!-- Elementet "attestar" definert under Innflytting. -->
+
+
+<!-- Offentleg skrifte: Handling -->
+<!ELEMENT pa (side, lopenr?, aar, padato?, grunn?, sokn_kyrkje?, merknader?, pa_person+)>
+<!ATTLIST pa
+		panr CDATA #IMPLIED>			<!-- Handlingsnummer (skriftemaalsnummer) innafor fila -->
+<!ELEMENT padato (#PCDATA)>				<!-- Dato for skriftemaalet, format: dd.mm -->
+<!ELEMENT grunn (#PCDATA)>				<!-- Grunnen til skriftemaalet -->
+
+
+<!-- Offentleg skrifte: Person -->
+<!ELEMENT pa_person (rolle, stilling_stand?, forenamn?, etternamn?, bustad?, kjonn, fodestad?, fodselsdato?, fodselsaar?, alder?)>
+<!ATTLIST pa_person
+		pnr CDATA #IMPLIED>			<!-- Personen sitt nummer innafor handlinga -->
+
+
+<!-- Nattverd, betjening og beretting: Handling -->
+<!ELEMENT ko (side, lopenr?, aar, kodato?, sokn_kyrkje?, merknader?, ko_person+)>
+<!ATTLIST ko
+		konr CDATA #IMPLIED>			<!-- Handlingsnummer (nattverdsnummer) innafor fila -->
+<!ELEMENT kodato (#PCDATA)>				<!-- Dato for nattverden, betjeninga eller berettinga -->
+
+
+<!-- Nattverd, betjening og beretting: Person -->
+<!ELEMENT ko_person (rolle, stilling_stand?, forenamn?, etternamn?, kjonn, bustad?, fodselsdato?, fodselsaar?, alder?)>
+<!ATTLIST ko_person
+		pnr CDATA #IMPLIED>			<!-- Personen sitt nummer innafor handlinga -->
+
+
+<!-- Introduksjon: Handling -->
+<!ELEMENT in (side, lopenr?, aar, indato?, sokn_kyrkje?, merknader?, in_person+)>
+<!ATTLIST in
+		innr CDATA #IMPLIED>			<!-- Handlingsnummer (introduksjonsnummer) innafor fila -->
+<!ELEMENT indato (#PCDATA)>				<!-- Dato for introduksjonen, format: dd.mm -->
+
+
+<!-- Introduksjon: Person -->
+<!ELEMENT in_person (rolle, stilling_stand?, forenamn?, etternamn?, kjonn, bustad?, fodselsdato?, fodselsaar?, alder?)>
+<!ATTLIST in_person
+		pnr CDATA #IMPLIED>			<!-- Personen sitt nummer innafor handlinga -->
+
+
+<!-- Innmelding i statskyrkja: Handling -->
+<!ELEMENT im (side, lopenr?, aar, imdato?, sokn?, merknader?, im_person+)>
+<!ATTLIST im
+		imnr CDATA #IMPLIED>			<!-- Handlingsnummer (innmeldingsnummer) innafor fila -->
+<!ELEMENT imdato (#PCDATA)>				<!-- Dato for innmeldinga i statskyrkja, format: dd.mm -->
+
+
+<!-- Innmelding i statskyrkja: Person -->
+<!ELEMENT im_person (rolle, stilling_stand?, forenamn?, etternamn?, kjonn, bustad?, fodestad?, fodselsdato?, fodselsaar?, alder?, tdoypt?, fraa_samf?, erklaering?, ekt_samf?, born?)>
+<!ATTLIST im_person
+		pnr CDATA #IMPLIED>			<!-- Personen sitt nummer innafor handlinga -->
+<!ELEMENT tdoypt (#PCDATA)>				<!-- Opplysningar om personen sin evt. tidlegare daap -->
+<!ELEMENT fraa_samf (#PCDATA)>				<!-- Kva for eit kyrkjesamfunn personen kjem fraa -->
+<!ELEMENT erklaering (#PCDATA)>				<!-- Opplysningar om personens innmeldingserklaering -->
+<!ELEMENT ekt_samf (#PCDATA)>				<!-- Kva for eit kyrkjesamfunn ektefellen hoeyrer til -->
+<!ELEMENT born (#PCDATA)>				<!-- Opplysningar om personens born -->
+
+
+<!-- Utmelding av statskyrkja: Handling -->
+<!ELEMENT um (side, lopenr?, aar, umdato?, sokn?, merknader?, um_person+)>
+<!ATTLIST um
+		umnr CDATA #IMPLIED>			<!-- Handlingsnummer (innmeldingsnummer) innafor fila -->
+<!ELEMENT umdato (#PCDATA)>				<!-- Dato for utmeldinga av statskyrkja, format: dd.mm -->
+
+
+<!-- Utmelding av statskyrkja: Person -->
+<!ELEMENT um_person (rolle, stilling_stand?, forenamn?, etternamn?, kjonn, bustad?, fodestad?, fodselsdato?, fodselsaar?, alder?, tkonfirm?, til_samf?, ekt_samf?, born?)>
+<!ATTLIST um_person
+		pnr CDATA #IMPLIED>			<!-- Personen sitt nummer innafor handlinga -->
+<!ELEMENT tkonfirm (#PCDATA)>				<!-- Opplysningar om personen sin evt. tidlegare konfirmasjon -->
+<!ELEMENT til_samf (#PCDATA)>				<!-- Kva for eit kyrkjesamfunn personen vil melda seg inn i -->
+<!-- Elementet "ekt_samf" definert under Innmelding i statskyrkja. -->
+<!-- Elementet "born" definert under Innmelding i statskyrkja. -->
+
+
+<!-- Borgarruller -->
+
+<!-- Branntaktsprotokollar -->
+
+<!-- Fattigstell -->
+
+<!-- Emigranter : TAES IKKE MED HER -->
+
+<!--Folketeljingar og manntal : TAES IKKE MED HER, -->
+
+<!--Geistlege arkiv-->
+
+<!--Helseføretak-->
+
+<!-- Militærvesen -->
+
+<!-- Rettergang og straff -->
+
+<!-- Skattelister -->
+
+<!-- Skifter -->
+
+<!-- Skule -->
+
+<!-- Tinglysing og jordskifte -->
+
+<!-- Kart -->
+
+<!-- Andre -->
