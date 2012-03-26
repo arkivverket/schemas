@@ -352,6 +352,12 @@
                 <zeroOrMore>
                     <ref name="objekt"/>
                 </zeroOrMore>
+                <zeroOrMore>
+                    <ref name="skip"/>
+                </zeroOrMore>
+                <zeroOrMore>
+                    <ref name="jordbruk"/>
+                </zeroOrMore>
             </interleave>
         </element>
     </define>
@@ -729,11 +735,116 @@
         </element>
     </define> 
     <define name="skip" combine="choice">
-        <element name="skip">
+        <element name="skip">    
             <ref name="attlist.skip"/>
-            <ref name="tekst"/>
+            <optional>
+                <ref name="tekst"/>
+            </optional>
+            <zeroOrMore>
+                <ref name="storleik"/>
+            </zeroOrMore>
+            <optional>
+                <ref name="skipsnummer"/>
+            </optional>
+            <optional>
+                <ref name="skipstype"/>
+            </optional>
+            <optional>
+                <ref name="skipets_navn"/>
+            </optional>
+            <optional>
+                <ref name="hjemsted"/>
+            </optional>
+            <optional>
+                <ref name="drektighet"/>
+            </optional>
+            <optional>
+                <ref name="skipsforer"/>
+            </optional>
+            <optional>
+                <ref name="oppholdssted"/>
+            </optional>
+            <optional>
+                <ref name="bestemmelsessted"/>
+            </optional>
+            <optional>
+                <ref name="listeforer"/>
+            </optional>
+            <optional>
+                <ref name="avleveringsdato"/>
+            </optional>
+            <optional>
+                <ref name="mottaker"/>
+            </optional>
+            <optional>
+                <ref name="antall_ombordvarende_personer"/>
+            </optional>
+            <optional>
+                <ref name="antall_ilandvarende_personer"/>
+            </optional>
+            <optional>
+                <ref name="merknader"/>
+            </optional>
+            <optional>
+                <ref name="kildeside"/>
+            </optional>
+            <optional>
+                <ref name="bildelenke"/>
+            </optional>
+            <zeroOrMore>
+                <choice>
+                    <ref name="person"/>
+                    <ref name="hjemvendt_norsk_amerikaner"/>
+                    <ref name="informasjon"/>
+                </choice>
+            </zeroOrMore>
         </element>
     </define>
+
+
+    <define name="jordbruk" combine="choice">
+        <element name="jordbruk">
+            <ref name="attlist.jordbruk"/>
+            <optional><ref name="eierens_nummer"/></optional>
+            <optional>
+                <ref name="eierens_fornavn"/>
+            </optional>
+            <optional>
+                <ref name="eierens_patronymikon"/>
+            </optional>
+            <optional>
+                <ref name="eierens_slektsnavn"/>
+            </optional>
+            <optional>
+                <ref name="eierens_yrke"/>
+            </optional>
+            <optional>
+                <ref name="utsad"/>
+            </optional>
+            <optional>
+                <ref name="kreaturhold"/>
+            </optional>
+            <optional>
+                <ref name="hage_og_frukttrar"/>
+            </optional>
+            <optional>
+                <ref name="kjoretoy_og_maskiner"/>
+            </optional>
+            <optional>
+                <ref name="merknader"/>
+            </optional>
+            <optional>
+                <ref name="kildeside"/>
+            </optional>
+            <optional>
+                <ref name="bildelenke"/>
+            </optional>
+            <zeroOrMore>
+                <ref name="storleik"/>
+            </zeroOrMore>
+        </element>
+    </define>
+
     <define name="gard"><element name="gard"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
     <define name="bruk"><element name="bruk"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
     <define name="type"><element name="type"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
