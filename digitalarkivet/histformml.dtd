@@ -7,6 +7,7 @@
 
 	Elementene 'kildeside' og 'bildelenke' lagt til. Attributtverdien 'grunnlag' lagt til i elementet 'fodselsaar'.
 	Versjon 1.1, Riksarkivet, 17.06.2011 (revidert av Lars Nygaard)
+				  27.03.2012 Byttet bo_etasje til etasje i personposten
 -->
 
 <!-- Overordnet element: -->
@@ -169,7 +170,7 @@ merknader?, kildeside?, bildelenke?, (person | hjemvendt_norsk_amerikaner | info
 <!ELEMENT person (personnummer, husholdningsnummer, ny_husholdning?, rolle,
 fornavn, patronymikon?, slektsnavn?, kjonn, familiestilling?, sivilstand?, yrke?, alder?, fodselsaar?, fodested?, bostatus?,
 sedvanlig_bosted?, antatt_oppholdssted?, statsborgerskap?, trossamfunn?, sykdomstilstand?, varighet_av_sykdomstilstand?,
-bygning_for_natteopphold?, bo_etasje?, slektskap_med_ektemann?, forsorgers_livsstilling?, arbeidsledig?,
+bygning_for_natteopphold?, etasje?, slektskap_med_ektemann?, forsorgers_livsstilling?, arbeidsledig?,
 etnisitet_egen_fars?, etnisitet_mors?, spraak?, merknader?, kildeside?, bildelenke?)>
 <!ATTLIST person
 		id CDATA #IMPLIED>			<!-- Globalt unik postID for personposten -->
@@ -198,7 +199,7 @@ etnisitet_egen_fars?, etnisitet_mors?, spraak?, merknader?, kildeside?, bildelen
 <!ELEMENT sykdomstilstand (#PCDATA)>			<!-- Om personen har noen somatisk eller mental sykdom -->
 <!ELEMENT varighet_av_sykdomstilstand (#PCDATA)>	<!-- Om varigheten av denne sykdomstilstanden -->
 <!ELEMENT bygning_for_natteopphold (#PCDATA)>		<!-- Den bygningen personen har sitt natteopphold i -->
-<!ELEMENT bo_etasje (#PCDATA)>				<!-- Hvilken etasje i huset personen bor i (1875 og 1885) -->
+<!-- <!ELEMENT bo_etasje (#PCDATA)> -->				<!-- Hvilken etasje i huset personen bor i (1875 og 1885) -->
 <!ELEMENT slektskap_med_ektemann (#PCDATA)>		<!-- Om en gift kvinne er i slekt med sin ektemann (1891) -->
 <!ELEMENT forsorgers_livsstilling (#PCDATA)>		<!-- Personens forsoergers livsstilling (1891) -->
 <!ELEMENT arbeidsledig (#PCDATA)>			<!-- Om personen er arbeidsledig (1910) -->
