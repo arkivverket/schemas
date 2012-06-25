@@ -1,0 +1,2251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  DTD for HistformML - en XML-versjon av utvekslingsformatet i Histform - Norsk standard for registrering og utveksling av
+  nominative folketellingsdata for aarene 1865-1910. (Registreringssentral for historiske data, Tromsoe, januar 1995,
+  ISBN 82-7663-419-2)
+  HistformML er noe utvidet i forhold til Histform-standarden som en foelge av harmonisering med kirkebokstandarden Kyrre
+  og dennes hovedformat KyrreML. (Digitalarkivet, Bergen, desember 2005)
+  Versjon 1.0, Riksarkivet, 27.05.2010 (utarbeidet av Lars Nygaard)
+  
+  Elementene 'kildeside' og 'bildelenke' lagt til. Attributtverdien 'grunnlag' lagt til i elementet 'fodselsaar'.
+  Versjon 1.1, Riksarkivet, 17.06.2011 (revidert av Lars Nygaard)
+-->
+<!-- Overordnet element: -->
+<grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" 
+    xmlns="http://relaxng.org/ns/structure/1.0" 
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    
+    <include href="generelt.rng"/>
+    <include href="kyrrexml.rng"/>
+    <start combine="choice">
+        <ref name="histform"></ref>
+    </start>
+<define name="histform">
+    <element name="histform">
+      <ref name="attlist.histform"/>
+      <ref name="kilde"/>
+      <ref name="registrering"/>
+      <oneOrMore>
+        <choice>
+          <ref name="tellingskrets"/>
+          <ref name="informasjon"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.histform" combine="choice">
+    <optional>
+      <attribute name="versjon" a:defaultValue="1.1">
+        <value type="string">1.1</value>
+      </attribute>
+    </optional>
+  </define>
+  <!-- Versjonsnummer av HistformML -->
+  <!-- Felles feltelementer for flere postelementer: -->
+  <define name="kretsnummer">
+    <element name="kretsnummer">
+      <ref name="attlist.kretsnummer"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.kretsnummer" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Tellingskretsens nummer i kilden -->
+  <define name="bostedsnummer">
+    <element name="bostedsnummer">
+      <ref name="attlist.bostedsnummer"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.bostedsnummer" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Bostedets (gaardens/husets) listenummer i kilden -->
+  <define name="leilighetsnummer">
+    <element name="leilighetsnummer">
+      <ref name="attlist.leilighetsnummer"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.leilighetsnummer" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Leilighetens listenummer i kilden -->
+  <define name="personnummer">
+    <element name="personnummer">
+      <ref name="attlist.personnummer"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.personnummer" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personens nummer innenfor bostedet/leiligheten/skipet -->
+  <define name="antall_tilstedevarende_personer">
+    <element name="antall_tilstedevarende_personer">
+      <ref name="attlist.antall_tilstedevarende_personer"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_tilstedevarende_personer" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Antall tilstedevaerende personer -->
+  <define name="antall_hjemmehorende_personer">
+    <element name="antall_hjemmehorende_personer">
+      <ref name="attlist.antall_hjemmehorende_personer"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_hjemmehorende_personer" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Antall hjemmehoerende personer -->
+    <define name="merknader" combine="choice">
+    <element name="merknader">
+      <ref name="attlist.merknader"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.merknader" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Evt. merknader til kilden, registreringen, bosteder eller personer -->
+    <define name="side" combine="choice">
+    <element name="side">
+      <ref name="attlist.side"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.side" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Sidetallet i folketellingslisten -->
+  <define name="kildeside">
+    <element name="kildeside">
+      <ref name="attlist.kildeside"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.kildeside" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Kildesidenummer (indeks) til skannet bilde i Digitalarkivet -->
+  <define name="bildelenke">
+    <element name="bildelenke">
+      <ref name="attlist.bildelenke"/>
+        <interleave>
+            <zeroOrMore><ref name="lenke"/></zeroOrMore>
+            <zeroOrMore><text/></zeroOrMore>
+        </interleave>
+    </element>
+  </define>
+  <define name="attlist.bildelenke" combine="interleave">
+      <optional><attribute name="href"><text/></attribute></optional>
+  </define>
+  <!-- URL til skannet bilde i Digitalarkivet -->
+  <!-- Dokumentasjon om den aktuelle folketellingen paa kommune- eller prestegjeldsnivaa: -->
+  <define name="kilde">
+    <element name="kilde">
+      <ref name="attlist.kilde"/>
+      <choice>
+        <ref name="kommune"/>
+        <ref name="prgjeld"/>
+      </choice>
+      <ref name="kommnr"/>
+      <optional>
+        <ref name="soknenr"/>
+      </optional>
+      <ref name="ktype"/>
+      
+      <choice>
+          <ref name="aar"/>
+          <group>
+              <ref name="startaar"/>
+              <ref name="sluttaar"/>
+          </group>
+      </choice>
+      
+      <optional>
+        <ref name="dato"/>
+      </optional>
+      <optional>
+        <ref name="signatur"/>
+      </optional>
+      <optional>
+        <ref name="asta_streng"/>
+      </optional>
+      <optional>
+        <ref name="oppbsted"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.kilde" combine="interleave">
+      <attribute name="kildeid"/>
+      <optional> 
+        <attribute name="gda_kid"/>
+      </optional>
+  </define>
+  <!-- Kildens ID i Digitalarkivet -->
+    <define name="kommune" combine="choice">
+    <element name="kommune">
+      <ref name="attlist.kommune"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.kommune" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Herredets eller byens navn -->
+  <define name="prgjeld" combine="choice">
+    <element name="prgjeld">
+      <ref name="attlist.prgjeld"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.prgjeld" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Prestegjeldets eller byens navn -->
+    <define name="kommnr" combine="choice">
+    <element name="kommnr">
+      <ref name="attlist.kommnr"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.kommnr" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Kommunenummer til kommunen eller prestegjeldet -->
+    <define name="soknenr" combine="choice">
+    <element name="soknenr">
+      <ref name="attlist.soknenr"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.soknenr" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Soknenummer til prestegjeldet (6 siffer) -->
+    <define name="ktype" combine="choice">
+    <element name="ktype">
+      <ref name="attlist.ktype"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.ktype" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Kildetype ): FOLK -->
+    <define name="aar" combine="choice">
+    <element name="aar">
+      <ref name="attlist.aar"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.aar" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Folketellingsaaret med 4 siffer -->
+  <define name="dato">
+    <element name="dato">
+      <ref name="attlist.dato"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.dato" combine="interleave">
+      <ref name="attlist.global"/>
+  </define>
+  <!-- Folketellingsdatoen paa formatet "mm.dd" -->
+    <define name="signatur" combine="choice">
+    <element name="signatur">
+      <ref name="attlist.signatur"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.signatur" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Arkivsignatur ): gammelt katalognummer i Arkivverket -->
+  <define name="asta_streng">
+    <element name="asta_streng">
+      <ref name="attlist.asta_streng"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.asta_streng" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Asta-streng ): nytt katalognummer paa formen S-1344/Hab/L0001 -->
+  <define name="oppbsted">
+    <element name="oppbsted">
+      <ref name="attlist.oppbsted"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.oppbsted" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Oppbevaringssted for originalkilden ): statsarkivkode -->
+  <!-- Dokumentasjon om registreringen: -->
+    <define name="registrering" combine="choice">
+    <element name="registrering">
+      <ref name="attlist.registrering"/>
+      <optional>
+        <ref name="reg_av"/>
+      </optional>
+      <optional>
+        <ref name="reg_naar"/>
+      </optional>
+      <optional>
+        <ref name="korr_av"/>
+      </optional>
+      <optional>
+        <ref name="korr_naar"/>
+      </optional>
+      <ref name="foretak"/>
+      <optional>
+        <ref name="kontakt"/>
+      </optional>
+      <optional>
+        <ref name="grunnlag"/>
+      </optional>
+      <optional>
+        <ref name="program"/>
+      </optional>
+      <optional>
+        <ref name="fildato"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.registrering" combine="interleave">
+    <empty/>
+  </define>
+    <define name="reg_av" combine="choice">
+    <element name="reg_av">
+      <ref name="attlist.reg_av"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.reg_av" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Navn paa person(er) eller foretak som har registrert kilden -->
+    <define name="reg_naar" combine="choice">
+    <element name="reg_naar">
+      <ref name="attlist.reg_naar"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.reg_naar" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Aar for eller annen tidfesting av registreringsarbeidet -->
+    <define name="korr_av" combine="choice">
+    <element name="korr_av">
+      <ref name="attlist.korr_av"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.korr_av" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Navn paa person(er) eller foretak som har korrekturlest kilden -->
+    <define name="korr_naar" combine="choice">
+    <element name="korr_naar">
+      <ref name="attlist.korr_naar"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.korr_naar" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Aar for eller annen tidfesting av korrekturarbeidet -->
+    <define name="foretak" combine="choice">
+    <element name="foretak">
+      <ref name="attlist.foretak"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.foretak" combine="interleave">
+    <empty/>
+  </define>
+  <!--
+    Organisasjon/institusjon eller person som staar bak
+    registreringen; rettighetshaver
+  -->
+    <define name="kontakt" combine="choice">
+    <element name="kontakt">
+      <ref name="attlist.kontakt"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.kontakt" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Navn (evt.), adresse, telefon eller e-post til kontaktperson -->
+    <define name="grunnlag" combine="choice">
+    <element name="grunnlag">
+      <ref name="attlist.grunnlag"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.grunnlag" combine="interleave">
+    <empty/>
+  </define>
+  <!--
+    Kildegrunnlag for registreringen ): Papirkopi, Mikrofilm, Mikrofiche,
+    Skanning eller Original
+  -->
+    <define name="program" combine="choice">
+    <element name="program">
+      <ref name="attlist.program"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.program" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Registreringsprogram ): CensIn, Access, Excel, BD87 osv. -->
+    <define name="fildato" combine="choice">
+    <element name="fildato">
+      <ref name="attlist.fildato"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.fildato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Dato for ferdigstilling av datafilen, format: "yyyy.mm.dd" -->
+  <!-- Tellingskrets (1) -->
+  <define name="tellingskrets">
+    <element name="tellingskrets">
+      <ref name="attlist.tellingskrets"/>
+      <ref name="kretsnummer"/>
+      <optional>
+        <ref name="tellingskretsens_navn"/>
+      </optional>
+      <optional>
+        <ref name="sogn"/>
+      </optional>
+      <optional>
+        <ref name="prestegjeld"/>
+      </optional>
+      <optional>
+        <ref name="herred_by"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kildeside"/>
+      </optional>
+      <optional>
+        <ref name="bildelenke"/>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="bosted_land"/>
+          <ref name="bosted_by"/>
+          <ref name="skip"/>
+          <ref name="informasjon"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.tellingskrets" combine="interleave">
+    <ref name="attlist.id"/>
+  </define>
+  <!-- Globalt unik postID for kretsposten -->
+  <define name="tellingskretsens_navn">
+    <element name="tellingskretsens_navn">
+      <ref name="attlist.tellingskretsens_navn"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.tellingskretsens_navn" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Tellingskretsens navn i kilden -->
+  <define name="sogn">
+    <element name="sogn">
+      <ref name="attlist.sogn"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.sogn" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Denne kretsens tilhoerighet til sokn -->
+  <define name="prestegjeld">
+    <element name="prestegjeld">
+      <ref name="attlist.prestegjeld"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.prestegjeld" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Denne kretsens tilhoerighet til prestegjeld -->
+  <define name="herred_by">
+    <element name="herred_by">
+      <ref name="attlist.herred_by"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.herred_by" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Denne kretsens tilhoerighet til herred eller by -->
+  <!-- Bosted_land (2a) -->
+  <define name="bosted_land">
+    <element name="bosted_land">
+      <ref name="attlist.bosted_land"/>
+      <ref name="bostedsnummer"/>
+      <optional>
+        <ref name="bostedets_navn"/>
+      </optional>
+        <optional>
+          <ref name="stat"/>
+      </optional>
+        <optional>
+            <ref name="fylke"/>
+        </optional>
+        <optional>
+            <ref name="herred_by"/>
+        </optional>
+        <optional>
+            <ref name="prestegjeld"/>
+        </optional>
+        <optional>
+            <ref name="sogn"/>
+        </optional>
+        <optional>
+            <ref name="sted"/>
+        </optional>
+      <optional>
+        <ref name="matrnr_gnr"/>
+      </optional>
+      <optional>
+        <ref name="lopenr_bnr"/>
+      </optional>
+      <optional>
+        <ref name="antall_tilstedevarende_personer"/>
+      </optional>
+      <optional>
+        <ref name="antall_hjemmehorende_personer"/>
+      </optional>
+      <optional>
+        <ref name="antall_personsedler"/>
+      </optional>
+      <optional>
+        <ref name="antall_husholdninger"/>
+      </optional>
+      <optional>
+        <ref name="sidebygning_med_natteopphold"/>
+      </optional>
+      <optional>
+        <ref name="antall_slike_bygninger"/>
+      </optional>
+      <optional>
+        <ref name="hvilke_slike_bygninger"/>
+      </optional>
+      <optional>
+        <ref name="jordbrukssporsmaal"/>
+      </optional>
+      <optional>
+        <ref name="antall_personer_i_fjos"/>
+      </optional>
+      <optional>
+        <ref name="antall_personer_i_stall"/>
+      </optional>
+      <optional>
+        <ref name="tredje_sidebygning"/>
+      </optional>
+      <optional>
+        <ref name="antall_personer_i_tredje_sidebygning"/>
+      </optional>
+      <optional>
+        <ref name="fjerde_sidebygning"/>
+      </optional>
+      <optional>
+        <ref name="antall_personer_i_fjerde_sidebygning"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kildeside"/>
+      </optional>
+      <optional>
+        <ref name="bildelenke"/>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="person"/>
+          <ref name="hjemvendt_norsk_amerikaner"/>
+          <ref name="jordbruk"/>
+          <ref name="informasjon"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.bosted_land" combine="interleave">
+      <ref name="attlist.id"/>
+  </define>
+  <!-- Globalt unik postID for bostedposten -->
+  <define name="bostedets_navn">
+    <element name="bostedets_navn">
+      <ref name="attlist.bostedets_navn"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.bostedets_navn" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Bostedets navn i kilden -->
+  <define name="matrnr_gnr">
+    <element name="matrnr_gnr">
+      <ref name="attlist.matrnr_gnr"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.matrnr_gnr" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Bostedets matrikkelnummer eller gaardsnummer -->
+  <define name="lopenr_bnr">
+    <element name="lopenr_bnr">
+      <ref name="attlist.lopenr_bnr"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.lopenr_bnr" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Bostedets loepenummer eller bruksnummer -->
+  <define name="antall_personsedler">
+    <element name="antall_personsedler">
+      <ref name="attlist.antall_personsedler"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_personsedler" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Antall personsedler (1891) -->
+  <define name="antall_husholdninger">
+    <element name="antall_husholdninger">
+      <ref name="attlist.antall_husholdninger"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_husholdninger" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Antall husholdninger -->
+  <define name="sidebygning_med_natteopphold">
+    <element name="sidebygning_med_natteopphold">
+      <ref name="attlist.sidebygning_med_natteopphold"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.sidebygning_med_natteopphold" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Side-/uthusbygning med natteopphold? (j/n) -->
+  <define name="antall_slike_bygninger">
+    <element name="antall_slike_bygninger">
+      <ref name="attlist.antall_slike_bygninger"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_slike_bygninger" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Antall slike bygninger -->
+  <define name="hvilke_slike_bygninger">
+    <element name="hvilke_slike_bygninger">
+      <ref name="attlist.hvilke_slike_bygninger"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.hvilke_slike_bygninger" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Hvilke slike bygninger -->
+  <define name="jordbrukssporsmaal">
+    <element name="jordbrukssporsmaal">
+      <ref name="attlist.jordbrukssporsmaal"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.jordbrukssporsmaal" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Jordbruksspoersmaal -->
+  <define name="antall_personer_i_fjos">
+    <element name="antall_personer_i_fjos">
+      <ref name="attlist.antall_personer_i_fjos"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_personer_i_fjos" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Antall personer i fjoes -->
+  <define name="antall_personer_i_stall">
+    <element name="antall_personer_i_stall">
+      <ref name="attlist.antall_personer_i_stall"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_personer_i_stall" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Antall personer i stall -->
+  <define name="tredje_sidebygning">
+    <element name="tredje_sidebygning">
+      <ref name="attlist.tredje_sidebygning"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.tredje_sidebygning" combine="interleave">
+    <empty/>
+  </define>
+  <!-- 3. sidebygning -->
+  <define name="antall_personer_i_tredje_sidebygning">
+    <element name="antall_personer_i_tredje_sidebygning">
+      <ref name="attlist.antall_personer_i_tredje_sidebygning"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_personer_i_tredje_sidebygning" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Antall personer i 3. sidebygning -->
+  <define name="fjerde_sidebygning">
+    <element name="fjerde_sidebygning">
+      <ref name="attlist.fjerde_sidebygning"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.fjerde_sidebygning" combine="interleave">
+    <empty/>
+  </define>
+  <!-- 4. sidebygning -->
+  <define name="antall_personer_i_fjerde_sidebygning">
+    <element name="antall_personer_i_fjerde_sidebygning">
+      <ref name="attlist.antall_personer_i_fjerde_sidebygning"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_personer_i_fjerde_sidebygning" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Antall personer i 4. sidebygning -->
+  <!-- Bosted_by (2b) -->
+  <define name="bosted_by">
+    <element name="bosted_by">
+      <ref name="attlist.bosted_by"/>
+        <ref name="bostedsnummer"/>
+        
+        <optional>
+            <ref name="stat"/>
+        </optional>
+        <optional>
+            <ref name="fylke"/>
+        </optional>
+        <optional>
+            <ref name="herred_by"/>
+        </optional>
+      <optional>
+         <ref name="prestegjeld"/>
+      </optional>
+      <optional>
+         <ref name="sogn"/>
+      </optional>
+      <optional>
+        <ref name="gatenavn_og_nummer_i_gata"/>
+      </optional>
+      <optional>
+        <ref name="bydel"/>
+      </optional>
+      <optional>
+          <ref name="matrnr_gnr"/>
+      </optional>
+      <optional>
+        <ref name="gaardens_nummer"/>
+      </optional>
+      <optional>
+        <ref name="gaardens_eier"/>
+      </optional>
+      <optional>
+        <ref name="antall_tilstedevarende_personer"/>
+      </optional>
+      <optional>
+        <ref name="antall_hjemmehorende_personer"/>
+      </optional>
+      <optional>
+        <ref name="antall_personsedler_personlister"/>
+      </optional>
+      <optional>
+        <ref name="hustype"/>
+      </optional>
+      <optional>
+        <ref name="sidebygninger"/>
+      </optional>
+      <optional>
+        <ref name="ubebodd"/>
+      </optional>
+      <optional>
+        <ref name="antall_etasjer"/>
+      </optional>
+      <optional>
+        <ref name="antall_leiligheter_til_beboelse"/>
+      </optional>
+      <optional>
+        <ref name="antall_leiligheter_med_naringslokaler"/>
+      </optional>
+      <optional>
+        <ref name="antall_verksted_forretningslokaler"/>
+      </optional>
+      <optional>
+        <ref name="antall_ledige_bekvemmeligheter"/>
+      </optional>
+      <optional>
+        <ref name="antall_kvistleiligheter"/>
+      </optional>
+      <optional>
+        <ref name="antall_kjellerbekvemmeligheter"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kildeside"/>
+      </optional>
+      <optional>
+        <ref name="bildelenke"/>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="leilighet"/>
+          <ref name="jordbruk"/>
+          <ref name="informasjon"/>
+          <ref name="person"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.bosted_by" combine="interleave">
+        <ref name="attlist.id"/>
+  </define>
+  <!-- Globalt unik postID for gaardsposten (by) -->
+  <define name="gatenavn_og_nummer_i_gata">
+    <element name="gatenavn_og_nummer_i_gata">
+      <ref name="attlist.gatenavn_og_nummer_i_gata"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.gatenavn_og_nummer_i_gata" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Gatenavn og gaardens/husets nummer i gata -->
+  <define name="bydel">
+    <element name="bydel">
+      <ref name="attlist.bydel"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.bydel" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Bydelens navn eller (rode)nummer -->
+  <define name="gaardens_nummer">
+    <element name="gaardens_nummer">
+      <ref name="attlist.gaardens_nummer"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.gaardens_nummer" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Gaardens/husets nummer i bymatrikkel, branntakst etc. -->
+  <define name="gaardens_eier">
+    <element name="gaardens_eier">
+      <ref name="attlist.gaardens_eier"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.gaardens_eier" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Gaardens/husets eier(e) -->
+  <define name="antall_personsedler_personlister">
+    <element name="antall_personsedler_personlister">
+      <ref name="attlist.antall_personsedler_personlister"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_personsedler_personlister" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Antall personsedler (1891), personlister (1900), familielister (1910) -->
+  <define name="hustype">
+    <element name="hustype">
+      <ref name="attlist.hustype"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.hustype" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Husets type -->
+  <define name="sidebygninger">
+    <element name="sidebygninger">
+      <ref name="attlist.sidebygninger"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.sidebygninger" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Side-/uthusbygninger med natteopphold -->
+  <define name="ubebodd">
+    <element name="ubebodd">
+      <ref name="attlist.ubebodd"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.ubebodd" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Er huset ubebodd? (j/n) -->
+  <define name="antall_etasjer">
+    <element name="antall_etasjer">
+      <ref name="attlist.antall_etasjer"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_etasjer" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Antall etasjer i huset -->
+  <define name="antall_leiligheter_til_beboelse">
+    <element name="antall_leiligheter_til_beboelse">
+      <ref name="attlist.antall_leiligheter_til_beboelse"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_leiligheter_til_beboelse" combine="interleave">
+    <empty/>
+  </define>
+  <define name="antall_leiligheter_med_naringslokaler">
+    <element name="antall_leiligheter_med_naringslokaler">
+      <ref name="attlist.antall_leiligheter_med_naringslokaler"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_leiligheter_med_naringslokaler" combine="interleave">
+    <empty/>
+  </define>
+  <define name="antall_verksted_forretningslokaler">
+    <element name="antall_verksted_forretningslokaler">
+      <ref name="attlist.antall_verksted_forretningslokaler"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_verksted_forretningslokaler" combine="interleave">
+    <empty/>
+  </define>
+  <define name="antall_ledige_bekvemmeligheter">
+    <element name="antall_ledige_bekvemmeligheter">
+      <ref name="attlist.antall_ledige_bekvemmeligheter"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_ledige_bekvemmeligheter" combine="interleave">
+    <empty/>
+  </define>
+  <define name="antall_kvistleiligheter">
+    <element name="antall_kvistleiligheter">
+      <ref name="attlist.antall_kvistleiligheter"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_kvistleiligheter" combine="interleave">
+    <empty/>
+  </define>
+  <define name="antall_kjellerbekvemmeligheter">
+    <element name="antall_kjellerbekvemmeligheter">
+      <ref name="attlist.antall_kjellerbekvemmeligheter"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_kjellerbekvemmeligheter" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Leilighet (3) -->
+  <define name="leilighet">
+    <element name="leilighet">
+      <ref name="attlist.leilighet"/>
+      <ref name="leilighetsnummer"/>
+      <optional>
+        <ref name="antall_bebodde_bekvemmeligheter"/>
+      </optional>
+      <optional>
+        <ref name="bekvemmelighetens_beliggenhet"/>
+      </optional>
+      <optional>
+        <ref name="etasje"/>
+      </optional>
+      <optional>
+        <ref name="antall_varelser_i_kjeller"/>
+      </optional>
+      <optional>
+        <ref name="antall_personer_i_kjeller"/>
+      </optional>
+      <optional>
+        <ref name="antall_varelser_i_etasjene"/>
+      </optional>
+      <optional>
+        <ref name="antall_personer_i_etasjene"/>
+      </optional>
+      <optional>
+        <ref name="antall_varelser_paa_kvist_loft"/>
+      </optional>
+      <optional>
+        <ref name="antall_personer_paa_kvist_loft"/>
+      </optional>
+      <optional>
+        <ref name="antall_kjokkener"/>
+      </optional>
+      <optional>
+        <ref name="antall_badevarelser"/>
+      </optional>
+      <optional>
+        <ref name="antall_tilstedevarende_personer"/>
+      </optional>
+      <optional>
+        <ref name="antall_hjemmehorende_personer"/>
+      </optional>
+      <optional>
+        <ref name="antall_tjenervarelser"/>
+      </optional>
+      <optional>
+        <ref name="antall_varelser_til_losjerende"/>
+      </optional>
+      <optional>
+        <ref name="husleie"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kildeside"/>
+      </optional>
+      <optional>
+        <ref name="bildelenke"/>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="person"/>
+          <ref name="hjemvendt_norsk_amerikaner"/>
+          <ref name="informasjon"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.leilighet" combine="interleave">
+      <ref name="attlist.id"/>
+  </define>
+  <!-- Globalt unik postID for leilighetsposten -->
+  <define name="antall_bebodde_bekvemmeligheter">
+    <element name="antall_bebodde_bekvemmeligheter">
+      <ref name="attlist.antall_bebodde_bekvemmeligheter"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_bebodde_bekvemmeligheter" combine="interleave">
+    <empty/>
+  </define>
+  <define name="bekvemmelighetens_beliggenhet">
+    <element name="bekvemmelighetens_beliggenhet">
+      <ref name="attlist.bekvemmelighetens_beliggenhet"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.bekvemmelighetens_beliggenhet" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Hvilken bygning leiligheten ligger i -->
+  <define name="etasje">
+    <element name="etasje">
+      <ref name="attlist.etasje"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.etasje" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Hvilken etasje leiligheten ligger i -->
+  <define name="antall_varelser_i_kjeller">
+    <element name="antall_varelser_i_kjeller">
+      <ref name="attlist.antall_varelser_i_kjeller"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_varelser_i_kjeller" combine="interleave">
+    <empty/>
+  </define>
+  <define name="antall_personer_i_kjeller">
+    <element name="antall_personer_i_kjeller">
+      <ref name="attlist.antall_personer_i_kjeller"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_personer_i_kjeller" combine="interleave">
+    <empty/>
+  </define>
+  <define name="antall_varelser_i_etasjene">
+    <element name="antall_varelser_i_etasjene">
+      <ref name="attlist.antall_varelser_i_etasjene"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_varelser_i_etasjene" combine="interleave">
+    <empty/>
+  </define>
+  <define name="antall_personer_i_etasjene">
+    <element name="antall_personer_i_etasjene">
+      <ref name="attlist.antall_personer_i_etasjene"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_personer_i_etasjene" combine="interleave">
+    <empty/>
+  </define>
+  <define name="antall_varelser_paa_kvist_loft">
+    <element name="antall_varelser_paa_kvist_loft">
+      <ref name="attlist.antall_varelser_paa_kvist_loft"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_varelser_paa_kvist_loft" combine="interleave">
+    <empty/>
+  </define>
+  <define name="antall_personer_paa_kvist_loft">
+    <element name="antall_personer_paa_kvist_loft">
+      <ref name="attlist.antall_personer_paa_kvist_loft"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_personer_paa_kvist_loft" combine="interleave">
+    <empty/>
+  </define>
+  <define name="antall_kjokkener">
+    <element name="antall_kjokkener">
+      <ref name="attlist.antall_kjokkener"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_kjokkener" combine="interleave">
+    <empty/>
+  </define>
+  <define name="antall_badevarelser">
+    <element name="antall_badevarelser">
+      <ref name="attlist.antall_badevarelser"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_badevarelser" combine="interleave">
+    <empty/>
+  </define>
+  <define name="antall_tjenervarelser">
+    <element name="antall_tjenervarelser">
+      <ref name="attlist.antall_tjenervarelser"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_tjenervarelser" combine="interleave">
+    <empty/>
+  </define>
+  <define name="antall_varelser_til_losjerende">
+    <element name="antall_varelser_til_losjerende">
+      <ref name="attlist.antall_varelser_til_losjerende"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_varelser_til_losjerende" combine="interleave">
+    <empty/>
+  </define>
+  <define name="husleie">
+    <element name="husleie">
+      <ref name="attlist.husleie"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.husleie" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Skip (4) -->
+  <define name="skip">
+    <element name="skip">
+      <ref name="attlist.skip"/>
+      <ref name="skipsnummer"/>
+      <optional>
+        <ref name="skipstype"/>
+      </optional>
+      <optional>
+        <ref name="skipets_navn"/>
+      </optional>
+      <optional>
+        <ref name="hjemsted"/>
+      </optional>
+      <optional>
+        <ref name="drektighet"/>
+      </optional>
+      <optional>
+        <ref name="skipsforer"/>
+      </optional>
+      <optional>
+        <ref name="oppholdssted"/>
+      </optional>
+      <optional>
+        <ref name="bestemmelsessted"/>
+      </optional>
+      <optional>
+        <ref name="listeforer"/>
+      </optional>
+      <optional>
+        <ref name="avleveringsdato"/>
+      </optional>
+      <optional>
+        <ref name="mottaker"/>
+      </optional>
+      <optional>
+        <ref name="antall_ombordvarende_personer"/>
+      </optional>
+      <optional>
+        <ref name="antall_ilandvarende_personer"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kildeside"/>
+      </optional>
+      <optional>
+        <ref name="bildelenke"/>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="person"/>
+          <ref name="hjemvendt_norsk_amerikaner"/>
+          <ref name="informasjon"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.skip" combine="interleave">
+        <ref name="attlist.id"/>
+  </define>
+  <!-- Globalt unik postID for skipsposten -->
+  <define name="skipsnummer">
+    <element name="skipsnummer">
+      <ref name="attlist.skipsnummer"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.skipsnummer" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Skipets listenummer i kilden -->
+  <define name="skipstype">
+    <element name="skipstype">
+      <ref name="attlist.skipstype"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.skipstype" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Typebetegnelse for skipet -->
+  <define name="skipets_navn">
+    <element name="skipets_navn">
+      <ref name="attlist.skipets_navn"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.skipets_navn" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Skipets navn i kilden -->
+  <define name="hjemsted">
+    <element name="hjemsted">
+      <ref name="attlist.hjemsted"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.hjemsted" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Skipets hjemsted -->
+  <define name="drektighet">
+    <element name="drektighet">
+      <ref name="attlist.drektighet"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.drektighet" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Skipets stoerrelse (drektighet) -->
+  <define name="skipsforer">
+    <element name="skipsforer">
+      <ref name="attlist.skipsforer"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.skipsforer" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Skipets foerer/kaptein -->
+  <define name="oppholdssted">
+    <element name="oppholdssted">
+      <ref name="attlist.oppholdssted"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.oppholdssted" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Skipets oppholdssted paa tellingstidspunktet -->
+  <define name="bestemmelsessted">
+    <element name="bestemmelsessted">
+      <ref name="attlist.bestemmelsessted"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.bestemmelsessted" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Skipets bestemmelsessted paa tellingstidspunktet -->
+  <define name="listeforer">
+    <element name="listeforer">
+      <ref name="attlist.listeforer"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.listeforer" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Navnet paa personen som har foert tellingslisten -->
+  <define name="avleveringsdato">
+    <element name="avleveringsdato">
+      <ref name="attlist.avleveringsdato"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.avleveringsdato" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Dato for avlevering av tellingslisten -->
+  <define name="mottaker">
+    <element name="mottaker">
+      <ref name="attlist.mottaker"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.mottaker" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Mottaker av tellingslisten -->
+  <define name="antall_ombordvarende_personer">
+    <element name="antall_ombordvarende_personer">
+      <ref name="attlist.antall_ombordvarende_personer"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_ombordvarende_personer" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Antall ombordvaerende personer -->
+  <define name="antall_ilandvarende_personer">
+    <element name="antall_ilandvarende_personer">
+      <ref name="attlist.antall_ilandvarende_personer"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antall_ilandvarende_personer" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Antall ilandvaerende personer -->
+  <!-- Person (5) -->
+    <define name="person">
+    <element name="person">
+      <ref name="attlist.person"/>
+      <ref name="personnummer"/>
+      <ref name="husholdningsnummer"/>
+      <optional>
+        <ref name="ny_husholdning"/>
+      </optional>
+      <ref name="rolle"/>
+      <ref name="fornavn"/>
+      <optional>
+        <ref name="patronymikon"/>
+      </optional>
+      <optional>
+        <ref name="slektsnavn"/>
+      </optional>
+      <ref name="kjonn"/>
+      <optional>
+        <ref name="familiestilling"/>
+      </optional>
+      <optional>
+        <ref name="sivilstand"/>
+      </optional>
+      <optional>
+        <ref name="yrke"/>
+      </optional>
+      <optional>
+        <ref name="alder"/>
+      </optional>
+      <optional>
+        <ref name="fodselsaar"/>
+      </optional>
+      <optional>
+        <ref name="fodested"/>
+      </optional>
+      <optional>
+         <ref name="fodested_mor"/>
+      </optional>
+      <optional>
+         <ref name="fodested_far"/>
+      </optional>
+      <optional>
+        <ref name="bostatus"/>
+      </optional>
+      <optional>
+        <ref name="sedvanlig_bosted"/>
+      </optional>
+      <optional>
+        <ref name="antatt_oppholdssted"/>
+      </optional>
+      <optional>
+        <ref name="statsborgerskap"/>
+      </optional>
+      <optional>
+        <ref name="trossamfunn"/>
+      </optional>
+      <optional>
+        <ref name="sykdomstilstand"/>
+      </optional>
+      <optional>
+        <ref name="varighet_av_sykdomstilstand"/>
+      </optional>
+      <optional>
+        <ref name="bygning_for_natteopphold"/>
+      </optional>
+      <optional>
+        <ref name="bo_etasje"/>
+      </optional>
+      <optional>
+        <ref name="slektskap_med_ektemann"/>
+      </optional>
+      <optional>
+        <ref name="forsorgers_livsstilling"/>
+      </optional>
+      <optional>
+        <ref name="arbeidsledig"/>
+      </optional>
+      <optional>
+        <ref name="etnisitet_egen_fars"/>
+      </optional>
+      <optional>
+        <ref name="etnisitet_mors"/>
+      </optional>
+      <optional>
+        <ref name="spraak"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kildeside"/>
+      </optional>
+      <optional>
+        <ref name="bildelenke"/>
+      </optional>
+    </element>
+  </define>
+    <define name="attlist.person" combine="interleave">
+        <ref name="attlist.id"/>
+  </define>
+  <!-- Globalt unik postID for personposten -->
+  <define name="husholdningsnummer">
+    <element name="husholdningsnummer">
+      <ref name="attlist.husholdningsnummer"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.husholdningsnummer" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Husholdningens nummer innenfor bostedet/leiligheten -->
+  <define name="ny_husholdning">
+    <element name="ny_husholdning">
+      <ref name="attlist.ny_husholdning"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.ny_husholdning" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Markering av foerste person i ny husholdning (eller enslig person) -->
+    <define name="rolle" combine="choice">
+    <element name="rolle">
+      <ref name="attlist.rolle"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.rolle" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personens rolle i handlingen. Lovlig verdi: folketelt -->
+  <define name="fornavn">
+    <element name="fornavn">
+      <ref name="attlist.fornavn"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.fornavn" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personens fornavn og evt. mellomnavn -->
+  <define name="patronymikon">
+    <element name="patronymikon">
+      <ref name="attlist.patronymikon"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.patronymikon" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personens patronymikon (farsnavn) -->
+  <define name="slektsnavn">
+    <element name="slektsnavn">
+      <ref name="attlist.slektsnavn"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.slektsnavn" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personens slektsnavn (fast etternavn) -->
+    <define name="kjonn" combine="choice">
+    <element name="kjonn">
+        <ref name="attlist.kjonn"/>
+        <ref name="verdier.kjonn"/>
+    </element>
+  </define>
+  <define name="attlist.kjonn" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personens kjoenn. Lovlige verdiar: m, k, ??, m!!, k!! -->
+  <define name="familiestilling">
+    <element name="familiestilling">
+      <ref name="attlist.familiestilling"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.familiestilling" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personens stilling i familien -->
+  <define name="sivilstand">
+    <element name="sivilstand">
+      <ref name="attlist.sivilstand"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.sivilstand" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personens sivilstand (ekteskapelige stilling) -->
+  <define name="yrke">
+    <element name="yrke">
+      <ref name="attlist.yrke"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.yrke" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personens yrke, naeringsvei etc. -->
+    <define name="alder" combine="choice">
+    <element name="alder">
+      <ref name="attlist.alder"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.alder" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personens alder oppgitte i kilden -->
+    <define name="fodselsaar" combine="choice">
+    <element name="fodselsaar">
+      <ref name="attlist.fodselsaar"/>
+      <text/>
+    </element>
+  </define>
+  <!--
+    Personens foedselsaar oppgitt i kilden eller beregnet fra oppgitt
+    alder, eller foedselsdato paa formen 'yyyy.mm.dd'
+  -->
+  <define name="attlist.fodselsaar" combine="choice">
+    <optional>
+      <attribute name="grunnlag"/>
+    </optional>
+  </define>
+  <!-- Grunnlag for verdien i 'fodselsaar', f.eks. 'alder' -->
+  <define name="fodested">
+    <element name="fodested">
+      <ref name="attlist.fodested"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.fodested" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personens foedested -->
+
+    <define name="fodested_mor">
+        <element name="fodested_mor">
+            <ref name="attlist.fodested"/>
+            <text/>
+        </element>
+    </define>
+    <define name="fodested_far">
+        <element name="fodested_far">
+            <ref name="attlist.fodested"/>
+            <text/>
+        </element>
+    </define>
+  <define name="bostatus">
+    <element name="bostatus">
+      <ref name="attlist.bostatus"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.bostatus" combine="interleave">
+    <empty/>
+  </define>
+  <!--
+    Personens tilknytning til dette bostedet paa tellingstidspunktet.
+    Lovlige verdier: b, f eller mt.
+  -->
+  <define name="sedvanlig_bosted">
+    <element name="sedvanlig_bosted">
+      <ref name="attlist.sedvanlig_bosted"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.sedvanlig_bosted" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Sedvanlig bosted for midlertidig tilstedevaerende personer -->
+  <define name="antatt_oppholdssted">
+    <element name="antatt_oppholdssted">
+      <ref name="attlist.antatt_oppholdssted"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.antatt_oppholdssted" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Antatt oppholdssted for (midlertidig) fravaerende personer -->
+  <define name="statsborgerskap">
+    <element name="statsborgerskap">
+      <ref name="attlist.statsborgerskap"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.statsborgerskap" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personens statsborgeskap -->
+  <define name="trossamfunn">
+    <element name="trossamfunn">
+      <ref name="attlist.trossamfunn"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.trossamfunn" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personens trossamfunn -->
+  <define name="sykdomstilstand">
+    <element name="sykdomstilstand">
+      <ref name="attlist.sykdomstilstand"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.sykdomstilstand" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Om personen har noen somatisk eller mental sykdom -->
+  <define name="varighet_av_sykdomstilstand">
+    <element name="varighet_av_sykdomstilstand">
+      <ref name="attlist.varighet_av_sykdomstilstand"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.varighet_av_sykdomstilstand" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Om varigheten av denne sykdomstilstanden -->
+  <define name="bygning_for_natteopphold">
+    <element name="bygning_for_natteopphold">
+      <ref name="attlist.bygning_for_natteopphold"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.bygning_for_natteopphold" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Den bygningen personen har sitt natteopphold i -->
+  <define name="bo_etasje">
+    <element name="bo_etasje">
+      <ref name="attlist.bo_etasje"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.bo_etasje" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Hvilken etasje i huset personen bor i (1875 og 1885) -->
+  <define name="slektskap_med_ektemann">
+    <element name="slektskap_med_ektemann">
+      <ref name="attlist.slektskap_med_ektemann"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.slektskap_med_ektemann" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Om en gift kvinne er i slekt med sin ektemann (1891) -->
+  <define name="forsorgers_livsstilling">
+    <element name="forsorgers_livsstilling">
+      <ref name="attlist.forsorgers_livsstilling"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.forsorgers_livsstilling" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personens forsoergers livsstilling (1891) -->
+  <define name="arbeidsledig">
+    <element name="arbeidsledig">
+      <ref name="attlist.arbeidsledig"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.arbeidsledig" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Om personen er arbeidsledig (1910) -->
+  <define name="etnisitet_egen_fars">
+    <element name="etnisitet_egen_fars">
+      <ref name="attlist.etnisitet_egen_fars"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.etnisitet_egen_fars" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personens egen eller farens etnisitet -->
+  <define name="etnisitet_mors">
+    <element name="etnisitet_mors">
+      <ref name="attlist.etnisitet_mors"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.etnisitet_mors" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Personens mors etnisitet -->
+  <define name="spraak">
+    <element name="spraak">
+      <ref name="attlist.spraak"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.spraak" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Hvilke(t) spraak personen daglig snakker -->
+  <!-- Hjemvendt norsk-amerikaner (6) -->
+  <define name="hjemvendt_norsk_amerikaner">
+    <element name="hjemvendt_norsk_amerikaner">
+      <ref name="attlist.hjemvendt_norsk_amerikaner"/>
+      <ref name="personnummer"/>
+      <optional>
+        <ref name="utflyttingsaar"/>
+      </optional>
+      <optional>
+        <ref name="tilbakeflyttingsaar"/>
+      </optional>
+      <optional>
+        <ref name="bosted_i_norge"/>
+      </optional>
+      <optional>
+        <ref name="siste_bosted_i_amerika"/>
+      </optional>
+      <optional>
+        <ref name="stilling_i_amerika"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kildeside"/>
+      </optional>
+      <optional>
+        <ref name="bildelenke"/>
+      </optional>
+    </element>
+  </define>
+    <define name="attlist.hjemvendt_norsk_amerikaner" combine="interleave">
+        <ref name="attlist.id"/>
+  </define>
+  <!-- Globalt unik postID for norskamerikanerposten -->
+  <define name="utflyttingsaar">
+    <element name="utflyttingsaar">
+      <ref name="attlist.utflyttingsaar"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.utflyttingsaar" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Aar for utflytting til Amerika -->
+  <define name="tilbakeflyttingsaar">
+    <element name="tilbakeflyttingsaar">
+      <ref name="attlist.tilbakeflyttingsaar"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.tilbakeflyttingsaar" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Aar for tilbakeflytting til Norge -->
+  <define name="bosted_i_norge">
+    <element name="bosted_i_norge">
+      <ref name="attlist.bosted_i_norge"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.bosted_i_norge" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Bosted i Norge foer utflyttingen -->
+  <define name="siste_bosted_i_amerika">
+    <element name="siste_bosted_i_amerika">
+      <ref name="attlist.siste_bosted_i_amerika"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.siste_bosted_i_amerika" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Siste bosted i Amerika foer tilbakeflyttingen -->
+  <define name="stilling_i_amerika">
+    <element name="stilling_i_amerika">
+      <ref name="attlist.stilling_i_amerika"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.stilling_i_amerika" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Siste stilling i Amerika foer tilbakeflyttingen -->
+  <!-- Jordbruk (7) -->
+  <define name="jordbruk">
+    <element name="jordbruk">
+      <ref name="attlist.jordbruk"/>
+      <ref name="eierens_nummer"/>
+      <optional>
+        <ref name="eierens_fornavn"/>
+      </optional>
+      <optional>
+        <ref name="eierens_patronymikon"/>
+      </optional>
+      <optional>
+        <ref name="eierens_slektsnavn"/>
+      </optional>
+      <optional>
+        <ref name="eierens_yrke"/>
+      </optional>
+      <optional>
+        <ref name="utsad"/>
+      </optional>
+      <optional>
+        <ref name="kreaturhold"/>
+      </optional>
+      <optional>
+        <ref name="hage_og_frukttrar"/>
+      </optional>
+      <optional>
+        <ref name="kjoretoy_og_maskiner"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kildeside"/>
+      </optional>
+      <optional>
+        <ref name="bildelenke"/>
+      </optional>
+    </element>
+  </define>
+    <define name="attlist.jordbruk" combine="interleave">
+        <ref name="attlist.id"/>
+  </define>
+  <!-- Globalt unik postID for jordbruksposten -->
+  <define name="eierens_nummer">
+    <element name="eierens_nummer">
+      <ref name="attlist.eierens_nummer"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.eierens_nummer" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Eierens nummer innenfor bostedet/leiligheten -->
+  <define name="eierens_fornavn">
+    <element name="eierens_fornavn">
+      <ref name="attlist.eierens_fornavn"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.eierens_fornavn" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Eierens fornavn og evt. mellomnavn -->
+  <define name="eierens_patronymikon">
+    <element name="eierens_patronymikon">
+      <ref name="attlist.eierens_patronymikon"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.eierens_patronymikon" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Eierens patronymikon (farsnavn) -->
+  <define name="eierens_slektsnavn">
+    <element name="eierens_slektsnavn">
+      <ref name="attlist.eierens_slektsnavn"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.eierens_slektsnavn" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Eierens slektsnavn (fast etternavn) -->
+  <define name="eierens_yrke">
+    <element name="eierens_yrke">
+      <ref name="attlist.eierens_yrke"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.eierens_yrke" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Eierens yrke, naeringsvei etc. -->
+  <define name="utsad">
+    <element name="utsad">
+      <ref name="attlist.utsad"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.utsad" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Utsaed av korn, froe og poteter siste aar -->
+  <define name="kreaturhold">
+    <element name="kreaturhold">
+      <ref name="attlist.kreaturhold"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.kreaturhold" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Antall dyr av ulike typer -->
+  <define name="hage_og_frukttrar">
+    <element name="hage_og_frukttrar">
+      <ref name="attlist.hage_og_frukttrar"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.hage_og_frukttrar" combine="interleave">
+    <empty/>
+  </define>
+  <define name="kjoretoy_og_maskiner">
+    <element name="kjoretoy_og_maskiner">
+      <ref name="attlist.kjoretoy_og_maskiner"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.kjoretoy_og_maskiner" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Informasjon (9) -->
+  <define name="informasjon">
+    <element name="informasjon">
+      <ref name="attlist.informasjon"/>
+      <ref name="kretsnummer"/>
+      <ref name="bostedsnummer"/>
+      <ref name="leilighetsnummer"/>
+      <ref name="personnummer"/>
+      <ref name="posttype_for_forrige_post"/>
+      <ref name="overskrift_kommentar"/>
+      <optional>
+        <ref name="kildeside"/>
+      </optional>
+      <optional>
+        <ref name="bildelenke"/>
+      </optional>
+    </element>
+  </define>
+    <define name="attlist.informasjon" combine="interleave">
+        <ref name="attlist.id"/>
+  </define>
+  <!-- Globalt unik postID for informasjonsposten -->
+  <define name="posttype_for_forrige_post">
+    <element name="posttype_for_forrige_post">
+      <ref name="attlist.posttype_for_forrige_post"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.posttype_for_forrige_post" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Posttype for forrige post -->
+  <define name="overskrift_kommentar">
+    <element name="overskrift_kommentar">
+      <ref name="attlist.overskrift_kommentar"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.overskrift_kommentar" combine="interleave">
+    <empty/>
+  </define>
+  
+    <define name="sted">
+        <element name="sted"> 
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="attlist.id"/>
+                <optional><ref name="tekst"/></optional>
+        </element>
+    </define>  
+    <define name="fylke">
+        <element name="fylke"> 
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="attlist.id"/>
+            <optional><ref name="tekst"/></optional>
+        </element>
+    </define>  
+    <define name="stat">
+        <element name="stat"> 
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="attlist.id"/>
+            <optional><ref name="tekst"/></optional>
+        </element>
+    </define>  
+
+  <!-- SKAL UT HERFRA! -->
+  <define name="tekst" combine="choice"><!-- innholdet text, men med eventuelt koding av del, sic, uklar, mangler, alternstiv. -->
+    <zeroOrMore>
+      <optional>
+        <ref name="slett"/>
+      </optional> 
+      <optional>
+        <ref name="sic"/>
+      </optional>
+      <optional>
+        <ref name="uklar"/>
+      </optional>
+      <optional>
+        <ref name="mangler"/>
+      </optional>
+      
+      <optional>
+        <ref name="valg"/>
+      </optional>
+      <optional>
+        <text/>
+      </optional>
+    </zeroOrMore>
+  </define>
+  
+  <define name="sic" combine="choice">
+    <element name="sic">
+      <text/>
+    </element>
+  </define>
+  
+  <define name="slett" combine="choice">
+    <element name="slett">
+      <text/>
+    </element>
+  </define>
+  
+  <define name="uklar" combine="choice">
+    <element name="uklar">
+      <text/>
+    </element>
+  </define>
+  
+  <define name="mangler" combine="choice">
+    <element name="mangler">
+      <text/>
+    </element>
+  </define>
+  
+  <define name="valg" combine="choice">
+    <element name="alt">
+      <element name="alt"><text/></element>
+    </element>
+    <oneOrMore> 
+      <element name="alt">
+        <element name="alt"><text/></element>
+      </element>
+    </oneOrMore>
+  </define>
+
+    <define name="attlist.matrnr_gnr" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.fornavn" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.slektsnavn" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.sogn" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.bostedets_navn" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.familiestilling" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.gatenavn_og_nummer_i_gata" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.person" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.kretsnummer" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.oppholdssted" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.sykdomstilstand" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.kreaturhold" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.hage_og_frukttrar" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define> 
+    
+    <define name="attlist.kjoretoy_og_maskiner" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.utsad" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.statsborgerskap" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    
+    <define name="attlist.etnisitet_egen_fars" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.etnisitet_mors" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.spraak" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.skip" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.bostedsnummer" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    <define name="attlist.prestegjeld" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.yrke" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.patronymikon" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    <define name="attlist.fodested" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.kildeside" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+
+    <define name="attlist.bydel" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    
+    <define name="attlist.lopenr_bnr" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+    <define name="attlist.herred_by" combine="interleave">
+        <ref name="attlist.orig_feltnamn"/>
+    </define>
+</grammar>
+<!-- Selve informasjonen som skal formidles her -->

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Generelle definisjoner som brukes av kyrre, histform og Da. -->
+
+<!-- Overordna element: -->
+<grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" 
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    <start combine="choice">
+        <ref name="generelt"/>
+    </start>
+    <define name="generelt" combine="choice">
+        <element name="generelt">
+            <ref name="tekst"/>
+        </element>
+    </define>
+  <define name="tekst" combine="choice"> <!-- innholdet text, men med eventuelt koding av del, sic, uklar, mangler, alternstiv. -->
+    <zeroOrMore>
+      <optional>
+        <ref name="slett"/>
+      </optional> 
+      <optional>
+        <ref name="sic"/>
+      </optional>
+      <optional>
+        <ref name="uklar"/>
+      </optional>
+      <optional>
+        <ref name="mangler"/>
+      </optional>
+      
+      <optional>
+        <ref name="valg"/>
+      </optional>
+      <optional>
+         <ref name="lenke"/>
+      </optional>
+      <optional>
+        <text/>
+      </optional>
+    </zeroOrMore>
+  </define>
+  
+  <define name="sic" combine="choice">
+    <element name="sic">
+      <text/>
+    </element>
+  </define>
+  
+  <define name="slett" combine="choice">
+    <element name="slett">
+      <text/>
+    </element>
+  </define>
+  
+  <define name="uklar" combine="choice">
+    <element name="uklar">
+      <text/>
+    </element>
+  </define>
+  
+  <define name="mangler" combine="choice">
+    <element name="mangler">
+      <text/>
+    </element>
+  </define>
+  
+  <define name="valg" combine="choice">
+    <element name="alt">
+      <element name="alt"><text/></element>
+    </element>
+    <oneOrMore> 
+      <element name="alt">
+        <element name="alt"><text/></element>
+      </element>
+    </oneOrMore>
+  </define>
+
+    <define name="lenke" combine="choice">
+        <element name="lenke">
+            <attribute name="uri">
+                <data type="anyURI"/>
+            </attribute>
+            <optional><text/></optional>
+            <optional><ref name="img"/></optional>
+        </element>
+    </define>
+
+    <define name="img" combine="choice">
+        <element name="img">
+            <attribute name="src">
+                <data type="anyURI"/>
+            </attribute>
+            <attribute name="border">
+                <text></text>
+            </attribute>
+        </element>
+    </define>
+ 
+   <define name="attlist.global" combine="choice">
+       <ref name="attlist.orig_feltnamn"/>
+   </define>
+    
+   <define name="attlist.orig_feltnamn" combine="choice">
+        <optional>
+            <attribute name="orig_feltnamn">
+                <text/>
+            </attribute>
+        </optional>
+        <optional>    
+            <attribute name="orig_verdi">
+                <text/>
+            </attribute>
+        </optional>
+   </define>
+
+    <define name="attlist.id" combine="choice">
+        <optional>
+            <attribute name="id">
+                <data type="ID"/>
+            </attribute>
+        </optional>
+    </define>
+
+    <define name="verdier.ekte_uekte" combine="choice">
+        <choice>
+            <value>e</value>
+            <value>u</value>
+            <ref name="slett"/>
+            <ref name="sic"/>
+            <ref name="uklar"/>
+            <ref name="mangler"/>
+            <ref name="valg"/>
+        </choice>
+    </define>
+
+    <define name="verdier.kjonn" combine="choice">
+        <choice>
+            <value>m</value>
+            <value>k</value>
+            <value>m!!</value>
+            <value>k!!</value>
+            <value>%m%</value>
+            <value>%k%</value>
+            <value>!!</value>
+            <value>??</value>
+            <value></value>
+            <ref name="slett"/>
+            <ref name="sic"/>
+            <ref name="uklar"/>
+            <ref name="mangler"/>
+            <ref name="valg"/>
+        </choice>
+    </define>
+</grammar>

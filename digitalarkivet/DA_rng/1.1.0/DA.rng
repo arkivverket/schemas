@@ -1,0 +1,894 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  DTD utviklet for Digitalarkivet, bygger på to eksistrende DTDer, Kyrre og Histform. Begge disse er tatt inn her, slik
+  at denen DTD skal kunne dekke matriale kodet i den formen, og i tillegg andre data som inngår i Digitalarkivet som ikke er kirkeboksdata 
+  (dekket av Kyrre) og folketellinger (dekket av Histform). 
+
+  En da-fil kan innholde en eller flere lister fra en kilde, som vanligvis vil være en protokoll. En protokoll kan deles 
+  
+  Vesjon 1.1 beta, påbegynt 8. juni 2011, større revisjon 12. juli 2011. Tone Merete Bruvik, Digitalarkivet, Statsarkivet i Bergen.
+  
+  16. august 2011 TMB: Oppdaterte med endringsforslag som kom opp på arbeidsseminaret på Gardermoen 15. - 17. august 2011. 
+  
+  Ting implementert pr. 19/8/2011):
+    - Da skal utvikles til 1.2 versjon der tittel, lenker og meta legges til i headeren. Disse elementene må gjøres generiske sammen
+    med elementer for transkribering slik at de kan inngå i alt innhold. 
+    - Legg generelle ting som skal brukes av kyrre, histform og DA i den egne filen 'generelt.rng'. 
+    - Alle roller skal med liten forbokstav (vel så mye til stilarkene).
+    - Liten bokstav i ekte/uekte (også endres i stilark).
+    - Alle felt skal ha med valgfritt attributtet orig_feltnamn (inn med en global klasse over attributer), må også rettes i stilarket.
+    
+-->
+<!-- Overordnet element: -->
+
+<grammar 
+  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" 
+  xmlns="http://relaxng.org/ns/structure/1.0" 
+  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  
+  <include href="generelt.rng"/>
+  <include href="histformml.rng"/>
+
+  <start combine="choice">
+    <ref name="da"></ref>
+  </start>
+  <define name="da">
+    <element name="da">
+      <ref name="attlist.histform"/>
+      <ref name="meta"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="dp"/>
+          <ref name="kf"/>
+          <ref name="vi"/>
+          <ref name="gr"/>
+          <ref name="df"/>
+          <ref name="va"/>
+          <ref name="if"/>
+          <ref name="uf"/>
+          <ref name="pa"/>
+          <ref name="ko"/>
+          <ref name="in"/>
+          <ref name="im"/>
+          <ref name="um"/>
+          
+          <!-- Nye listetyper: -->
+          <ref name="liste"/> <!-- En generiske liste, dvs. ikke spesifisert slik som de som kommer fra Histform eller Kyrre -->
+
+          <!--<ref name="mi"/> <!-\- Militærvesen -\->
+          <ref name="bo"/> <!-\- Borgarruller -\->
+          <ref name="el"/> <!-\- Skule og elever -\->-->
+
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  
+  <define name="attlist.histform" combine="choice">
+    <optional>
+      <attribute name="versjon" a:defaultValue="2.0">
+        <value type="string">2.0</value>
+      </attribute>
+    </optional>
+  </define>
+ 
+  <!-- Nye meta-elementer -->
+  <define name="meta" combine="choice">
+    <element name="meta">
+        <zeroOrMore>
+            <ref name="tittel"/></zeroOrMore>
+        <optional><ref name="filnamn"/></optional>
+        <optional><ref name="dokumentasjon"/></optional>
+        <optional><ref name="lenke"/></optional>
+        <optional><ref name="konvertering"/></optional>
+        <optional><ref name="publiseringsdato"/></optional>
+          <ref name="kjelde"/>
+          <ref name="registrering"/>
+          <zeroOrMore>
+            <choice>
+              <ref name="tellingskrets"/>
+              <ref name="informasjon"/>
+            </choice>
+          </zeroOrMore>
+        </element>
+  </define>
+  
+    <define name="tittel" combine="choice">
+        <element name="tittel">
+            <ref name="attlist.tittel"/>
+            <text/>
+        </element>
+    </define>
+    
+    <define name="attlist.tittel" combine="choice">
+        <optional> <!-- Man kan angir hvilket språk en tittel er på. -->
+            <attribute name="xml:lang">
+                <data type="language">
+                    <param name="length">2</param>
+                </data>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="filnamn" combine="choice">
+        <element name="filnamn">
+            <text/>
+        </element>
+    </define> 
+    <define name="konvertering" combine="choice">
+        <element name="konvertering">
+            <text/>
+        </element>
+    </define>
+
+    <define name="dokumentasjon" combine="choice">
+        <element name="dokumentasjon">
+            <ref name="tekst"></ref>
+        </element>
+    </define>
+    
+    <!-- Omdefinering av eksisterende elementer -->
+
+    <define name="rolle" combine="choice">
+        <element name="rolle">
+            <ref name="attlist.rolle"/>
+            <ref name="rolleliste"/>
+        </element>
+    </define>
+    
+    <define name="attlist.rolle">
+        <optional><attribute name="rolle">
+            <ref name="rolleliste"/>
+        </attribute></optional>
+    </define>
+
+    <define name="kjelde" combine="choice">
+        <element name="kjelde">
+            <ref name="attlist.kjelde"/>
+            <ref name="prgjeld"/>
+            <optional>
+                <ref name="ksokn"/>
+            </optional>
+          <!-- Vi skal antagelig ikke ta med fylke, det går inn i kommunenr. -->
+            <!--<optional>
+                <ref name="fylkenr"/>
+            </optional>-->
+            <ref name="kommnr"/>
+            <optional>
+                <ref name="soknenr"/>
+            </optional>
+            <optional>
+                <ref name="kategori"/>
+            </optional>
+            <ref name="ktype"/>
+            <optional>
+                <ref name="signatur"/>
+            </optional>
+            <optional><ref name="ltype"/></optional>
+            <ref name="startaar"/>
+            <ref name="sluttaar"/>
+            <optional>
+                <ref name="oppbstad"/>
+            </optional>
+            <optional>
+                <ref name="merknader"/>
+            </optional>
+            <optional><ref name="lenke"/></optional>
+        </element>
+    </define>
+  
+  <define name="person" combine="choice">
+    <element name="person"> 
+      <ref name="attlist.id"/>
+      <ref name="att.rolle"/>
+      <optional><attribute name="pnr"><data type="integer"></data></attribute></optional>
+        <interleave>
+        <optional><ref name="stilling_stand"/></optional>
+        <optional><ref name="forenamn"/></optional>
+        <optional><ref name="etternamn"/></optional>
+        <optional><ref name="pikenamn"/></optional>
+        <ref name="kjonn"/>
+        <optional><ref name="bustad"/></optional>
+        <optional><ref name="fodselsdato"/></optional>
+        <optional><ref name="fodselsaar"/></optional>
+        <optional><ref name="alder"/></optional>
+        <optional><ref name="fodestad"/></optional>
+        <optional><ref name="heimstad"/></optional>
+        <optional><ref name="matrnr"/></optional>
+        <optional><ref name="gard"/></optional>
+        <optional><ref name="gardsnr"/></optional>
+        <optional><ref name="dpdato"/></optional>
+        <optional><ref name="dpstad"/></optional>
+        <optional><ref name="kfdato"/></optional>
+        <optional><ref name="kfsted"/></optional>
+        <optional><ref name="dodsdato"/></optional>
+        <optional><ref name="dodsaar"/></optional>
+        <optional><ref name="dodsstad"/></optional>
+        <optional><ref name="grdato"/></optional>
+        <optional><ref name="jfdato"/></optional>
+        <optional><ref name="vaksin"/></optional>
+        <zeroOrMore><ref name="sykdomstilstand"/></zeroOrMore>
+        <optional><ref name="familiestilling"/></optional>
+        <optional><ref name="lenke"/></optional>
+        <zeroOrMore><ref name="stad"/></zeroOrMore>
+        <optional><ref name="sokn"/></optional>
+        <optional><ref name="tinglag"/></optional>
+        <optional><ref name="prgjeld"/></optional>
+        <optional><ref name="fogderi"/></optional>
+        <optional><ref name="distrikt"/></optional>
+        <optional><ref name="kommune"/></optional>
+        <optional><ref name="fylke"/></optional>
+        <optional><ref name="oppholdssted"/></optional>
+        <optional><ref name="mil_eining"/></optional>
+        <zeroOrMore><ref name="verksemd"/></zeroOrMore>
+        <zeroOrMore><ref name="dato"/></zeroOrMore>
+        <zeroOrMore><ref name="aar"/></zeroOrMore>
+        <optional><ref name="merknader"/></optional>
+        <optional><ref name="legdsnotat"/></optional>
+        <optional><ref name="statsborgerskap"/></optional>
+        <optional><ref name="etnisitet_egen_fars"/></optional>
+        <optional><ref name="etnisitet_mors"/></optional>
+        <optional><ref name="spraak"/></optional>
+        <optional><ref name="objekt"/></optional>
+        <optional><ref name="skip"/></optional>
+        <zeroOrMore><ref name="skatt"/></zeroOrMore>
+        <zeroOrMore><ref name="storleik"/></zeroOrMore>
+        <optional><ref name="signalement"/></optional>
+        <zeroOrMore><ref name="karakter"/></zeroOrMore>
+        <optional><ref name="kunnskap"/></optional>
+        <optional><ref name="konfirmert"/></optional>
+        <optional><ref name="arving"/></optional>
+        <optional><ref name="avling"/></optional>    
+        <optional><ref name="gatenavn_og_nummer_i_gata"/></optional>
+        <optional><ref name="postnr"/></optional>
+        <optional><ref name="poststad"/></optional>
+        <zeroOrMore><ref name="felt"/></zeroOrMore>
+      </interleave>
+    </element>
+  </define>
+  
+    <define name="att.rolle">
+       <ref name="attlist.global"></ref>
+       <attribute name="rolle">
+            <ref name="rolleliste"/>
+       </attribute>
+    </define>
+  
+    <define name="rolleliste" combine="choice">
+            <choice>
+                <choice>
+                    <value>barn</value>
+                    <value>far</value>
+                    <value>mor</value>
+                    <value>fadder</value>
+                    <value>heimedoeypar</value>
+                    <value>daapsvitne</value>
+                    <value>daapsmeldar</value>
+                    <value>konfirmant</value>
+                    <value>brudgom</value>
+                    <value>brur</value>
+                    <value>brudgommens far</value>
+                    <value>bruras far</value>
+                    <value>trulovar</value>
+                    <value>lysingsforlangar</value>
+                    <value>avdoed</value>
+                    <value>paaroerande</value>
+                    <value>meldar</value>
+                    <value>foedselshjelpar</value>
+                    <value>vaksinert</value>
+                    <value>vaksinatoer</value>
+                    <value>innflyttar</value>
+                    <value>utflyttar</value>
+                    <value>syndar</value>
+                    <value>kommunikant</value>
+                    <value>introdusert</value>
+
+                    <!-- Nye verdier i DA: -->
+                    <value>ektemann</value>
+                    <value>hustru</value>
+                    <value>ektefelle</value>
+                    <value>elev</value>
+                    <value>lærar</value>
+                    <value>klassestyrar</value>
+                    <value>arbeidar</value>
+                    <value>soldat</value>
+                    <value>eigar</value>
+                    <value>person</value>
+                    <value>foreldre</value>
+                    <value>tjenestefolk</value>
+                    <value>andre</value>
+                    <value>husfolk</value>
+                    <value>forsørger</value>
+                    <value>oppsitjar</value>
+                    <value>brukar</value>
+                    <value>husmann</value>
+                    <value>legdsmann</value>
+                    <value>pårørande</value>
+                    <value>fosterfamilie</value>
+                    <value>part</value>
+                    <value>arvelatar</value>
+                    <value>arving</value>
+                    <value>formyndar</value>
+                    <value>umyndig</value>
+                    <value>enkje/enkjemann</value>
+                    <value>saksøkar</value>
+                    <value>saksøkt</value>
+                </choice>
+            </choice>
+    </define>
+
+<!-- Nye overordnede elementer definert i DA. -->
+
+    <!-- Generelt element: post -->
+    <define name="post">
+        <element name="post">
+            <ref name="attlist.post"/>
+            <interleave>
+                <ref name="side"/>
+                <optional><ref name="lopenr"/></optional>
+                <optional><ref name="linjenr"/></optional>
+                <optional><ref name="aar"/></optional>
+                <zeroOrMore><ref name="dato"/></zeroOrMore>
+                <optional><ref name="prgjeld"/></optional>
+                <optional><ref name="sokn"/></optional>
+                <optional><ref name="distrikt"/></optional>
+                <optional><ref name="fogderi"/></optional>
+                <optional><ref name="merknader"/></optional>
+                <optional><ref name="lenke"/></optional>
+                <optional><ref name="gardsnr"/></optional>
+                <optional><ref name="mil_eining"/></optional>
+                <optional><ref name="prot_ref"/></optional> 
+                <zeroOrMore><ref name="felt"/></zeroOrMore>
+                <optional><ref name="stad"/></optional>
+                <optional><ref name="kategori"/></optional>
+                <optional><ref name="embete"/></optional>
+                <optional><ref name="storleik"/></optional>
+                <zeroOrMore>
+                    <ref name="verksemd"/>
+                </zeroOrMore>
+                <zeroOrMore>
+                    <ref name="person"/>
+                </zeroOrMore>
+                <zeroOrMore>
+                    <ref name="objekt"/>
+                </zeroOrMore>
+                <zeroOrMore>
+                    <ref name="skip"/>
+                </zeroOrMore>
+                <zeroOrMore>
+                    <ref name="jordbruk"/>
+                </zeroOrMore>
+            </interleave>
+        </element>
+    </define>
+
+    <define name="attlist.post">
+        <ref name="attlist.global"/>
+        <optional><attribute name="type">
+            <ref name="liste.type"/>
+        </attribute></optional>
+        <ref name="attlist.id"/>
+    </define>
+
+    <!-- Generelt element: liste -->
+    <define name="liste">
+        <element name="liste">
+            <optional><attribute name="type">
+                <ref name="liste.type"/>
+            </attribute></optional>
+            <optional>
+                <ref name="tittel"/>
+            </optional>
+            <optional>
+                <ref name="merknader"/>
+            </optional>
+            <oneOrMore>
+                <ref name="post"/>
+            </oneOrMore>
+        </element>
+    </define>
+
+    <define name="liste.type" combine="choice">
+            <choice>
+                <value>dp</value>
+                <value>kf</value>
+                <value>vi</value>
+                <value>gr</value>
+                <value>df</value>
+                <value>va</value>
+                <value>if</value>
+                <value>uf</value>
+                <value>pa</value>
+                <value>ko</value>
+                <value>in</value>
+                <value>im</value>
+                <value>um</value>
+                
+                <!-- Nye mulige verdier -->
+                <value>bo</value>
+                <value>el</value>
+                <value>mi</value>
+                <value>an</value>
+            </choice>
+    </define>
+    
+    <define name="felt">
+        <element name="felt"> 
+            <ref name="typer"/>
+            <ref name="attlist.global"></ref>
+            <optional>
+                <attribute name="innhold"><text/></attribute>
+            </optional>
+            <optional><ref name="tekst"/></optional>
+            <optional><ref name="lenke"/></optional>
+        </element>
+    </define>
+
+    <define name="dodsstad">
+        <element name="dodsstad">
+            <ref name="attlist.global"></ref>
+            <ref name="tekst"/>
+        </element>
+    </define>
+
+    <define name="kfsted">
+        <element name="kfsted">
+            <ref name="tekst"/>
+        </element>
+    </define>
+
+  <define name="stad">
+    <element name="stad"> 
+        <ref name="attlist.orig_feltnamn"/>
+        <ref name="attlist.id"/>
+        <ref name="typer"/>
+        <interleave>
+            <optional><ref name="tekst"/></optional>
+            <optional><ref name="amt"/></optional>
+            <optional><ref name="prgjeld"/></optional>  
+            <optional><ref name="sokn"/></optional>  
+            <optional><ref name="tinglag"/></optional>  
+            <optional><ref name="sokn_kyrkje"/></optional>
+            <optional><ref name="namn"/></optional>
+            <zeroOrMore><ref name="eigar"/></zeroOrMore>
+            <!--<optional><ref name="stad"/></optional>--> <!-- 17.01.2012 TMB: Tillater ikke stad inne i stad -->
+            <optional><ref name="gatenavn_og_nummer_i_gata"/></optional>
+            <optional><ref name="gatenr"/></optional>
+            <optional><ref name="postnr"/></optional>
+            <optional><ref name="poststad"/></optional>
+            <optional><ref name="dato"/></optional>
+            <zeroOrMore><ref name="matrnr"/></zeroOrMore>
+            <optional><ref name="gard"/></optional>  
+            <optional><ref name="bruk"/></optional>  
+            <zeroOrMore><ref name="gardsnr"/></zeroOrMore>
+            <zeroOrMore><ref name="bruksnr"/></zeroOrMore>
+            <optional><ref name="lopenr"/></optional>
+            <zeroOrMore><ref name="posisjon"/></zeroOrMore>
+            <optional><ref name="distrikt"/></optional>
+            <zeroOrMore><ref name="kommune"/></zeroOrMore>
+            <optional><ref name="kommnr"/></optional>
+            <optional><ref name="fylke"/></optional>
+            <optional><ref name="fylkesnr"/></optional>
+            <optional><ref name="fogderi"/></optional>
+            <optional><ref name="mil_eining"/></optional>
+            <zeroOrMore><ref name="storleik"/></zeroOrMore>
+            <zeroOrMore><ref name="skatt"/></zeroOrMore>
+            <zeroOrMore><ref name="type"/></zeroOrMore>
+            <optional><ref name="merknader"/></optional>
+            <optional><ref name="kreaturhold"/></optional>
+            <optional><ref name="hage_og_frukttrar"/></optional>
+            <optional><ref name="kjoretoy_og_maskiner"/></optional>
+            <optional><ref name="husmannsplass"/></optional>
+            <optional><ref name="skog"/></optional>
+            <optional><ref name="seter"/></optional>
+            <optional><ref name="kvern"/></optional>
+            <optional><ref name="sag"/></optional>
+            <optional><ref name="fiskeri"/></optional>
+            <optional><ref name="utsad"/></optional>
+            <optional><ref name="avling"/></optional>
+            <optional><ref name="kretsnummer"/></optional>
+            <optional><ref name="objekt"/></optional>
+            <!--<optional><ref name="lenke"/></optional>-->
+            <zeroOrMore>
+                <ref name="felt"/>
+            </zeroOrMore>
+        </interleave>
+    </element>
+  </define>
+    
+    <define name="objekt">
+        <element name="objekt"> 
+            <ref name="attlist.global"></ref>
+            <interleave>
+                <optional><ref name="tekst"/></optional>
+                <optional><ref name="namn"/></optional>
+                <optional><ref name="person"/></optional>
+                <optional><ref name="eigar"/></optional>
+                <optional><ref name="heimstad"/></optional>
+                <zeroOrMore><ref name="stad"/></zeroOrMore>
+                <zeroOrMore><ref name="kommune"/></zeroOrMore>
+                <zeroOrMore><ref name="fylke"/></zeroOrMore>
+                <optional><ref name="postnr"/></optional>
+                <optional><ref name="poststad"/></optional>
+                <optional><ref name="gard"/></optional>
+                <optional><ref name="matrnr"/></optional>
+                <optional><ref name="bruksomraade"/></optional>
+                <zeroOrMore><ref name="aar"/></zeroOrMore>
+                <zeroOrMore><ref name="dato"/></zeroOrMore>
+                <zeroOrMore><ref name="storleik"/></zeroOrMore>
+                <zeroOrMore><ref name="posisjon"/></zeroOrMore>
+                <optional><ref name="merknader"/></optional>
+                <zeroOrMore><ref name="verksemd"></ref></zeroOrMore>
+                <optional><ref name="gatenavn_og_nummer_i_gata"/></optional>
+                <zeroOrMore><ref name="distrikt"/></zeroOrMore>
+                <optional><ref name="type"/></optional>
+                <optional><ref name="subtype"/></optional>
+                <zeroOrMore>
+                    <ref name="felt"/>
+                </zeroOrMore>
+            </interleave>
+        </element>
+    </define>
+
+    <define name="verksemd">
+        <element name="verksemd">
+            <ref name="attlist.global"></ref>
+           <interleave> <optional><ref name="tekst"/></optional>
+            <optional><ref name="namn"/></optional>
+            <zeroOrMore><ref name="stad"/></zeroOrMore>
+            <optional><ref name="type"/></optional>
+            <optional><ref name="subtype"/></optional>
+            <zeroOrMore><ref name="aar"/></zeroOrMore>
+            <optional><ref name="merknader"/></optional>
+            <optional><ref name="eigar"/></optional>
+            <zeroOrMore>
+                <ref name="felt"/>
+            </zeroOrMore></interleave>
+        </element>
+    </define>
+
+    <define name="amt">
+      <element name="amt">
+        <ref name="attlist.orig_feltnamn"/>
+        <ref name="tekst"/>
+      </element>
+    </define>
+
+    <define name="kommune">
+        <element name="kommune">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="tekst"/>
+        </element>
+    </define>
+
+    <!--<define name="fylke">
+        <element name="fylke">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="tekst"/>
+        </element>
+    </define>-->
+
+    <define name="fylkesnr">
+        <element name="fylkesnr">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="tekst"/>
+        </element>
+    </define>
+    <define name="tinglag">
+        <element name="tinglag">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="tekst"/>
+        </element>
+    </define>
+
+    <define name="fogderi">
+        <element name="fogderi">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="tekst"/>
+        </element>
+    </define>
+
+    <define name="embete">
+        <element name="embete">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="tekst"/>
+        </element>
+    </define>
+    
+    <define name="distrikt">
+        <element name="distrikt">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="tekst"/>
+        </element>
+    </define>
+    
+    <define name="mil_eining">
+        <element name="mil_eining">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="tekst"/>
+        </element>
+    </define>
+
+     <define name="namn">
+        <element name="namn">
+          <ref name="attlist.global"></ref>
+          <ref name="tekst"/>
+        </element>
+      </define>
+
+    <define name="pikenamn">
+        <element name="pikenamn">
+            <ref name="attlist.global"></ref>
+            <ref name="tekst"/>
+        </element>
+    </define>
+
+       <define name="eigar">
+           <element name="eigar">
+               <ref name="attlist.global"></ref>
+               <ref name="tekst"/>
+           </element>
+       </define>
+
+       <define name="arving">
+           <element name="arving">
+               <ref name="attlist.global"></ref>
+               <ref name="tekst"/>
+           </element>
+       </define>
+
+      <define name="posisjon">
+          <element name="posisjon">
+              <ref name="attlist.global"></ref>
+              <ref name="typer"/>
+              <ref name="tekst"/>       
+          </element>
+      </define>
+
+     <define name="bruksomraade">
+        <element name="bruksomraade">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="tekst"/>
+        </element>
+     </define>
+     <define name="legdsnotat">
+         <element name="legdsnotat">
+             <ref name="attlist.orig_feltnamn"/>
+             <ref name="tekst"/>
+         </element>
+     </define>
+    <define name="skatt">
+        <element name="skatt">
+            <ref name="attlist.orig_feltnamn"/>
+            <optional><attribute name="eining"><text/></attribute></optional>
+            <ref name="tekst"/>
+        </element>
+    </define>
+    <define name="storleik">
+        <element name="storleik">
+            <ref name="attlist.orig_feltnamn"/>
+            <optional><attribute name="eining"><text/></attribute></optional>
+            <ref name="tekst"/>
+        </element>
+    </define>
+
+    <define name="matrnr">
+        <element name="matrnr"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element>
+    </define>
+    
+    <define name="gardsnr">
+        <element name="gardsnr">
+            <ref name="attlist.orig_feltnamn"/><ref name="tekst"/>
+        </element>
+    </define>
+    <define name="bruksnr">
+        <element name="bruksnr">
+            <ref name="attlist.orig_feltnamn"/><ref name="tekst"/>
+        </element>
+    </define>
+    <define name="gatenr">
+        <element name="gatenr">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="tekst"/>
+        </element>
+    </define>
+    <define name="postnr">
+        <element name="postnr">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="tekst"/>
+        </element>
+    </define>
+    <define name="poststad">
+        <element name="poststad">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="tekst"/>
+        </element>
+    </define>
+    <define name="signalement">
+        <element name="signalement">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="tekst"/>
+        </element>
+    </define>
+    <define name="konfirmert">
+        <element name="konfirmert">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="tekst"/>
+        </element>
+    </define>
+    <define name="kunnskap">
+        <element name="kunnskap">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="tekst"/>
+        </element>
+    </define>
+    <define name="prot_ref">
+        <element name="prot_ref">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="tekst"/>
+        </element>
+    </define> 
+    <define name="linjenr">
+        <element name="linjenr">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="tekst"/>
+        </element>
+    </define> 
+    <define name="skip" combine="choice">
+        <element name="skip">    
+            <ref name="attlist.skip"/>
+            <optional>
+                <ref name="tekst"/>
+            </optional>
+            <zeroOrMore>
+                <ref name="storleik"/>
+            </zeroOrMore>
+            <optional>
+                <ref name="skipsnummer"/>
+            </optional>
+            <optional>
+                <ref name="skipstype"/>
+            </optional>
+            <optional>
+                <ref name="skipets_navn"/>
+            </optional>
+            <optional>
+                <ref name="hjemsted"/>
+            </optional>
+            <optional>
+                <ref name="drektighet"/>
+            </optional>
+            <optional>
+                <ref name="skipsforer"/>
+            </optional>
+            <optional>
+                <ref name="oppholdssted"/>
+            </optional>
+            <optional>
+                <ref name="bestemmelsessted"/>
+            </optional>
+            <optional>
+                <ref name="listeforer"/>
+            </optional>
+            <optional>
+                <ref name="avleveringsdato"/>
+            </optional>
+            <optional>
+                <ref name="mottaker"/>
+            </optional>
+            <optional>
+                <ref name="antall_ombordvarende_personer"/>
+            </optional>
+            <optional>
+                <ref name="antall_ilandvarende_personer"/>
+            </optional>
+            <optional>
+                <ref name="merknader"/>
+            </optional>
+            <optional>
+                <ref name="kildeside"/>
+            </optional>
+            <optional>
+                <ref name="bildelenke"/>
+            </optional>
+            <zeroOrMore>
+                <choice>
+                    <ref name="person"/>
+                    <ref name="hjemvendt_norsk_amerikaner"/>
+                    <ref name="informasjon"/>
+                </choice>
+            </zeroOrMore>
+        </element>
+    </define>
+
+
+    <define name="jordbruk" combine="choice">
+        <element name="jordbruk">
+            <ref name="attlist.jordbruk"/>
+            <optional><ref name="eierens_nummer"/></optional>
+            <optional>
+                <ref name="eierens_fornavn"/>
+            </optional>
+            <optional>
+                <ref name="eierens_patronymikon"/>
+            </optional>
+            <optional>
+                <ref name="eierens_slektsnavn"/>
+            </optional>
+            <optional>
+                <ref name="eierens_yrke"/>
+            </optional>
+            <optional>
+                <ref name="utsad"/>
+            </optional>
+            <optional>
+                <ref name="kreaturhold"/>
+            </optional>
+            <optional>
+                <ref name="hage_og_frukttrar"/>
+            </optional>
+            <optional>
+                <ref name="kjoretoy_og_maskiner"/>
+            </optional>
+            <optional>
+                <ref name="merknader"/>
+            </optional>
+            <optional>
+                <ref name="kildeside"/>
+            </optional>
+            <optional>
+                <ref name="bildelenke"/>
+            </optional>
+            <zeroOrMore>
+                <ref name="storleik"/>
+            </zeroOrMore>
+        </element>
+    </define>
+
+    <define name="gard"><element name="gard"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
+    <define name="bruk"><element name="bruk"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
+    <define name="type"><element name="type"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
+    <define name="subtype"><element name="subtype"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
+    <define name="hushald"><element name="hushald"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
+    <define name="husmannsplass"><element name="husmannsplass"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
+    <define name="avling"><element name="avling"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
+    <define name="skog"><element name="skog"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
+    <define name="seter"><element name="seter"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
+    <define name="kvern"><element name="kvern"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
+    <define name="fiskeri"><element name="fiskeri"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
+    <define name="sag"><element name="sag"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
+    <define name="heimstad"><element name="heimstad"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
+    
+    <define name="startdato"><element name="startdato"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
+    <define name="sluttdato"><element name="sluttdato"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
+
+    <define name="bosted_land" combine="interleave">
+        <optional>
+            <ref name="prestegjeld"/>
+        </optional>
+        <optional>
+            <ref name="sogn"/>
+        </optional>
+    </define>
+
+    <define name="bosted_by" combine="interleave">
+        <optional>
+            <ref name="sogn"/>
+        </optional>
+    </define>
+    
+    <!-- Nye elemener for meta-data -->
+    <!--<define name="fylkenr"><element name="fylkenr"><data type="NMTOKENS"/></element></define>-->
+    <define name="kategori">
+     <element name="kategori">
+            <ref name="attlist.orig_feltnamn"/>
+            <ref name="typer"/>
+        <text/></element>
+     </define>
+    
+      <define name="typer">
+            <optional><attribute name="type"><text/></attribute></optional>
+            <optional><attribute name="subtype"><text/></attribute></optional>
+      </define>
+
+</grammar>
