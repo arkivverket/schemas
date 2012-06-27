@@ -6,7 +6,6 @@
   
   Relax NG skjema for KyrreML - hovudformatet for data som foelgjer Kyrre - Standard for dataregistrering av kyrkjeboeker i Noreg.
   Versjon 1.2, 05.10.2011 utvida versjon utarbeidd av Tone Merete Bruvik, Digitalarkivet, Statsarkivet i Bergen.
-      -  rettelse 27.06.2012 TMB: la til attributtet seksjon i kjelde
 -->
 <!-- Overordna element: -->
 <grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
@@ -406,7 +405,6 @@
   <define name="attlist.kjelde" combine="interleave">
       <attribute name="kjeldeid"/>
       <optional> 
-          <attribute name="seksjon"/>
           <attribute name="gda_kid"/>
       </optional>
   </define>
