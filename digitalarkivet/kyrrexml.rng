@@ -407,6 +407,8 @@
       <attribute name="kjeldeid"/>
       <optional> 
           <attribute name="gda_kid"/>
+      </optional>
+      <optional>
           <attribute name="seksjon"/>
       </optional>
   </define>
