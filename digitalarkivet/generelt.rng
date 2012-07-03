@@ -80,7 +80,7 @@
                 <data type="anyURI"/>
             </attribute>
             <optional><text/></optional>
-            <optional><ref name="img"/></optional>
+            <!--<optional><ref name="img"/></optional>-->
         </element>
     </define>
 

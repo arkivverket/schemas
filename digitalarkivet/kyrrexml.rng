@@ -79,7 +79,7 @@
                 <ref name="tittel"/>
             </zeroOrMore>
             <optional><ref name="filnamn"/></optional>
-            <optional><ref name="dokumentasjon"/></optional>
+            <!--<optional><ref name="dokumentasjon"/></optional>-->
             <optional><ref name="lenke"/></optional>
             <optional><ref name="konvertering"/></optional>
             <optional><ref name="publiseringsdato"/></optional>
@@ -125,6 +125,8 @@
         <element name="dokumentasjon">
             <ref name="tekst"></ref>
         </element>
+        <optional><ref name="lenke"/></optional>
+        <optional><ref name="img"/></optional>
     </define>
   <!-- Versjonsnummer av KYRRE -->
   <!-- Felles underelement for fleire hovudelement: -->
