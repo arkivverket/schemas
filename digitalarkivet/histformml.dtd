@@ -8,12 +8,14 @@
 	Elementene 'kildeside' og 'bildelenke' lagt til. Attributtverdien 'grunnlag' lagt til i elementet 'fodselsaar'.
 	Versjon 1.1, Riksarkivet, 17.06.2011 (revidert av Lars Nygaard)
 				  27.03.2012 Byttet bo_etasje til etasje i personposten
+        Versjon 1.2, Riksarkivet, 15.08.2012 Samkjørt versjoner med samme versjonssnummer og øket versjonsnummer
+                                             Lagt til elementet 'koder' som brukes i FT1801
 -->
 
 <!-- Overordnet element: -->
 <!ELEMENT histform (kilde, registrering, (tellingskrets | informasjon)+)>
 <!ATTLIST histform
-		versjon CDATA #FIXED "1.1">		<!-- Versjonsnummer av HistformML -->
+		versjon CDATA #FIXED "1.2">		<!-- Versjonsnummer av HistformML -->
 
 
 <!-- Felles feltelementer for flere postelementer: -->
@@ -167,11 +169,11 @@ merknader?, kildeside?, bildelenke?, (person | hjemvendt_norsk_amerikaner | info
 
 
 <!-- Person (5) -->
-<!ELEMENT person (personnummer, husholdningsnummer, ny_husholdning?, rolle,
+<!ELEMENT person (personnummer, husholdningsnummer, ny_husholdning?, rolle?,
 fornavn, patronymikon?, slektsnavn?, kjonn, familiestilling?, sivilstand?, yrke?, alder?, fodselsaar?, fodested?, bostatus?,
 sedvanlig_bosted?, antatt_oppholdssted?, statsborgerskap?, trossamfunn?, sykdomstilstand?, varighet_av_sykdomstilstand?,
 bygning_for_natteopphold?, etasje?, slektskap_med_ektemann?, forsorgers_livsstilling?, arbeidsledig?,
-etnisitet_egen_fars?, etnisitet_mors?, spraak?, merknader?, kildeside?, bildelenke?)>
+etnisitet_egen_fars?, etnisitet_mors?, spraak?, merknader?, kildeside?, bildelenke?, koder?)>
 <!ATTLIST person
 		id CDATA #IMPLIED>			<!-- Globalt unik postID for personposten -->
 <!ELEMENT husholdningsnummer (#PCDATA)>			<!-- Husholdningens nummer innenfor bostedet/leiligheten -->
@@ -188,6 +190,7 @@ etnisitet_egen_fars?, etnisitet_mors?, spraak?, merknader?, kildeside?, bildelen
 <!ELEMENT fodselsaar (#PCDATA)>				<!-- Personens foedselsaar oppgitt i kilden eller beregnet fra oppgitt
 								alder, eller foedselsdato paa formen 'yyyy.mm.dd' -->
 <!ATTLIST fodselsaar
+
 		grunnlag CDATA #IMPLIED>		<!-- Grunnlag for verdien i 'fodselsaar', f.eks. 'alder' -->
 <!ELEMENT fodested (#PCDATA)>				<!-- Personens foedested -->
 <!ELEMENT bostatus (#PCDATA)>				<!-- Personens tilknytning til dette bostedet paa tellingstidspunktet.
@@ -206,6 +209,7 @@ etnisitet_egen_fars?, etnisitet_mors?, spraak?, merknader?, kildeside?, bildelen
 <!ELEMENT etnisitet_egen_fars (#PCDATA)>		<!-- Personens egen eller farens etnisitet -->
 <!ELEMENT etnisitet_mors (#PCDATA)>			<!-- Personens mors etnisitet -->
 <!ELEMENT spraak (#PCDATA)>				<!-- Hvilke(t) spraak personen daglig snakker -->
+<!ELEMENT koder (#PCDATA)>				<!-- En streng med numeriske koder separert med | -->
 
 
 <!-- Hjemvendt norsk-amerikaner (6) -->

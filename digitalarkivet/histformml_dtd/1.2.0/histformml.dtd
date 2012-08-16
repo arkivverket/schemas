@@ -169,7 +169,7 @@ merknader?, kildeside?, bildelenke?, (person | hjemvendt_norsk_amerikaner | info
 
 
 <!-- Person (5) -->
-<!ELEMENT person (personnummer, husholdningsnummer, ny_husholdning?, rolle,
+<!ELEMENT person (personnummer, husholdningsnummer, ny_husholdning?, rolle?,
 fornavn, patronymikon?, slektsnavn?, kjonn, familiestilling?, sivilstand?, yrke?, alder?, fodselsaar?, fodested?, bostatus?,
 sedvanlig_bosted?, antatt_oppholdssted?, statsborgerskap?, trossamfunn?, sykdomstilstand?, varighet_av_sykdomstilstand?,
 bygning_for_natteopphold?, etasje?, slektskap_med_ektemann?, forsorgers_livsstilling?, arbeidsledig?,
