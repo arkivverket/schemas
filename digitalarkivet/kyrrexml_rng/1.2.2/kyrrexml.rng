@@ -6,9 +6,7 @@
   
   Relax NG skjema for KyrreML - hovudformatet for data som foelgjer Kyrre - Standard for dataregistrering av kyrkjeboeker i Noreg.
   Versjon 1.2, 05.10.2011 utvida versjon utarbeidd av Tone Merete Bruvik, Digitalarkivet, Statsarkivet i Bergen.
-      -  rettelse 27.06.2012 TMB: la til attributtet seksjon i kjelde.
-      -  rettelse 30.04.2013 TMB: flyttet biletlenke fremst i handlingen.
-      -  rettelse 02.05.2013 TMB: tillater biletlenke både fremst og sist i handlingsdelen.
+      -  rettelse 27.06.2012 TMB: la til attributtet seksjon i kjelde
 -->
 <!-- Overordna element: -->
 <grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
@@ -657,76 +655,38 @@
   <define name="dp">
     <element name="dp">
       <ref name="attlist.dp"/>
-      <choice>
-        <group>
-           <optional>
-              <ref name="biletlenke"/>
-           </optional> 
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="dpdato"/>
-          </optional>
-          <optional>
-            <ref name="stadfesta"/>
-          </optional>
-          <optional>
-            <ref name="dpstad"/>
-          </optional>
-          <optional>
-            <ref name="introd"/>
-          </optional>
-          <optional>
-            <ref name="melding"/>
-          </optional>
-          <optional>
-            <ref name="sokn_kyrkje"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-        </group>
-        <group>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="dpdato"/>
-          </optional>
-          <optional>
-            <ref name="stadfesta"/>
-          </optional>
-          <optional>
-            <ref name="dpstad"/>
-          </optional>
-          <optional>
-            <ref name="introd"/>
-          </optional>
-          <optional>
-            <ref name="melding"/>
-          </optional>
-          <optional>
-            <ref name="sokn_kyrkje"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-        </group>
-      </choice>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="dpdato"/>
+      </optional>
+      <optional>
+        <ref name="stadfesta"/>
+      </optional>
+      <optional>
+        <ref name="dpstad"/>
+      </optional>
+      <optional>
+        <ref name="introd"/>
+      </optional>
+      <optional>
+        <ref name="melding"/>
+      </optional>
+      <optional>
+        <ref name="sokn_kyrkje"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kjeldeside"/>
+      </optional>
+      <optional>
+        <ref name="biletlenke"/>
+      </optional>
       <oneOrMore>
         <ref name="dp_person"/>
       </oneOrMore>
@@ -859,52 +819,26 @@
   <define name="kf">
     <element name="kf">
       <ref name="attlist.kf"/>
-      <choice>
-        <group>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="kfdato"/>
-          </optional>
-          <optional>
-            <ref name="sokn_kyrkje"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-        </group>
-        <group>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="kfdato"/>
-          </optional>
-          <optional>
-            <ref name="sokn_kyrkje"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-        </group>
-      </choice>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="kfdato"/>
+      </optional>
+      <optional>
+        <ref name="sokn_kyrkje"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kjeldeside"/>
+      </optional>
+      <optional>
+        <ref name="biletlenke"/>
+      </optional>
       <oneOrMore>
         <ref name="kf_person"/>
       </oneOrMore>
@@ -1006,69 +940,35 @@
   <define name="vi">
     <element name="vi">
       <ref name="attlist.vi"/>
-      <choice>
-        <group>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="trdato"/>
-          </optional>
-          <optional>
-            <ref name="vidato"/>
-          </optional>
-          <optional>
-            <ref name="lysning"/>
-          </optional>
-          <optional>
-            <ref name="vistad"/>
-          </optional>
-          <optional>
-            <ref name="sokn_kyrkje"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-        </group>
-        <group>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="trdato"/>
-          </optional>
-          <optional>
-            <ref name="vidato"/>
-          </optional>
-          <optional>
-            <ref name="lysning"/>
-          </optional>
-          <optional>
-            <ref name="vistad"/>
-          </optional>
-          <optional>
-            <ref name="sokn_kyrkje"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional></group>
-      </choice>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="trdato"/>
+      </optional>
+      <optional>
+        <ref name="vidato"/>
+      </optional>
+      <optional>
+        <ref name="lysning"/>
+      </optional>
+      <optional>
+        <ref name="vistad"/>
+      </optional>
+      <optional>
+        <ref name="sokn_kyrkje"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kjeldeside"/>
+      </optional>
+      <optional>
+        <ref name="biletlenke"/>
+      </optional>
       <oneOrMore>
         <ref name="vi_person"/>
       </oneOrMore>
@@ -1248,64 +1148,32 @@
   <define name="gr">
     <element name="gr">
       <ref name="attlist.gr"/>
-      <choice>
-        <group>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="grdato"/>
-          </optional>
-          <optional>
-            <ref name="jfdato"/>
-          </optional>
-          <optional>
-            <ref name="meldar"/>
-          </optional>
-          <optional>
-            <ref name="sokn_kyrkje"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-        </group>
-        <group>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="grdato"/>
-          </optional>
-          <optional>
-            <ref name="jfdato"/>
-          </optional>
-          <optional>
-            <ref name="meldar"/>
-          </optional>
-          <optional>
-            <ref name="sokn_kyrkje"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-        </group>
-      </choice>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="grdato"/>
+      </optional>
+      <optional>
+        <ref name="jfdato"/>
+      </optional>
+      <optional>
+        <ref name="meldar"/>
+      </optional>
+      <optional>
+        <ref name="sokn_kyrkje"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kjeldeside"/>
+      </optional>
+      <optional>
+        <ref name="biletlenke"/>
+      </optional>
       <oneOrMore>
         <ref name="gr_person"/>
       </oneOrMore>
@@ -1460,52 +1328,26 @@
   <define name="df">
     <element name="df">
       <ref name="attlist.df"/>
-      <choice>
-        <group>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="meldar"/>
-          </optional>
-          <optional>
-            <ref name="sokn_kyrkje"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-        </group>
-        <group>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="meldar"/>
-          </optional>
-          <optional>
-            <ref name="sokn_kyrkje"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-        </group>
-      </choice>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="meldar"/>
+      </optional>
+      <optional>
+        <ref name="sokn_kyrkje"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kjeldeside"/>
+      </optional>
+      <optional>
+        <ref name="biletlenke"/>
+      </optional>
       <oneOrMore>
         <ref name="df_person"/>
       </oneOrMore>
@@ -1568,58 +1410,29 @@
   <define name="va">
     <element name="va">
       <ref name="attlist.va"/>
-      <choice>
-        <group>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="vadato"/>
-          </optional>
-          <optional>
-            <ref name="atdato"/>
-          </optional>
-          <optional>
-            <ref name="sokn"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-        </group>
-        <group>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="vadato"/>
-          </optional>
-          <optional>
-            <ref name="atdato"/>
-          </optional>
-          <optional>
-            <ref name="sokn"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-        </group>
-      </choice>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="vadato"/>
+      </optional>
+      <optional>
+        <ref name="atdato"/>
+      </optional>
+      <optional>
+        <ref name="sokn"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kjeldeside"/>
+      </optional>
+      <optional>
+        <ref name="biletlenke"/>
+      </optional>
       <oneOrMore>
         <ref name="va_person"/>
       </oneOrMore>
@@ -1701,52 +1514,26 @@
   <define name="if">
     <element name="if">
       <ref name="attlist.if"/>
-      <choice>
-        <group>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="ifdato"/>
-          </optional>
-          <optional>
-            <ref name="sokn"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-        </group>
-        <group>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="ifdato"/>
-          </optional>
-          <optional>
-            <ref name="sokn"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-        </group>
-      </choice>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="ifdato"/>
+      </optional>
+      <optional>
+        <ref name="sokn"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kjeldeside"/>
+      </optional>
+      <optional>
+        <ref name="biletlenke"/>
+      </optional>
       <oneOrMore>
         <ref name="if_person"/>
       </oneOrMore>
@@ -1873,51 +1660,26 @@
   <define name="uf">
     <element name="uf">
       <ref name="attlist.uf"/>
-      <choice>
-        <group>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="ufdato"/>
-          </optional>
-          <optional>
-            <ref name="sokn"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-        </group>
-        <group>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="ufdato"/>
-          </optional>
-          <optional>
-            <ref name="sokn"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional></group>
-      </choice>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="ufdato"/>
+      </optional>
+      <optional>
+        <ref name="sokn"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kjeldeside"/>
+      </optional>
+      <optional>
+        <ref name="biletlenke"/>
+      </optional>
       <oneOrMore>
         <ref name="uf_person"/>
       </oneOrMore>
@@ -2003,57 +1765,29 @@
   <define name="pa">
     <element name="pa">
       <ref name="attlist.pa"/>
-      <choice>
-        <group>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="padato"/>
-          </optional>
-          <optional>
-            <ref name="grunn"/>
-          </optional>
-          <optional>
-            <ref name="sokn_kyrkje"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-        </group>
-        <group>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="padato"/>
-          </optional>
-          <optional>
-            <ref name="grunn"/>
-          </optional>
-          <optional>
-            <ref name="sokn_kyrkje"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional></group>
-      </choice>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="padato"/>
+      </optional>
+      <optional>
+        <ref name="grunn"/>
+      </optional>
+      <optional>
+        <ref name="sokn_kyrkje"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kjeldeside"/>
+      </optional>
+      <optional>
+        <ref name="biletlenke"/>
+      </optional>
       <oneOrMore>
         <ref name="pa_person"/>
       </oneOrMore>
@@ -2135,52 +1869,26 @@
   <define name="ko">
     <element name="ko">
       <ref name="attlist.ko"/>
-      <choice>
-        <group>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="kodato"/>
-          </optional>
-          <optional>
-            <ref name="sokn_kyrkje"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-        </group>
-        <group>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="kodato"/>
-          </optional>
-          <optional>
-            <ref name="sokn_kyrkje"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-        </group>
-      </choice>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="kodato"/>
+      </optional>
+      <optional>
+        <ref name="sokn_kyrkje"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kjeldeside"/>
+      </optional>
+      <optional>
+        <ref name="biletlenke"/>
+      </optional>
       <oneOrMore>
         <ref name="ko_person"/>
       </oneOrMore>
@@ -2248,52 +1956,26 @@
   <define name="in">
     <element name="in">
       <ref name="attlist.in"/>
-      <choice>
-        <group>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="indato"/>
-          </optional>
-          <optional>
-            <ref name="sokn_kyrkje"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-          </group>
-        <group>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="indato"/>
-          </optional>
-          <optional>
-            <ref name="sokn_kyrkje"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-        </group>
-      </choice>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="indato"/>
+      </optional>
+      <optional>
+        <ref name="sokn_kyrkje"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kjeldeside"/>
+      </optional>
+      <optional>
+        <ref name="biletlenke"/>
+      </optional>
       <oneOrMore>
         <ref name="in_person"/>
       </oneOrMore>
@@ -2361,52 +2043,26 @@
   <define name="im">
     <element name="im">
       <ref name="attlist.im"/>
-      <choice>
-        <group>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="imdato"/>
-          </optional>
-          <optional>
-            <ref name="sokn"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-        </group>
-        <group>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="imdato"/>
-          </optional>
-          <optional>
-            <ref name="sokn"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-        </group>
-      </choice>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="imdato"/>
+      </optional>
+      <optional>
+        <ref name="sokn"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kjeldeside"/>
+      </optional>
+      <optional>
+        <ref name="biletlenke"/>
+      </optional>
       <oneOrMore>
         <ref name="im_person"/>
       </oneOrMore>
@@ -2547,52 +2203,26 @@
   <define name="um">
     <element name="um">
       <ref name="attlist.um"/>
-      <choice>
-        <group>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="umdato"/>
-          </optional>
-          <optional>
-            <ref name="sokn"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-        </group>
-        <group>
-          <ref name="side"/>
-          <optional>
-            <ref name="lopenr"/>
-          </optional>
-          <ref name="aar"/>
-          <optional>
-            <ref name="umdato"/>
-          </optional>
-          <optional>
-            <ref name="sokn"/>
-          </optional>
-          <optional>
-            <ref name="merknader"/>
-          </optional>
-          <optional>
-            <ref name="kjeldeside"/>
-          </optional>
-          <optional>
-            <ref name="biletlenke"/>
-          </optional>
-        </group>
-      </choice>
+      <ref name="side"/>
+      <optional>
+        <ref name="lopenr"/>
+      </optional>
+      <ref name="aar"/>
+      <optional>
+        <ref name="umdato"/>
+      </optional>
+      <optional>
+        <ref name="sokn"/>
+      </optional>
+      <optional>
+        <ref name="merknader"/>
+      </optional>
+      <optional>
+        <ref name="kjeldeside"/>
+      </optional>
+      <optional>
+        <ref name="biletlenke"/>
+      </optional>
       <oneOrMore>
         <ref name="um_person"/>
       </oneOrMore>
