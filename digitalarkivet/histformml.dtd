@@ -7,9 +7,17 @@
 
 	Elementene 'kildeside' og 'bildelenke' lagt til. Attributtverdien 'grunnlag' lagt til i elementet 'fodselsaar'.
 	Versjon 1.1, Riksarkivet, 17.06.2011 (revidert av Lars Nygaard)
-				  27.03.2012 Byttet bo_etasje til etasje i personposten
-        Versjon 1.2, Riksarkivet, 15.08.2012 Samkjørt versjoner med samme versjonssnummer og øket versjonsnummer
-                                             Lagt til elementet 'koder' som brukes i FT1801
+	Byttet 'bo_etasje' til 'etasje' i elementet 'person'.
+	Versjon 1.1, Riksarkivet, 27.03.2012 (justert av Bent Vangli)
+
+	Samkjoert versjoner med samme versjonssnummer og oeket versjonsnummer. Lagt til elementet 'koder' under 'person' (for ft1801).
+        Versjon 1.2, Riksarkivet, 15.08.2012 (revidert av Bent Vangli)
+
+	Nye elementer lagt til under 'bosted_by': 'bildelenke2', 'bildelenke3'
+	Nye elementer lagt til under 'leilighet': 'el_lys'
+	Nye elementer lagt til under 'person': 'hjemkomm', 'skole', 'forrige_adr', 'forrige_sted', 'innflyttet', 'fra_adr', 'fra_sted'
+	I tillegg tillates naa 'leilighet' som underelement til 'bosted_land'.
+	Versjon 1.2.1, Riksarkivet, 31.05.2013 og 2013-06-04(revidert av Lars Nygaard og Bent Vangli)
 -->
 
 <!-- Overordnet element: -->
@@ -29,6 +37,8 @@
 <!ELEMENT side (#PCDATA)>				<!-- Sidetallet i folketellingslisten -->
 <!ELEMENT kildeside (#PCDATA)>				<!-- Kildesidenummer (indeks) til skannet bilde i Digitalarkivet -->
 <!ELEMENT bildelenke (#PCDATA)>				<!-- URL til skannet bilde i Digitalarkivet -->
+<!ELEMENT bildelenke2 (#PCDATA)>			<!-- URL til skannet bilde i Digitalarkivet, naar flere enn ett -->
+<!ELEMENT bildelenke3 (#PCDATA)>			<!-- URL til skannet bilde i Digitalarkivet, naar flere enn to -->
 
 
 <!-- Dokumentasjon om den aktuelle folketellingen paa kommune- eller prestegjeldsnivaa: -->
@@ -78,7 +88,7 @@
 antall_hjemmehorende_personer?, antall_personsedler?, antall_husholdninger?, sidebygning_med_natteopphold?,
 antall_slike_bygninger?, hvilke_slike_bygninger?, jordbrukssporsmaal?, antall_personer_i_fjos?, antall_personer_i_stall?,
 tredje_sidebygning?, antall_personer_i_tredje_sidebygning?, fjerde_sidebygning?, antall_personer_i_fjerde_sidebygning?, merknader?,
-kildeside?, bildelenke?, (person | hjemvendt_norsk_amerikaner | jordbruk | informasjon)*)>
+kildeside?, bildelenke?, (leilighet | person | hjemvendt_norsk_amerikaner | jordbruk | informasjon)*)>
 <!ATTLIST bosted_land
 		id CDATA #IMPLIED>			<!-- Globalt unik postID for bostedposten -->
 <!ELEMENT bostedets_navn (#PCDATA)>			<!-- Bostedets navn i kilden -->
@@ -102,8 +112,9 @@ kildeside?, bildelenke?, (person | hjemvendt_norsk_amerikaner | jordbruk | infor
 <!ELEMENT bosted_by (bostedsnummer, gatenavn_og_nummer_i_gata?, bydel?, gaardens_nummer?, gaardens_eier?,
 antall_tilstedevarende_personer?, antall_hjemmehorende_personer?, antall_personsedler_personlister?, hustype?,
 sidebygninger?, ubebodd?, antall_etasjer?, antall_leiligheter_til_beboelse?, antall_leiligheter_med_naringslokaler?,
-antall_verksted_forretningslokaler?, antall_ledige_bekvemmeligheter?, antall_kvistleiligheter?,
-antall_kjellerbekvemmeligheter?, merknader?, kildeside?, bildelenke?, (leilighet | jordbruk | informasjon | person)*)>
+antall_verksted_forretningslokaler?, bildelenke?, bildelenke2?, bildelenke3?, antall_ledige_bekvemmeligheter?,
+antall_kvistleiligheter?, antall_kjellerbekvemmeligheter?, merknader?, kildeside?,
+(leilighet | jordbruk | informasjon | person)*)>
 <!ATTLIST bosted_by
 		id CDATA #IMPLIED>			<!-- Globalt unik postID for gaardsposten (by) -->
 <!ELEMENT gatenavn_og_nummer_i_gata (#PCDATA)>		<!-- Gatenavn og gaardens/husets nummer i gata -->
@@ -124,11 +135,11 @@ antall_kjellerbekvemmeligheter?, merknader?, kildeside?, bildelenke?, (leilighet
 
 
 <!-- Leilighet (3) -->
-<!ELEMENT leilighet (leilighetsnummer, antall_bebodde_bekvemmeligheter?, bekvemmelighetens_beliggenhet?, etasje?,
+<!ELEMENT leilighet (leilighetsnummer, antall_bebodde_bekvemmeligheter?, bekvemmelighetens_beliggenhet?, etasje?, bildelenke?,
 antall_varelser_i_kjeller?, antall_personer_i_kjeller?, antall_varelser_i_etasjene?, antall_personer_i_etasjene?,
 antall_varelser_paa_kvist_loft?, antall_personer_paa_kvist_loft?, antall_kjokkener?, antall_badevarelser?,
-antall_tilstedevarende_personer?, antall_hjemmehorende_personer?, antall_tjenervarelser?, antall_varelser_til_losjerende?,
-husleie?, merknader?, kildeside?, bildelenke?, (person | hjemvendt_norsk_amerikaner | informasjon)*)>
+antall_tilstedevarende_personer?, antall_hjemmehorende_personer?, antall_tjenervarelser?, el_lys?, antall_varelser_til_losjerende?,
+husleie?, merknader?, kildeside?, (person | hjemvendt_norsk_amerikaner | informasjon)*)>
 <!ATTLIST leilighet
 		id CDATA #IMPLIED>			<!-- Globalt unik postID for leilighetsposten -->
 <!ELEMENT antall_bebodde_bekvemmeligheter (#PCDATA)>
@@ -145,6 +156,7 @@ husleie?, merknader?, kildeside?, bildelenke?, (person | hjemvendt_norsk_amerika
 <!ELEMENT antall_tjenervarelser (#PCDATA)>
 <!ELEMENT antall_varelser_til_losjerende (#PCDATA)>
 <!ELEMENT husleie (#PCDATA)>
+<!ELEMENT el_lys (#PCDATA)>				<!-- Har leiligheten elektrisk lys? -->
 
 
 <!-- Skip (4) -->
@@ -171,9 +183,9 @@ merknader?, kildeside?, bildelenke?, (person | hjemvendt_norsk_amerikaner | info
 <!-- Person (5) -->
 <!ELEMENT person (personnummer, husholdningsnummer, ny_husholdning?, rolle?,
 fornavn, patronymikon?, slektsnavn?, kjonn, familiestilling?, sivilstand?, yrke?, alder?, fodselsaar?, fodested?, bostatus?,
-sedvanlig_bosted?, antatt_oppholdssted?, statsborgerskap?, trossamfunn?, sykdomstilstand?, varighet_av_sykdomstilstand?,
-bygning_for_natteopphold?, etasje?, slektskap_med_ektemann?, forsorgers_livsstilling?, arbeidsledig?,
-etnisitet_egen_fars?, etnisitet_mors?, spraak?, merknader?, kildeside?, bildelenke?, koder?)>
+sedvanlig_bosted?, antatt_oppholdssted?, statsborgerskap?, trossamfunn?, hjemkomm?, skole?, sykdomstilstand?, varighet_av_sykdomstilstand?,
+bygning_for_natteopphold?, etasje?, forrige_adr?, forrige_sted?, tilflyttet?, fra_adr?, fra_sted?, slektskap_med_ektemann?,
+forsorgers_livsstilling?, arbeidsledig?, etnisitet_egen_fars?, etnisitet_mors?, spraak?, merknader?, kildeside?, bildelenke?, koder?)>
 <!ATTLIST person
 		id CDATA #IMPLIED>			<!-- Globalt unik postID for personposten -->
 <!ELEMENT husholdningsnummer (#PCDATA)>			<!-- Husholdningens nummer innenfor bostedet/leiligheten -->
@@ -210,6 +222,13 @@ etnisitet_egen_fars?, etnisitet_mors?, spraak?, merknader?, kildeside?, bildelen
 <!ELEMENT etnisitet_mors (#PCDATA)>			<!-- Personens mors etnisitet -->
 <!ELEMENT spraak (#PCDATA)>				<!-- Hvilke(t) spraak personen daglig snakker -->
 <!ELEMENT koder (#PCDATA)>				<!-- En streng med numeriske koder separert med | -->
+<!ELEMENT hjemkomm (#PCDATA)>				<!-- Personens hjemkommune eller hjemstavn -->
+<!ELEMENT skole (#PCDATA)>				<!-- Skolen personen (barnet) gaar paa -->
+<!ELEMENT forrige_adr (#PCDATA)>			<!-- Adresse ved forrige telling -->
+<!ELEMENT forrige_sted (#PCDATA)>			<!-- Sted (herred/by/land) ved forrige telling -->
+<!ELEMENT tilflyttet (#PCDATA)>				<!-- Naar flyttet til naavaerende adresse (dato e.a.) -->
+<!ELEMENT fra_adr (#PCDATA)>				<!-- Flyttet fra adresse -->
+<!ELEMENT fra_sted (#PCDATA)>				<!-- Flyttet fra sted (herred/by/land) -->
 
 
 <!-- Hjemvendt norsk-amerikaner (6) -->
