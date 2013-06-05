@@ -112,8 +112,8 @@ kildeside?, bildelenke?, (leilighet | person | hjemvendt_norsk_amerikaner | jord
 <!ELEMENT bosted_by (bostedsnummer, gatenavn_og_nummer_i_gata?, bydel?, gaardens_nummer?, gaardens_eier?,
 antall_tilstedevarende_personer?, antall_hjemmehorende_personer?, antall_personsedler_personlister?, hustype?,
 sidebygninger?, ubebodd?, antall_etasjer?, antall_leiligheter_til_beboelse?, antall_leiligheter_med_naringslokaler?,
-antall_verksted_forretningslokaler?, bildelenke?, bildelenke2?, bildelenke3?, antall_ledige_bekvemmeligheter?,
-antall_kvistleiligheter?, antall_kjellerbekvemmeligheter?, merknader?, kildeside?,
+antall_verksted_forretningslokaler?, antall_ledige_bekvemmeligheter?,
+antall_kvistleiligheter?, antall_kjellerbekvemmeligheter?, merknader?, bildelenke?, bildelenke2?, bildelenke3?, kildeside?,
 (leilighet | jordbruk | informasjon | person)*)>
 <!ATTLIST bosted_by
 		id CDATA #IMPLIED>			<!-- Globalt unik postID for gaardsposten (by) -->
