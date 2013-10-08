@@ -9,6 +9,8 @@
       -  rettelse 27.06.2012 TMB: la til attributtet seksjon i kjelde.
       -  rettelse 30.04.2013 TMB: flyttet biletlenke fremst i handlingen.
       -  rettelse 02.05.2013 TMB: tillater biletlenke både fremst og sist i handlingsdelen.
+      -  utvidelse 07.10.2013 TMB: legger til elementet RHD_ID i alle hendelser, det er for å
+      kunne ta vare på informasjon fra RHD som har lenket personer sammen. Det er BARE id som legges til her, selve lenkingen gjøres i eksterne filer som peker til denne IDen. 
 -->
 <!-- Overordna element: -->
 <grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
@@ -212,7 +214,7 @@
   <define name="rolle">
     <element name="rolle">
       <ref name="attlist.rolle"/>
-      <ref name="tekst"/>
+      <ref name="verdier.roller"/>
     </element>
   </define>
   <define name="attlist.rolle" combine="interleave">
@@ -691,6 +693,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
         </group>
         <group>
           <ref name="side"/>
@@ -722,6 +727,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
           <optional>
             <ref name="biletlenke"/>
           </optional>
@@ -881,6 +889,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
         </group>
         <group>
           <ref name="side"/>
@@ -900,6 +911,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
           <optional>
             <ref name="biletlenke"/>
           </optional>
@@ -1037,6 +1051,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
         </group>
         <group>
           <ref name="side"/>
@@ -1065,6 +1082,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
           <optional>
             <ref name="biletlenke"/>
           </optional></group>
@@ -1276,6 +1296,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
         </group>
         <group>
           <ref name="side"/>
@@ -1301,6 +1324,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
           <optional>
             <ref name="biletlenke"/>
           </optional>
@@ -1482,6 +1508,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
         </group>
         <group>
           <ref name="side"/>
@@ -1501,6 +1530,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
           <optional>
             <ref name="biletlenke"/>
           </optional>
@@ -1593,6 +1625,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
         </group>
         <group>
           <ref name="side"/>
@@ -1615,6 +1650,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
           <optional>
             <ref name="biletlenke"/>
           </optional>
@@ -1723,6 +1761,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
         </group>
         <group>
           <ref name="side"/>
@@ -1742,6 +1783,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
           <optional>
             <ref name="biletlenke"/>
           </optional>
@@ -1895,6 +1939,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
         </group>
         <group>
           <ref name="side"/>
@@ -1914,6 +1961,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
           <optional>
             <ref name="biletlenke"/>
           </optional></group>
@@ -2028,6 +2078,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
         </group>
         <group>
           <ref name="side"/>
@@ -2050,6 +2103,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
           <optional>
             <ref name="biletlenke"/>
           </optional></group>
@@ -2157,6 +2213,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
         </group>
         <group>
           <ref name="side"/>
@@ -2176,6 +2235,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
           <optional>
             <ref name="biletlenke"/>
           </optional>
@@ -2270,6 +2332,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
           </group>
         <group>
           <ref name="side"/>
@@ -2289,6 +2354,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
           <optional>
             <ref name="biletlenke"/>
           </optional>
@@ -2383,6 +2451,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
         </group>
         <group>
           <ref name="side"/>
@@ -2402,6 +2473,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
           <optional>
             <ref name="biletlenke"/>
           </optional>
@@ -2569,6 +2643,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
         </group>
         <group>
           <ref name="side"/>
@@ -2588,6 +2665,9 @@
           <optional>
             <ref name="kjeldeside"/>
           </optional>
+      <optional>
+        <ref name="RHD_ID"/>
+      </optional>
           <optional>
             <ref name="biletlenke"/>
           </optional>
@@ -2691,6 +2771,13 @@
   <define name="attlist.til_samf" combine="interleave">
         <ref name="attlist.global"/>
     <empty/>
+  </define>
+  
+  <!-- 2013-10-07 TMB, Digitalarkivet: Legge til ID fra RHD, som skal taes vare på i filer fra dem. -->
+  <define name="RHD_ID">
+    <element name="RHD_ID">
+      <text/>
+    </element>
   </define>
 </grammar>
 <!-- Kva for eit kyrkjesamfunn personen vil melda seg inn i -->
