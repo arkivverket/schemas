@@ -17,7 +17,10 @@
     - Alle roller skal med liten forbokstav (vel så mye til stilarkene).
     - Liten bokstav i ekte/uekte (også endres i stilark).
     - Alle felt skal ha med valgfritt attributtet orig_feltnamn (inn med en global klasse over attributer), må også rettes i stilarket.
-    
+  
+  2013-11-15 TMB, Digitalarkivet: Legger til to attributter i meta-elementet: type og n. Disse skal brukes til å si noe om en xml-fil i Digitalarkivet, f.eks. slik:
+  
+  type="kirkebok" n="xxxx", der xxxx er transkid. 
 -->
 <!-- Overordnet element: -->
 
@@ -75,6 +78,8 @@
   <!-- Nye meta-elementer -->
   <define name="meta" combine="choice">
     <element name="meta">
+        <ref name="attlist.meta"/>
+        
         <zeroOrMore>
             <ref name="tittel"/></zeroOrMore>
         <optional><ref name="filnamn"/></optional>
@@ -90,8 +95,19 @@
               <ref name="informasjon"/>
             </choice>
           </zeroOrMore>
-        </element>
+      </element>
   </define>
+    
+    <define name="attlist.meta" combine="choice">
+        <optional> <!-- Man kan angir hvilket språk en tittel er på. -->
+            <attribute name="type">
+                <text/>
+            </attribute>
+            <attribute name="n">
+                <text/>
+            </attribute>
+        </optional>
+    </define>
   
     <define name="tittel" combine="choice">
         <element name="tittel">
