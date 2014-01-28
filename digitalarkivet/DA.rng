@@ -517,6 +517,7 @@
     <define name="objekt">
         <element name="objekt"> 
             <ref name="attlist.global"></ref>
+            <ref name="attlist.id"/>
             <interleave>
                 <optional><ref name="tekst"/></optional>
                 <optional><ref name="namn"/></optional>
