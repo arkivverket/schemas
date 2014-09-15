@@ -223,6 +223,10 @@
         <choice>
             <value>e</value>
             <value>u</value>
+            <value>%e%</value>
+            <value>%u%</value>
+            <value>e!!</value>
+            <value>u!!</value>
             <value>!!</value>
             <value>??</value>
             <ref name="slett"/>
