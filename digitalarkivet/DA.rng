@@ -645,6 +645,7 @@
        <define name="eigar">
            <element name="eigar">
                <ref name="attlist.global"></ref>
+               <ref name="attlist.id"/>
                <ref name="tekst"/>
            </element>
        </define>
