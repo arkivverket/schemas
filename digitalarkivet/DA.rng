@@ -20,6 +20,8 @@
   
   2013-11-15 TMB, Digitalarkivet: Legger til to attributter i meta-elementet: type og n. Disse skal brukes til å si noe om en xml-fil i Digitalarkivet, f.eks. slik:
   
+  2017-02-16 TMB, Digitalarkivet: Utvidet med nytt element hendelse. Trengs for å kunne ta inn sjømannsregisteret, og sikkert andre registre slik som bilregisteret. 
+  
   type="kirkebok" n="xxxx", der xxxx er transkid. 
 -->
 <!-- Overordnet element: -->
@@ -371,6 +373,9 @@
                     <ref name="objekt"/>
                 </zeroOrMore>
                 <zeroOrMore>
+                    <ref name="hending"/>
+                </zeroOrMore>
+                <zeroOrMore>
                     <ref name="skip"/>
                 </zeroOrMore>
                 <zeroOrMore>
@@ -548,6 +553,38 @@
             </interleave>
         </element>
     </define>
+    
+    <define name="hending">
+        <element name="hending"> 
+            <ref name="attlist.global"></ref>
+            <ref name="attlist.id"/>
+            <interleave>
+                <optional><ref name="tekst"/></optional>
+                <optional><ref name="namn"/></optional>
+                <zeroOrMore><ref name="dato"/></zeroOrMore>
+                <optional><ref name="type"/></optional>
+                <optional><ref name="subtype"/></optional>
+                
+                <optional><ref name="stad"/></optional>
+                
+                <optional><ref name="sluttdato"/></optional>
+                <optional><ref name="sluttstad"/></optional>
+                
+                
+                <optional><ref name="skipets_navn"/></optional>
+                <optional><ref name="skipsnummer"/></optional>
+                <optional><ref name="skipets_land"/></optional>
+                
+                <optional><ref name="stilling_stand"/></optional>
+                
+                
+                <optional><ref name="merknader"/></optional>
+                <zeroOrMore>
+                    <ref name="felt"/>
+                </zeroOrMore>
+            </interleave>
+        </element>
+    </define>
 
     <define name="verksemd">
         <element name="verksemd">
@@ -645,7 +682,6 @@
        <define name="eigar">
            <element name="eigar">
                <ref name="attlist.global"></ref>
-               <ref name="attlist.id"/>
                <ref name="tekst"/>
            </element>
        </define>
@@ -878,6 +914,8 @@
     <define name="fiskeri"><element name="fiskeri"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
     <define name="sag"><element name="sag"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
     <define name="heimstad"><element name="heimstad"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
+    <define name="sluttstad"><element name="sluttstad"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
+    <define name="skipets_land"><element name="skipets_land"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
     
     <define name="startdato"><element name="startdato"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
     <define name="sluttdato"><element name="sluttdato"><ref name="attlist.orig_feltnamn"/><ref name="tekst"/></element></define>
