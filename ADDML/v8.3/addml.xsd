@@ -2,7 +2,7 @@
 <xs:schema xmlns:addml="http://www.arkivverket.no/standarder/addml"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   targetNamespace="http://www.arkivverket.no/standarder/addml" elementFormDefault="qualified"
-  version="8.2">
+  version="8.3">
   <xs:annotation>
     <xs:documentation xml:lang="en">
       Changes made in versions up to 8.2 are not documented in this document.

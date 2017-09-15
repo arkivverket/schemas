@@ -1,0 +1,912 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.arkivverket.no/Noark-5/metadatakatalog" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.arkivverket.no/Noark-5/metadatakatalog" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0">
+	<xs:annotation>
+		<xs:documentation>Noark-5</xs:documentation>
+		<xs:documentation>XML Schema for avleveringsuttrekk</xs:documentation>
+		<xs:documentation>Skjema for metadatakatalog</xs:documentation>
+		<xs:documentation>Grupper av metadata:</xs:documentation>
+		<xs:documentation>M001-M019:	Identifikasjon</xs:documentation>
+		<xs:documentation>M020-M049:	Kjernemetadata (Dublin Core)</xs:documentation>
+		<xs:documentation>M050-M079:	Status</xs:documentation>
+		<xs:documentation>M080-M099:	Typer</xs:documentation>
+		<xs:documentation>M100-M199:	Datoer</xs:documentation>
+		<xs:documentation>M200-M299:	Referanser</xs:documentation>
+		<xs:documentation>M300-M369:	Arkiv- og saksbehandlingsfunksjonalitet</xs:documentation>
+		<xs:documentation>M370-M399:	Møtebehandling</xs:documentation>
+		<xs:documentation>M400-M449:	Korrespondanse</xs:documentation>
+		<xs:documentation>M450-M499:	Bevaring og kassasjon</xs:documentation>
+		<xs:documentation>M500-M599:	Skjerming og gradering</xs:documentation>
+		<xs:documentation>M600-M659:	Logging av hendelser</xs:documentation>
+		<xs:documentation>M660-M679:	Logging av arbeidsflyt</xs:documentation>
+		<xs:documentation>M680-M699:	Logging av endringer</xs:documentation>
+		<xs:documentation>M700-M799:	Tekniske metadata</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="systemID">
+		<xs:annotation>
+			<xs:documentation>M001</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="klasseID">
+		<xs:annotation>
+			<xs:documentation>M002</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="mappeID">
+		<xs:annotation>
+			<xs:documentation>M003</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="registreringsID">
+		<xs:annotation>
+			<xs:documentation>M004</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="versjonsnummer">
+		<xs:annotation>
+			<xs:documentation>M005</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="arkivskaperID">
+		<xs:annotation>
+			<xs:documentation>M006</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="dokumentnummer">
+		<xs:annotation>
+			<xs:documentation>M007</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="møtenummer">
+		<xs:annotation>
+			<xs:documentation>M008</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="løpenummer">
+		<xs:annotation>
+			<xs:documentation>M009</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="tittel">
+		<xs:annotation>
+			<xs:documentation>M020</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="beskrivelse">
+		<xs:annotation>
+			<xs:documentation>M021</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="nøkkelord">
+		<xs:annotation>
+			<xs:documentation>M022</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="arkivskaperNavn">
+		<xs:annotation>
+			<xs:documentation>M023</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="forfatter">
+		<xs:annotation>
+			<xs:documentation>M024</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="offentligTittel">
+		<xs:annotation>
+			<xs:documentation>M025</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="møteregistreringsstatus">
+		<xs:annotation>
+			<xs:documentation>M055</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="presedensStatus">
+		<xs:annotation>
+			<xs:documentation>M056</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="journalposttype">
+		<xs:annotation>
+			<xs:documentation>M082</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="dokumenttype">
+		<xs:annotation>
+			<xs:documentation>M083</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="merknadstype">
+		<xs:annotation>
+			<xs:documentation>M084</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="møteregistreringstype">
+		<xs:annotation>
+			<xs:documentation>M085</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="klassifikasjonstype">
+		<xs:annotation>
+			<xs:documentation>M086</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="korrespondanseparttype">
+		<xs:annotation>
+			<xs:documentation>M087</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="møtesakstype">
+		<xs:annotation>
+			<xs:documentation>M088</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="saksdato">
+		<xs:annotation>
+			<xs:documentation>M100</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="journaldato">
+		<xs:annotation>
+			<xs:documentation>M101</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="møtedato">
+		<xs:annotation>
+			<xs:documentation>M102</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="dokumentetsDato">
+		<xs:annotation>
+			<xs:documentation>M103</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="mottattDato">
+		<xs:annotation>
+			<xs:documentation>M104</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="sendtDato">
+		<xs:annotation>
+			<xs:documentation>M105</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="arkivperiodeStartDato">
+		<xs:annotation>
+			<xs:documentation>M107</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="arkivperiodeSluttDato">
+		<xs:annotation>
+			<xs:documentation>M108</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="presedensDato">
+		<xs:annotation>
+			<xs:documentation>M111</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseForelder">
+		<xs:annotation>
+			<xs:documentation>M200</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseBarn">
+		<xs:annotation>
+			<xs:documentation>M201</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseForløper">
+		<xs:annotation>
+			<xs:documentation>M202</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseArvtaker">
+		<xs:annotation>
+			<xs:documentation>M203</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseKlassifikasjonssystem">
+		<xs:annotation>
+			<xs:documentation>M204</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseMappe">
+		<xs:annotation>
+			<xs:documentation>M205</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseRegistrering">
+		<xs:annotation>
+			<xs:documentation>M206</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseDokumentbeskrivelse">
+		<xs:annotation>
+			<xs:documentation>M207</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseArkivdel">
+		<xs:annotation>
+			<xs:documentation>M208</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseSekundærKlassifikasjon">
+		<xs:annotation>
+			<xs:documentation>M209</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseTilMappe">
+		<xs:annotation>
+			<xs:documentation>M210</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseFraMappe">
+		<xs:annotation>
+			<xs:documentation>M211</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseTilRegistrering">
+		<xs:annotation>
+			<xs:documentation>M212</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseFraRegistrering">
+		<xs:annotation>
+			<xs:documentation>M213</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseAvskriverJournalpost">
+		<xs:annotation>
+			<xs:documentation>M214</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseAvskrivesAvJournalpost">
+		<xs:annotation>
+			<xs:documentation>M215</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseDokumentobjekt">
+		<xs:annotation>
+			<xs:documentation>M216</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="tilknyttetRegistreringSom">
+		<xs:annotation>
+			<xs:documentation>M217</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseDokumentfil">
+		<xs:annotation>
+			<xs:documentation>M218</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseTilKlasse">
+		<xs:annotation>
+			<xs:documentation>M219</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseFraKlasse">
+		<xs:annotation>
+			<xs:documentation>M220</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseForrigeMøte">
+		<xs:annotation>
+			<xs:documentation>M221</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseNesteMøte">
+		<xs:annotation>
+			<xs:documentation>M222</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseTilMøteregistrering">
+		<xs:annotation>
+			<xs:documentation>M223</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseFraMøteregistrering">
+		<xs:annotation>
+			<xs:documentation>M224</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="dokumentmedium">
+		<xs:annotation>
+			<xs:documentation>M300</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="sakspartNavn">
+		<xs:annotation>
+			<xs:documentation>M302</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="sakspartRolle">
+		<xs:annotation>
+			<xs:documentation>M303</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="antallVedlegg">
+		<xs:annotation>
+			<xs:documentation>M304</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="administrativEnhet">
+		<xs:annotation>
+			<xs:documentation>M305</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="saksansvarlig">
+		<xs:annotation>
+			<xs:documentation>M306</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="saksbehandler">
+		<xs:annotation>
+			<xs:documentation>M307</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="journalenhet">
+		<xs:annotation>
+			<xs:documentation>M308</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="merknadstekst">
+		<xs:annotation>
+			<xs:documentation>M310</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="presedensHjemmel">
+		<xs:annotation>
+			<xs:documentation>M311</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="rettskildefaktor">
+		<xs:annotation>
+			<xs:documentation>M312</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="utvalg">
+		<xs:annotation>
+			<xs:documentation>M370</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="møtedeltakerNavn">
+		<xs:annotation>
+			<xs:documentation>M372</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="møtedeltakerFunksjon">
+		<xs:annotation>
+			<xs:documentation>M373</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="korrespondansepartNavn">
+		<xs:annotation>
+			<xs:documentation>M400</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="postadresse">
+		<xs:annotation>
+			<xs:documentation>M406</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="postnummer">
+		<xs:annotation>
+			<xs:documentation>M407</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="poststed">
+		<xs:annotation>
+			<xs:documentation>M408</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="utenlandsadresse">
+		<xs:annotation>
+			<xs:documentation>M409</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="epostadresse">
+		<xs:annotation>
+			<xs:documentation>M410</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="telefonnummer">
+		<xs:annotation>
+			<xs:documentation>M411</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="kontaktperson">
+		<xs:annotation>
+			<xs:documentation>M412</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="kassasjonsvedtak">
+		<xs:annotation>
+			<xs:documentation>M450</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="bevaringstid">
+		<xs:annotation>
+			<xs:documentation>M451</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="kassasjonsdato">
+		<xs:annotation>
+			<xs:documentation>M452</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="kassasjonshjemmel">
+		<xs:annotation>
+			<xs:documentation>M453</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="tilgangsrestriksjon">
+		<xs:annotation>
+			<xs:documentation>M500</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="skjermingshjemmel">
+		<xs:annotation>
+			<xs:documentation>M501</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="skjermingMetadata">
+		<xs:annotation>
+			<xs:documentation>M502</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="skjermingDokument">
+		<xs:annotation>
+			<xs:documentation>M503</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="skjermingsvarighet">
+		<xs:annotation>
+			<xs:documentation>M504</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="skjermingOpphørerDato">
+		<xs:annotation>
+			<xs:documentation>M505</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="gradering">
+		<xs:annotation>
+			<xs:documentation>M506</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="elektroniskSignaturSikkerhetsnivå">
+		<xs:annotation>
+			<xs:documentation>M507</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="elektroniskSignaturVerifisert">
+		<xs:annotation>
+			<xs:documentation>M508</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="opprettetDato">
+		<xs:annotation>
+			<xs:documentation>M600</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="opprettetAv">
+		<xs:annotation>
+			<xs:documentation>M601</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="avsluttetDato">
+		<xs:annotation>
+			<xs:documentation>M602</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="avsluttetAv">
+		<xs:annotation>
+			<xs:documentation>M603</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="arkivertDato">
+		<xs:annotation>
+			<xs:documentation>M604</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="arkivertAv">
+		<xs:annotation>
+			<xs:documentation>M605</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ansvarligEksport">
+		<xs:annotation>
+			<xs:documentation>M606</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="eksportertDato">
+		<xs:annotation>
+			<xs:documentation>M607</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="antallMapperEksportert">
+		<xs:annotation>
+			<xs:documentation>M608</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="antallRegistreringerEksportert">
+		<xs:annotation>
+			<xs:documentation>M609</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="antallDokumenterEksportert">
+		<xs:annotation>
+			<xs:documentation>M610</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="merknadsdato">
+		<xs:annotation>
+			<xs:documentation>M611</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="merknadRegistrertAv">
+		<xs:annotation>
+			<xs:documentation>M612</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="slettetDato">
+		<xs:annotation>
+			<xs:documentation>M613</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="slettetAv">
+		<xs:annotation>
+			<xs:documentation>M614</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="konvertertDato">
+		<xs:annotation>
+			<xs:documentation>M615</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="konvertertAv">
+		<xs:annotation>
+			<xs:documentation>M616</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="avskrivningsdato">
+		<xs:annotation>
+			<xs:documentation>M617</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="avskrevetAv">
+		<xs:annotation>
+			<xs:documentation>M618</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="avskrivningsmåte">
+		<xs:annotation>
+			<xs:documentation>M619</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="tilknyttetDato">
+		<xs:annotation>
+			<xs:documentation>M620</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="tilknyttetAv">
+		<xs:annotation>
+			<xs:documentation>M621</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="verifisertDato">
+		<xs:annotation>
+			<xs:documentation>M622</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="verifisertAv">
+		<xs:annotation>
+			<xs:documentation>M623</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="graderingsDato">
+		<xs:annotation>
+			<xs:documentation>M624</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="gradertAv">
+		<xs:annotation>
+			<xs:documentation>M625</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="nedgraderingsDato">
+		<xs:annotation>
+			<xs:documentation>M626</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="nedgradertAv">
+		<xs:annotation>
+			<xs:documentation>M627</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="presedensGodkjentDato">
+		<xs:annotation>
+			<xs:documentation>M628</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="presedensGodkjentAv">
+		<xs:annotation>
+			<xs:documentation>M629</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="flytTil">
+		<xs:annotation>
+			<xs:documentation>M660</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="flytMottattDato">
+		<xs:annotation>
+			<xs:documentation>M661</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="flytSendtDato">
+		<xs:annotation>
+			<xs:documentation>M662</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="flytStatus">
+		<xs:annotation>
+			<xs:documentation>M663</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="flytMerknad">
+		<xs:annotation>
+			<xs:documentation>M664</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="flytFra">
+		<xs:annotation>
+			<xs:documentation>M665</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="fordeltTil">
+		<xs:annotation>
+			<xs:documentation>M666</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="fordeltAv">
+		<xs:annotation>
+			<xs:documentation>M667</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="fordeltDato">
+		<xs:annotation>
+			<xs:documentation>M668</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseArkivenhet">
+		<xs:annotation>
+			<xs:documentation>M680</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="referanseMetadata">
+		<xs:annotation>
+			<xs:documentation>M681</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="endretDato">
+		<xs:annotation>
+			<xs:documentation>M682</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="endretAv">
+		<xs:annotation>
+			<xs:documentation>M683</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="tidligereVerdi">
+		<xs:annotation>
+			<xs:documentation>M684</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="nyVerdi">
+		<xs:annotation>
+			<xs:documentation>M685</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="variantformat">
+		<xs:annotation>
+			<xs:documentation>M700</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="format">
+		<xs:annotation>
+			<xs:documentation>M701</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="formatDetaljer">
+		<xs:annotation>
+			<xs:documentation>M702</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="tidligereFormat">
+		<xs:annotation>
+			<xs:documentation>M703</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="tidligereFormatDetaljer">
+		<xs:annotation>
+			<xs:documentation>M704</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="sjekksum">
+		<xs:annotation>
+			<xs:documentation>M705</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="sjekksumAlgoritme">
+		<xs:annotation>
+			<xs:documentation>M706</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="filstørrelse">
+		<xs:annotation>
+			<xs:documentation>M707</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="sjekksumMetadata">
+		<xs:annotation>
+			<xs:documentation>M708</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="sjekksumAvlevering">
+		<xs:annotation>
+			<xs:documentation>M709</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+</xs:schema>

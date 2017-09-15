@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.arkivverket.no/Noark-5/avlevering/arkiv" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:n5mdk="http://www.arkivverket.no/Noark-5/metadatakatalog" targetNamespace="http://www.arkivverket.no/Noark-5/avlevering/arkiv" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0">
+	<xs:annotation>
+		<xs:documentation>Noark-5</xs:documentation>
+		<xs:documentation>XML Schema for avleveringsuttrekk</xs:documentation>
+		<xs:documentation>Hovedskjema - skjema for arkiv</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.arkivverket.no/Noark-5/metadatakatalog" schemaLocation="Noark-5_metadatakatalog_v_2_0.xsd"/>
+	<xs:include schemaLocation="Noark-5_avlevering_basismappe_v_2_0.xsd"/>
+	<xs:element name="arkiv" type="arkiv"/>
+	<xs:complexType name="arkiv">
+		<xs:sequence>
+			<xs:element name="systemID" type="n5mdk:systemID"/>
+			<xs:element name="tittel" type="n5mdk:tittel"/>
+			<xs:element name="beskrivelse" type="n5mdk:beskrivelse" minOccurs="0"/>
+			<xs:element name="arkivskaper" type="arkivskaper" maxOccurs="unbounded"/>
+			<xs:element name="dokumentmedium" type="n5mdk:dokumentmedium" minOccurs="0"/>
+			<xs:element name="opprettetDato" type="n5mdk:opprettetDato"/>
+			<xs:element name="opprettetAv" type="n5mdk:opprettetAv"/>
+			<xs:element name="avsluttetDato" type="n5mdk:avsluttetDato" minOccurs="0"/>
+			<xs:element name="avsluttetAv" type="n5mdk:avsluttetAv" minOccurs="0"/>
+			<xs:element name="referanseForelder" type="n5mdk:referanseForelder" minOccurs="0"/>
+			<xs:element name="referanseBarn" type="n5mdk:referanseBarn" maxOccurs="unbounded"/>
+			<xs:element name="arkivdel" type="arkivdel" maxOccurs="unbounded"/>
+			<xs:element name="arkiv" type="arkiv" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="arkivskaper">
+		<xs:sequence>
+			<xs:element name="arkivskaperID" type="n5mdk:arkivskaperID"/>
+			<xs:element name="arkivskaperNavn" type="n5mdk:arkivskaperNavn"/>
+			<xs:element name="beskrivelse" type="n5mdk:beskrivelse" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="arkivdel">
+		<xs:sequence>
+			<xs:element name="systemID" type="n5mdk:systemID"/>
+			<xs:element name="tittel" type="n5mdk:tittel"/>
+			<xs:element name="beskrivelse" type="n5mdk:beskrivelse" minOccurs="0"/>
+			<xs:element name="dokumentmedium" type="n5mdk:dokumentmedium" minOccurs="0"/>
+			<xs:element name="opprettetDato" type="n5mdk:opprettetDato"/>
+			<xs:element name="opprettetAv" type="n5mdk:opprettetAv"/>
+			<xs:element name="avsluttetDato" type="n5mdk:avsluttetDato" minOccurs="0"/>
+			<xs:element name="avsluttetAv" type="n5mdk:avsluttetAv" minOccurs="0"/>
+			<xs:element name="arkivperiodeStartDato" type="n5mdk:arkivperiodeStartDato"/>
+			<xs:element name="arkivperiodeSluttDato" type="n5mdk:arkivperiodeSluttDato" minOccurs="0"/>
+			<xs:element name="skjerming" type="skjerming" minOccurs="0"/>
+			<xs:element name="kassasjon" type="kassasjon" minOccurs="0"/>
+			<xs:element name="sletting" type="sletting" minOccurs="0"/>
+			<xs:element name="referanseForelder" type="n5mdk:referanseForelder"/>
+			<xs:element name="referanseForløper" type="n5mdk:referanseForløper" minOccurs="0"/>
+			<xs:element name="referanseArvtaker" type="n5mdk:referanseArvtaker" minOccurs="0"/>
+			<xs:element name="referanseKlassifikasjonssystem" type="n5mdk:referanseKlassifikasjonssystem" minOccurs="0"/>
+			<xs:element name="referanseMappe" type="n5mdk:referanseMappe" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="referanseRegistrering" type="n5mdk:referanseRegistrering" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="klassifikasjonssystem" type="klassifikasjonssystem"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="klassifikasjonssystem">
+		<xs:sequence>
+			<xs:element name="systemID" type="n5mdk:systemID"/>
+			<xs:element name="klassifikasjonstype" type="n5mdk:klassifikasjonstype" minOccurs="0"/>
+			<xs:element name="tittel" type="n5mdk:tittel"/>
+			<xs:element name="beskrivelse" type="n5mdk:beskrivelse" minOccurs="0"/>
+			<xs:element name="opprettetDato" type="n5mdk:opprettetDato"/>
+			<xs:element name="opprettetAv" type="n5mdk:opprettetAv"/>
+			<xs:element name="avsluttetDato" type="n5mdk:avsluttetDato" minOccurs="0"/>
+			<xs:element name="avsluttetAv" type="n5mdk:avsluttetAv" minOccurs="0"/>
+			<xs:element name="referanseBarn" type="n5mdk:referanseBarn" maxOccurs="unbounded"/>
+			<xs:element name="klasse" type="klasse" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="klasse">
+		<xs:sequence>
+			<xs:element name="systemID" type="n5mdk:systemID"/>
+			<xs:element name="klasseID" type="n5mdk:klasseID"/>
+			<xs:element name="tittel" type="n5mdk:tittel"/>
+			<xs:element name="beskrivelse" type="n5mdk:beskrivelse" minOccurs="0"/>
+			<xs:element name="nøkkelord" type="n5mdk:nøkkelord" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="opprettetDato" type="n5mdk:opprettetDato"/>
+			<xs:element name="opprettetAv" type="n5mdk:opprettetAv"/>
+			<xs:element name="avsluttetDato" type="n5mdk:avsluttetDato" minOccurs="0"/>
+			<xs:element name="avsluttetAv" type="n5mdk:avsluttetAv" minOccurs="0"/>
+			<xs:element name="skjerming" type="skjerming" minOccurs="0"/>
+			<xs:element name="kassasjon" type="kassasjon" minOccurs="0"/>
+			<xs:element name="referanseForelder" type="n5mdk:referanseForelder"/>
+			<xs:element name="referanseBarn" type="n5mdk:referanseBarn" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="kryssreferanse" type="kryssreferanse" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:choice>
+				<xs:element name="basismappe" type="basismappe" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="forenkletRegistrering" type="forenkletRegistrering" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:element name="klasse" type="klasse" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

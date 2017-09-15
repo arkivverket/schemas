@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.arkivverket.no/Noark-5/avlevering" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:n5mdk="http://www.arkivverket.no/Noark-5/metadatakatalog" targetNamespace="http://www.arkivverket.no/Noark-5/avlevering" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0">
+	<xs:annotation>
+		<xs:documentation>Noark-5</xs:documentation>
+		<xs:documentation>XML Schema for avleveringsuttrekk</xs:documentation>
+		<xs:documentation>Skjema for avlevering</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.arkivverket.no/Noark-5/metadatakatalog" schemaLocation="Noark-5_metadatakatalog_v_2_0.xsd"/>
+	<xs:element name="avlevering" type="avlevering"/>
+	<xs:complexType name="avlevering">
+		<xs:sequence>
+			<xs:element name="ansvarligEksport" type="n5mdk:ansvarligEksport"/>
+			<xs:element name="eksportertDato" type="n5mdk:eksportertDato"/>
+			<xs:element name="antallMapperEksportert" type="n5mdk:antallMapperEksportert"/>
+			<xs:element name="antallRegistreringerEksportert" type="n5mdk:antallRegistreringerEksportert"/>
+			<xs:element name="antallDokumenterEksportert" type="n5mdk:antallDokumenterEksportert"/>
+			<xs:element name="sjekksumMetadata" type="n5mdk:sjekksumMetadata"/>
+			<xs:element name="sjekksumAvlevering" type="n5mdk:sjekksumAvlevering"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
