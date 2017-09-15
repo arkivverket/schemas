@@ -318,6 +318,8 @@
       <xs:enumeration value="Gruppemottaker"/>
       <xs:enumeration value="Intern avsender"/>
       <xs:enumeration value="Intern mottaker"/>
+      <xs:enumeration value="Intern kopimottaker"/>
+      <xs:enumeration value="Medavsender"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -1022,6 +1024,8 @@
       <xs:enumeration value="Besvart på telefon"/>
       <xs:enumeration value="Tatt til etterretning"/>
       <xs:enumeration value="Tatt til orientering"/>
+      <xs:enumeration value="Besvart med notat"/>
+      <xs:enumeration value="Saken ble avsluttet"/>
     </xs:restriction>
   </xs:simpleType>
 
