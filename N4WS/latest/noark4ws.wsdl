@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:types="http://www.arkivverket.no/Noark4WS/types" 
+	xmlns:tns="http://www.arkivverket.no/Noark4WS" 
+	targetNamespace="http://www.arkivverket.no/Noark4WS">
+	<wsdl:types>
+		<xs:schema>
+			<xs:import namespace="http://www.arkivverket.no/Noark4WS/types" schemaLocation="http://www.arkivverket.no/Noark4WS/types/noark4ws-types.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="GetNoarksakRequestMessage">
+		<wsdl:part name="getNoarksakRequest" element="types:GetNoarksakRequest"/>
+	</wsdl:message>
+	<wsdl:message name="GetNoarksakResponseMessage">
+		<wsdl:part name="getNoarksakResponse" element="types:GetNoarksakResponse"/>
+	</wsdl:message>
+	<wsdl:message name="PutNoarksakRequestMessage">
+		<wsdl:part name="putNoarksakRequest" element="types:PutNoarksakRequest"/>
+	</wsdl:message>
+	<wsdl:message name="PutNoarksakResponseMessage">
+		<wsdl:part name="putNoarksakResponse" element="types:PutNoarksakResponse"/>
+	</wsdl:message>	
+	<wsdl:message name="GetJournpostRequestMessage">
+		<wsdl:part name="getJournpostRequest" element="types:GetJournpostRequest"/>
+	</wsdl:message>
+	<wsdl:message name="GetJournpostResponseMessage">
+		<wsdl:part name="getJournpostResponse" element="types:GetJournpostResponse"/>
+	</wsdl:message>
+	<wsdl:message name="PutJournpostRequestMessage">
+		<wsdl:part name="putJournpostRequest" element="types:PutJournpostRequest"/>
+	</wsdl:message>
+	<wsdl:message name="PutJournpostResponseMessage">
+		<wsdl:part name="putJournpostResponse" element="types:PutJournpostResponse"/>
+	</wsdl:message>		
+	<wsdl:portType name="SOAPport">
+		<wsdl:operation name="GetNoarksak">
+			<wsdl:input message="tns:GetNoarksakRequestMessage"/>
+			<wsdl:output message="tns:GetNoarksakResponseMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="PutNoarksak">
+			<wsdl:input message="tns:PutNoarksakRequestMessage"/>
+			<wsdl:output message="tns:PutNoarksakResponseMessage"/>
+		</wsdl:operation>	
+		<wsdl:operation name="GetJournpost">
+			<wsdl:input message="tns:GetJournpostRequestMessage"/>
+			<wsdl:output message="tns:GetJournpostResponseMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="PutJournpost">
+			<wsdl:input message="tns:PutJournpostRequestMessage"/>
+			<wsdl:output message="tns:PutJournpostResponseMessage"/>
+		</wsdl:operation>			
+	</wsdl:portType>
+	<wsdl:binding name="noark4wsBinding" type="tns:SOAPport">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="GetNoarksak">
+			<soap:operation soapAction="urn:#GetNoarksak"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="PutNoarksak">
+			<soap:operation soapAction="urn:#PutNoarksak"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>		
+		<wsdl:operation name="GetJournpost">
+			<soap:operation soapAction="urn:#GetJournpost"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="PutJournpost">
+			<soap:operation soapAction="urn:#PutJournpost"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>				
+	</wsdl:binding>
+	<wsdl:service name="noark4ws">
+		<wsdl:port name="noark4wsPort" binding="tns:noark4wsBinding">
+			<soap:address location="http:8080/localhost/noark4ws"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
