@@ -13,4 +13,5 @@ avlxmlsmdk.xsd - Skjema for metadatakatalog - supplerende opplysninger
 avlxml.xsd - Skjema for den komplette avleveringslisten 
 avlsup.xsd - Skjema for supplerende opplysninger
 
-AVLXMLmSUP-uDataType-NyVersjon.png - Modellgraf for avleveringslisten
+avlxml-graf.png - Modellgraf for avleveringslisten
+avlsup-graf.png - Modellgraf for supplerende opplysninger
