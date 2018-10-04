@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://schema.arkivverket.no/avlxml"
+    xmlns="http://schema.arkivverket.no/avlxml" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified">
+
+    <xs:include schemaLocation="avlxmlbmdk.xsd"/>
+    <xs:include schemaLocation="avlxmlsmdk.xsd"/>
+
+    <xs:element name="avlsup" type="supplerendeopplysninger"/>
+
+
+    <xs:complexType name="supplerendeopplysninger">
+        <xs:annotation>
+            <xs:documentation>supplerende opplysninger hentet fra elektronisk PAS, EPJ eller annet registratur</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="avleveringsidentifikator" type="avleveringsidentifikator"/>
+            <xs:element name="journalidentifikator" type="journalidentifikator"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="saksreferanser"
+                type="saksreferanser"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="henvisningsperiode"
+                type="henvisningsperiode"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="saksreferanser">
+        <xs:annotation>
+            <xs:documentation>Denne klassen beskriver henvisninger mellom pasientarkiv og relevante administrative saker i sakarkiv.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="saksereferansedato" type="saksreferansedato"/>
+            <xs:element minOccurs="0" name="saksreferansenummer" type="saksreferansenummer"/>
+            <xs:element name="saksreferansetekst" type="saksreferansetekst"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="henvisningsperiode">
+        <xs:annotation>
+            <xs:documentation>Denne klassen beskriver tidsperioder fra mottak av henvisning for en og samme lidelse til utredning, behandling, rehabilitering og oppfølging er gjennomført, og ingen nye kontakter er avtalt.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="henvFraInstitusjonID" type="henvFraInstitusjonID"/>
+            <xs:element minOccurs="0" name="ansienDato" type="ansienDato"/>
+            <xs:element minOccurs="0" ref="trygdenasjon"/>
+            <xs:element minOccurs="0" name="sluttDato" type="sluttDato"/>
+            <xs:element minOccurs="0" name="henvTilInstitusjonID" type="henvTilInstitusjonID"/>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element name="avdelingsopphold" type="avdelingsopphold"/>
+                <xs:element name="kontakt" type="kontakt"/>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="henvisningsperiodeID" type="henvisningsperiodeID" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="episode">
+        <xs:annotation>
+            <xs:documentation>Denne abstrakte klassen beskriver tidsperioder hvor pasienten får helsehjelp ved én og samme helseinstitusjon for ett og samme helseproblem.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="innDatoTid" type="innDatoTid"/>
+            <xs:element minOccurs="0" name="utDatoTid" type="utDatoTid"/>
+            <xs:element ref="episodeFag"/>
+            <xs:element ref="omsorgsniva"/>
+            <xs:element name="komNrHjem" type="komNrHjem"/>
+            <xs:element minOccurs="0" name="bydel" type="bydel"/>
+            <xs:element minOccurs="0" name="adresse" type="adresse"/>
+            <xs:element name="tjeneste" type="tjeneste"/>
+        </xs:sequence>
+        <xs:attribute name="episodeID" type="episodeID" use="required"/>
+        <xs:attribute name="serieID" type="serieID"/>
+    </xs:complexType>
+    <xs:complexType name="avdelingsopphold">
+        <xs:complexContent>
+            <xs:extension base="episode">
+                <xs:sequence>
+                    <xs:element ref="oppholdstype"/>
+                    <xs:element ref="avdoppAktivitet"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="kontakt">
+        <xs:complexContent>
+            <xs:extension base="episode">
+                <xs:sequence>
+                    <xs:element ref="kontakttype"/>
+                    <xs:element ref="stedAktivitet"/>
+                    <xs:element ref="polkonAktivitet"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="tjenesteenhet">
+        <xs:sequence>
+            <xs:element name="enhetID" type="enhetID"/>
+            <xs:element minOccurs="0" name="enhetNavn" type="enhetNavn"/>
+            <xs:element minOccurs="0" name="offAvdKode" type="offAvdKode"/>
+            <xs:element minOccurs="0" name="reshID" type="reshID"/>
+            <xs:element minOccurs="0" name="enhetLokal" type="enhetLokal"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="tiltak">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" ref="typeTiltak"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="prosedyre" type="prosedyre"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="tjeneste">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="instID" type="instID"/>
+            <xs:element name="startDatoTid" type="startDatoTid"/>
+            <xs:element minOccurs="0" name="sluttDatoTid" type="sluttDatoTid"/>
+            <xs:element ref="tjenesteFag"/>
+            <xs:element minOccurs="0" name="enhet" type="tjenesteenhet"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="tiltak" type="tiltak"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="prosedyre">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="prosNr" type="prosNr"/>
+            <xs:element maxOccurs="unbounded" ref="Prosedyrekode"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
