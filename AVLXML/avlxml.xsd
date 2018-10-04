@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+NB: Sjekk ut http://schema.arkivverket.no/
+-->
+<xs:schema targetNamespace="http://schema.arkivverket.no/avlxml"
+    xmlns="http://schema.arkivverket.no/avlxml" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:avl="http://schema.arkivverket.no/avlxml/avlxmlbmdk" elementFormDefault="qualified">
+
+    <xs:include schemaLocation="avlxmlbmdk.xsd"/>
+    <xs:include schemaLocation="avlxmlsmdk.xsd"/>
+    <xs:include schemaLocation="avlsup.xsd"/>
+
+    <xs:element name="avlxml" type="avlevering"/>
+
+    <xs:complexType name="avlevering">
+        <xs:annotation>
+            <xs:documentation>Avleveringslisten i AVLXML</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="avlxmlversjon" type="avlxmlversjon"/>
+            <xs:element name="avleveringsidentifikator" type="avleveringsidentifikator"/>
+            <xs:element name="avleveringsbeskrivelse" type="avleveringsbeskrivelse"/>
+            <xs:element name="arkivskaper" type="arkivskaper"/>
+            <xs:element name="avtale" type="avtale"/>
+            <xs:element maxOccurs="unbounded" name="pasientjournal" type="pasientjournal"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="avtale">
+        <xs:annotation>
+            <xs:documentation>Avtale som ligger til grunn for avlevering</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="avtaleidentifikator" type="avtaleidentifikator"/>
+            <xs:element name="avtaledato" type="avtaledato"/>
+            <xs:element name="avtalebebskrivelse" type="avtalebeskrivelse"/>
+            <xs:element name="virksomhet" type="virksomhet"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="virksomhet">
+        <xs:annotation>
+            <xs:documentation>Virksomhet tilknyttet avtalen</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="organisasjonsnummer" type="organisasjonsnummer"/>
+            <xs:element minOccurs="0" name="foretaksnavn" type="foretaksnavn"/>
+            <xs:element name="virksomhetsnavn" type="virksomhetsnavn"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="diagnose">
+        <xs:annotation>
+            <xs:documentation>Diagnoser tilknyttet pasientjournal</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="diagnosedato" type="diagnosedato"/>
+            <xs:element minOccurs="0" name="diagnosekode" type="diagnosekode"/>
+            <xs:element name="diagnosetekst" type="diagnosetekst"/>
+            <xs:element minOccurs="0" name="diagnosekodeverk" type="diagnosekodeverk"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="pasientjournal">
+        <xs:annotation>
+            <xs:documentation>Pasientjournal i en avleveringsliste</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="journalidentifikator" type="journalidentifikator"/>
+            <xs:element minOccurs="0" name="fanearkidentifikator" type="fanearkidentifikator"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="lagringsenhet"
+                type="lagringsenhet"/>
+            <xs:element minOccurs="0" name="lopenummer" type="lopenummer"/>
+            <xs:element minOccurs="0" name="journalnummer" type="journalnummer"/>
+            <xs:element minOccurs="0" name="fodselsnummer" type="fodselsnummer"/>
+            <xs:element name="pasientnavn" type="pasientnavn"/>
+            <xs:element name="fodtdato" type="fodtdato"/>
+            <xs:element minOccurs="0" name="morsdato" type="morsdato"/>
+            <xs:element minOccurs="0" name="sikkermors" type="sikkermors"/>
+            <xs:element name="kjonn" type="kjonn"/>
+            <xs:element minOccurs="0" name="forstekontakt" type="forstekontakt"/>
+            <xs:element minOccurs="0" name="sistekontakt" type="sistekontakt"/>
+            <xs:element minOccurs="0" name="merknad" type="merknad"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="diagnose" type="diagnose"/>
+            <xs:element minOccurs="0" name="supplerendeopplysninger" type="supplerendeopplysninger"
+            />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
