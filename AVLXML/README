@@ -7,3 +7,9 @@ https://www.arkivverket.no/om-oss/norsk-helsearkiv/avlevering-av-fysiske-arkiver
 ******************************************************************************** 
 2018-10-04 - Opprettet (jengle)
 
+avlxmlbmdk.xsd - Skjema for metadatakatalog - grunnleggende opplysninger
+avlxmlsmdk.xsd - Skjema for metadatakatalog - supplerende opplysninger
+
+avlxml.xsd - Skjema for den komplette avleveringslisten 
+avlsup.xsd - Skjema for supplerende opplysninger
+
