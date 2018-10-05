@@ -3,8 +3,8 @@
     xmlns="http://schema.arkivverket.no/avlxml" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     elementFormDefault="qualified">
 
-    <xs:include schemaLocation="avlxmlbmdk.xsd"/>
-    <xs:include schemaLocation="avlxmlsmdk.xsd"/>
+    <xs:include schemaLocation="avlxml-mdk.xsd"/>
+    <xs:include schemaLocation="avlsup-mdk.xsd"/>
 
     <xs:element name="avlsup" type="supplerendeopplysninger"/>
 
