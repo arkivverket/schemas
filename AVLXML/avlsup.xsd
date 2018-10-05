@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema targetNamespace="http://schema.arkivverket.no/avlxml"
-    xmlns="http://schema.arkivverket.no/avlxml" 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://schema.arkivverket.no/avlxml" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     elementFormDefault="qualified">
 
     <xs:include schemaLocation="avlxml-mdk.xsd"/>
@@ -68,6 +67,9 @@
         <xs:attribute name="serieID" type="serieID"/>
     </xs:complexType>
     <xs:complexType name="avdelingsopphold">
+        <xs:annotation>
+            <xs:documentation>Denne klassen beskriver den sammenhengende tidsperiode med innleggelse ved samme avdeling for en pasient.</xs:documentation>
+        </xs:annotation>
         <xs:complexContent>
             <xs:extension base="episode">
                 <xs:sequence>
@@ -78,6 +80,9 @@
         </xs:complexContent>
     </xs:complexType>
     <xs:complexType name="kontakt">
+        <xs:annotation>
+            <xs:documentation>Denne klassen beskriver den uavbrutte samhandling mellom pasient og helsepersonell hvor det utføres helsehjelp for pasienten eller indirekte kontakt.</xs:documentation>
+        </xs:annotation>
         <xs:complexContent>
             <xs:extension base="episode">
                 <xs:sequence>
@@ -89,6 +94,9 @@
         </xs:complexContent>
     </xs:complexType>
     <xs:complexType name="tjenesteenhet">
+        <xs:annotation>
+            <xs:documentation>Denne klassen beskriver den organisatorisk enhet ved en helseinstitusjon eller et selvstendig foretak (eks avtalespesialist) uten organisatoriske inndelinger.</xs:documentation>
+        </xs:annotation>
         <xs:sequence>
             <xs:element name="enhetID" type="enhetID"/>
             <xs:element minOccurs="0" name="enhetNavn" type="enhetNavn"/>
@@ -98,12 +106,18 @@
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="tiltak">
+        <xs:annotation>
+            <xs:documentation>Denne klassen beskriver et tiltak i en tjeneste. Et tiltak kan inneholde flere forekomster av klassen Prosedyre.</xs:documentation>
+        </xs:annotation>
         <xs:sequence>
             <xs:element maxOccurs="1" minOccurs="1" ref="typeTiltak"/>
             <xs:element maxOccurs="unbounded" minOccurs="0" name="prosedyre" type="prosedyre"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="tjeneste">
+        <xs:annotation>
+            <xs:documentation>Denne klassen beskriver en eller flere behandlingsrettede tiltak som utføres for en pasient under en og samme tjeneste (seanse).</xs:documentation>
+        </xs:annotation>
         <xs:sequence>
             <xs:element minOccurs="0" name="instID" type="instID"/>
             <xs:element name="startDatoTid" type="startDatoTid"/>
@@ -114,6 +128,9 @@
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="prosedyre">
+        <xs:annotation>
+            <xs:documentation>Denne klassen beskriver de pasientrettet tiltak kategorisert etter en normgivende beskrivelse eller et kodeverk. En prosedyre kan bestå av flere deler som hver beskrives med en kode eller tekst</xs:documentation>
+        </xs:annotation>
         <xs:sequence>
             <xs:element minOccurs="0" name="prosNr" type="prosNr"/>
             <xs:element maxOccurs="unbounded" ref="Prosedyrekode"/>

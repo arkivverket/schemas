@@ -70,10 +70,10 @@ NB: Sjekk ut http://schema.arkivverket.no/
             <xs:element minOccurs="0" name="journalnummer" type="journalnummer"/>
             <xs:element minOccurs="0" name="fodselsnummer" type="fodselsnummer"/>
             <xs:element name="pasientnavn" type="pasientnavn"/>
-            <xs:element name="kjonn" type="kjonn"/>
             <xs:element name="fodtdato" type="fodtdato"/>
             <xs:element minOccurs="0" name="morsdato" type="morsdato"/>
             <xs:element minOccurs="0" name="sikkermors" type="sikkermors"/>
+            <xs:element name="kjonn" type="kjonn"/>
             <xs:element minOccurs="0" name="forstekontakt" type="forstekontakt"/>
             <xs:element minOccurs="0" name="sistekontakt" type="sistekontakt"/>
             <xs:element minOccurs="0" name="merknad" type="merknad"/>
