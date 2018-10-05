@@ -4,7 +4,7 @@ NB: Sjekk ut http://schema.arkivverket.no/
 -->
 <xs:schema targetNamespace="http://schema.arkivverket.no/avlxml"
     xmlns="http://schema.arkivverket.no/avlxml" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:avl="http://schema.arkivverket.no/avlxml/avlxmlbmdk" elementFormDefault="qualified">
+    elementFormDefault="qualified">
 
     <xs:include schemaLocation="avlxml-mdk.xsd"/>
     <xs:include schemaLocation="avlsup-mdk.xsd"/>
@@ -33,7 +33,7 @@ NB: Sjekk ut http://schema.arkivverket.no/
         <xs:sequence>
             <xs:element name="avtaleidentifikator" type="avtaleidentifikator"/>
             <xs:element name="avtaledato" type="avtaledato"/>
-            <xs:element name="avtalebebskrivelse" type="avtalebeskrivelse"/>
+            <xs:element name="avtalebeskrivelse" type="avtalebeskrivelse"/>
             <xs:element name="virksomhet" type="virksomhet"/>
         </xs:sequence>
     </xs:complexType>
@@ -43,9 +43,9 @@ NB: Sjekk ut http://schema.arkivverket.no/
             <xs:documentation>Virksomhet tilknyttet avtalen</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="organisasjonsnummer" type="organisasjonsnummer"/>
-            <xs:element minOccurs="0" name="foretaksnavn" type="foretaksnavn"/>
             <xs:element name="virksomhetsnavn" type="virksomhetsnavn"/>
+            <xs:element minOccurs="0" name="foretaksnavn" type="foretaksnavn"/>
+            <xs:element name="organisasjonsnummer" type="organisasjonsnummer"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="diagnose">
@@ -66,20 +66,20 @@ NB: Sjekk ut http://schema.arkivverket.no/
         <xs:sequence>
             <xs:element name="journalidentifikator" type="journalidentifikator"/>
             <xs:element minOccurs="0" name="fanearkidentifikator" type="fanearkidentifikator"/>
-            <xs:element maxOccurs="unbounded" minOccurs="0" name="lagringsenhet"
-                type="lagringsenhet"/>
             <xs:element minOccurs="0" name="lopenummer" type="lopenummer"/>
             <xs:element minOccurs="0" name="journalnummer" type="journalnummer"/>
             <xs:element minOccurs="0" name="fodselsnummer" type="fodselsnummer"/>
             <xs:element name="pasientnavn" type="pasientnavn"/>
+            <xs:element name="kjonn" type="kjonn"/>
             <xs:element name="fodtdato" type="fodtdato"/>
             <xs:element minOccurs="0" name="morsdato" type="morsdato"/>
             <xs:element minOccurs="0" name="sikkermors" type="sikkermors"/>
-            <xs:element name="kjonn" type="kjonn"/>
             <xs:element minOccurs="0" name="forstekontakt" type="forstekontakt"/>
             <xs:element minOccurs="0" name="sistekontakt" type="sistekontakt"/>
             <xs:element minOccurs="0" name="merknad" type="merknad"/>
             <xs:element maxOccurs="unbounded" minOccurs="0" name="diagnose" type="diagnose"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="lagringsenhet"
+                type="lagringsenhet"/>
             <xs:element minOccurs="0" name="supplerendeopplysninger" type="supplerendeopplysninger"
             />
         </xs:sequence>
