@@ -6,8 +6,8 @@ NB: Sjekk ut http://schema.arkivverket.no/
     xmlns="http://schema.arkivverket.no/avlxml" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:avl="http://schema.arkivverket.no/avlxml/avlxmlbmdk" elementFormDefault="qualified">
 
-    <xs:include schemaLocation="avlxmlbmdk.xsd"/>
-    <xs:include schemaLocation="avlxmlsmdk.xsd"/>
+    <xs:include schemaLocation="avlxml-mdk.xsd"/>
+    <xs:include schemaLocation="avlsup-mdk.xsd"/>
     <xs:include schemaLocation="avlsup.xsd"/>
 
     <xs:element name="avlxml" type="avlevering"/>
