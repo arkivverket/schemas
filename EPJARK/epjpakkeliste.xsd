@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schema.arkivverket.no/apjark/epjpakkeliste"
+    xmlns="http://schema.arkivverket.no/epjark/epjpakkeliste" elementFormDefault="qualified"
+    xmlns:epj="http://schema.arkivverket.no/apjark/epjpakkeliste">
+
+    <!--	XML-skjema for EPJark epjpakkeliste.xml	(Versjon 0.4 2014-04-08 - eriaab/jengle Arkivverket Riksarkivet/Norsk helsearkiv)	-->
+
+    <xs:element name="epjpakkeliste">
+        <xs:annotation>
+            <xs:documentation xml:lang="no">
+               Samlet informasjonom avleveringen 
+           </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="AvleveringsID" type="xs:string"
+                    default="2.16.578.1.39.100.11.2.1234.5678">
+                    <xs:annotation>
+                        <xs:documentation>Unik ID for denne avlevering</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="ansvarligPerson" type="xs:string" default="Henrik Arkivar">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="no">Navn på person ansvarlig for overføring
+                                    </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="kontaktInformasjon" type="xs:string"
+                    default="henark@friskvik.hsx.no">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="no">
+                                        Oppgi epost, telefon og eventuelt annen relevant info 
+                                    </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="beskrivelseLagringsEnhet" type="xs:string" default="NHx">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="no">
+                                        Beskriv overføringen, teknologi, medium etc. 
+                                    </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="antallLagringsenheter" type="xs:int" minOccurs="0" default="1">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="no">
+                                        Oppgi antall enheter som brukes i overføringen.
+                                        Om ikke annet er oppgitt, antas det ett og bare ett medium.
+                                    </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="klarforOverforingDato" type="xs:date" default="2016-03-18">
+                    <xs:annotation>
+                        <xs:documentation>Dato for når kontaktperson klargjør for, eller foretar overføring</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="pakke" maxOccurs="unbounded" minOccurs="2">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="no">Dokumentasjon filpakke 
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="pakketype" type="epj:pakketypekode">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="no">Pakketype (dok eller epj)</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="filReferanse" type="epj:uuidTarFil">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="no">
+                                        Oppgi navn på overordnet "tar" fil. Skal følge normen 
+                                        "UUID.tar", der "UUID" er en gyldig "universally unique identifier".
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="pakketDato" type="xs:date">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="no">
+                                        Oppgi dato filen ble laget 
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="sjekksum" type="epj:sjekksumVerdi"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="pakketypekode">
+        <xs:annotation>
+            <xs:documentation>Type pakke i avlevering</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(dok|epj)"/>
+            <xs:length value="3"/>
+            <xs:whiteSpace value="collapse"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="uuidTarFil">
+        <xs:annotation>
+            <xs:documentation xml:lang="no">
+                Data element med gyldig syntaks sjekk for filnavn "uuid.tar" 
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.tar"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="sjekksumVerdi">
+        <xs:annotation>
+            <xs:documentation xml:lang="no">Data element med gyldig syntakssjekk for generert sjekksum 
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9a-f]{8,64}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
