@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema 	xmlns="http://schema.arkivverket.no/avlxml/avlsup" 
-			targetNamespace="http://schema.arkivverket.no/avlxml/avlsup" 
-			xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-			xmlns:avlmdk="http://schema.arkivverket.no/avlxml/avlxml-mdk" 
-			xmlns:supmdk="http://schema.arkivverket.no/avlxml/avlsup-mdk" 
-			elementFormDefault="qualified">
+<xs:schema xmlns="http://www.arkivverket.no/standarder/avlxml/avlsup" 
+	   targetNamespace="http://www.arkivverket.no/standarder/avlxml/avlsup" 
+	   xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	   xmlns:avlmdk="http://www.arkivverket.no/standarder/avlxml/avlxml-mdk" 
+	   xmlns:supmdk="http://www.arkivverket.no/standarder/avlxml/avlsup-mdk" 
+	   elementFormDefault="qualified">
 			
+  <xs:import namespace="http://www.arkivverket.no/standarder/avlxml/avlxml-mdk" schemaLocation="avlxml-mdk.xsd" />
+  <xs:import namespace="http://www.arkivverket.no/standarder/avlxml/avlsup-mdk" schemaLocation="avlsup-mdk.xsd" />
+ 			
   <xs:import namespace="http://schema.arkivverket.no/avlxml/avlxml-mdk" schemaLocation="avlxml-mdk.xsd" />
   <xs:import namespace="http://schema.arkivverket.no/avlxml/avlsup-mdk" schemaLocation="avlsup-mdk.xsd" />
   
