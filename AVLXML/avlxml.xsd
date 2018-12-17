@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-NB: Dokumentasjon på http://schema.arkivverket.no/avlxml
+NB: Dokumentasjon på http://www.arkivverket.no/standarder/avlxml
 -->
-<xs:schema xmlns="http://schema.arkivverket.no/avlxml" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  targetNamespace="http://schema.arkivverket.no/avlxml"
-  xmlns:avlmdk="http://schema.arkivverket.no/avlxml/avlxml-mdk"
-  xmlns:avlsup="http://schema.arkivverket.no/avlxml/avlsup" elementFormDefault="qualified">
+<xs:schema xmlns="http://www.arkivverket.no/standarder/avlxml" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.arkivverket.no/standarder/avlxml"
+           xmlns:avlmdk="http://www.arkivverket.no/standarder/avlxml/avlxml-mdk"
+           xmlns:avlsup="http://www.arkivverket.no/standarder/avlxml/avlsup" elementFormDefault="qualified">
 
-  <xs:import namespace="http://schema.arkivverket.no/avlxml/avlxml-mdk"
+  <xs:import namespace="http://www.arkivverket.no/standarder/avlxml/avlxml-mdk"
     schemaLocation="avlxml-mdk.xsd"/>
-  <xs:import namespace="http://schema.arkivverket.no/avlxml/avlsup" schemaLocation="avlsup.xsd"/>
+  <xs:import namespace="http://www.arkivverket.no/standarder/avlxml/avlsup" schemaLocation="avlsup.xsd"/>
 
   <xs:element name="avlxml" type="avlevering"/>
 
