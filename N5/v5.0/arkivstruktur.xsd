@@ -288,6 +288,7 @@
 
       <xs:element name="merknad" type="merknad" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="kryssreferanse" type="kryssreferanse" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="korrespondansepart" type="korrespondansepart" maxOccurs="unbounded"/>
 
     </xs:sequence>
   </xs:complexType>
@@ -313,7 +314,6 @@
           <xs:element name="utlaantTil" type="n5mdk:utlaantTil" minOccurs="0"/>
           <xs:element name="journalenhet" type="n5mdk:journalenhet" minOccurs="0"/>
 
-          <xs:element name="korrespondansepart" type="korrespondansepart" maxOccurs="unbounded"/>
           <xs:element name="avskrivning" type="avskrivning" minOccurs="0" maxOccurs="unbounded"/>
           <xs:element name="dokumentflyt" type="dokumentflyt" minOccurs="0" maxOccurs="unbounded"/>
           <xs:element name="presedens" type="presedens" minOccurs="0" maxOccurs="unbounded"/>
