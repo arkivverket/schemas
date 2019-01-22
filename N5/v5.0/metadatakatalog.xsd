@@ -275,7 +275,7 @@
     <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
-  <xs:simpleType name="presedensstatus">
+  <xs:simpleType name="presedensStatus">
     <xs:annotation>
       <xs:documentation>M056</xs:documentation>
     </xs:annotation>
