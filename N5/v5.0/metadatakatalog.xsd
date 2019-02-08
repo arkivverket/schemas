@@ -851,7 +851,7 @@
     <xs:restriction base="xs:date"/>
   </xs:simpleType>
 
-  <xs:simpleType name="gradering">
+  <xs:simpleType name="grad">
     <xs:annotation>
       <xs:documentation>M506</xs:documentation>
     </xs:annotation>

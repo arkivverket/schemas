@@ -522,7 +522,7 @@
 
   <xs:complexType name="gradering">
     <xs:sequence>
-      <xs:element name="gradering" type="n5mdk:gradering"/>
+      <xs:element name="grad" type="n5mdk:grad"/>
       <xs:element name="graderingsdato" type="n5mdk:graderingsdato"/>
       <xs:element name="gradertAv" type="n5mdk:gradertAv"/>
       <xs:element name="nedgraderingsdato" type="n5mdk:nedgraderingsdato" minOccurs="0"/>
