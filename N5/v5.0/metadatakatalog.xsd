@@ -40,7 +40,7 @@
         "Sendt med PKI/virksomhetssertifikat",
         "Sendt med PKI/'person standard'-sertifikat",
         "Sendt med PKI/'person høy'-sertifikat".
-    11. M707 - filstoerrelse endrer datatype fra xs:string til xs:decimal.
+    11. M707 - filstoerrelse endrer datatype fra xs:string til xs:integer.
   -->
 
 
@@ -1268,7 +1268,9 @@
     <xs:annotation>
       <xs:documentation>M707</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:integer"/>
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="konvertertFraFormat">
