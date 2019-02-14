@@ -177,6 +177,7 @@
       <xs:element name="referanseArkivdel" type="n5mdk:referanseArkivdel" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="virksomhetsspesifikkeMetadata" type="xs:anyType" minOccurs="0"/>
 
+      <xs:element name="part" type="part" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="kryssreferanse" type="kryssreferanse" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="merknad" type="merknad" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="kassasjon" type="kassasjon" minOccurs="0"/>
@@ -207,7 +208,6 @@
           <xs:element name="utlaantTil" type="n5mdk:utlaantTil" minOccurs="0"/>
           <xs:element name="referanseSekundaerKlassifikasjon" type="n5mdk:referanseSekundaerKlassifikasjon" minOccurs="0" maxOccurs="unbounded"/>
 
-          <xs:element name="part" type="part" minOccurs="0" maxOccurs="unbounded"/>
           <xs:element name="presedens" type="presedens" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
       </xs:extension>
@@ -266,6 +266,7 @@
       <xs:element name="arkivertAv" type="n5mdk:arkivertAv"/>
       <xs:element name="referanseArkivdel" type="n5mdk:referanseArkivdel" minOccurs="0" maxOccurs="unbounded"/>
 
+      <xs:element name="part" type="part" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="kassasjon" type="kassasjon" minOccurs="0"/>
       <xs:element name="skjerming" type="skjerming" minOccurs="0"/>
       <xs:element name="gradering" type="gradering" minOccurs="0"/>
@@ -418,6 +419,7 @@
       <xs:element name="tilknyttetDato" type="n5mdk:tilknyttetDato"/>
       <xs:element name="tilknyttetAv" type="n5mdk:tilknyttetAv"/>
 
+      <xs:element name="part" type="part" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="merknad" type="merknad" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="kassasjon" type="kassasjon" minOccurs="0"/>
       <xs:element name="utfoertKassasjon" type="utfoertKassasjon" minOccurs="0"/>
