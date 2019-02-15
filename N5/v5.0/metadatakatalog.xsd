@@ -217,55 +217,35 @@
     <xs:annotation>
       <xs:documentation>M050</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Opprettet"/>
-      <xs:enumeration value="Avsluttet"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <xs:simpleType name="arkivdelstatus">
     <xs:annotation>
       <xs:documentation>M051</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Aktiv periode"/>
-      <xs:enumeration value="Overlappingsperiode"/>
-      <xs:enumeration value="Avsluttet periode"/>
-      <xs:enumeration value="Uaktuelle mapper"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <xs:simpleType name="saksstatus">
     <xs:annotation>
       <xs:documentation>M052</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Under behandling"/>
-      <xs:enumeration value="Avsluttet"/>
-      <xs:enumeration value="Utgår"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <xs:simpleType name="journalstatus">
     <xs:annotation>
       <xs:documentation>M053</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Journalført"/>
-      <xs:enumeration value="Ekspedert"/>
-      <xs:enumeration value="Arkivert"/>
-      <xs:enumeration value="Utgår"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <xs:simpleType name="dokumentstatus">
     <xs:annotation>
       <xs:documentation>M054</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Dokumentet er under redigering"/>
-      <xs:enumeration value="Dokumentet er ferdigstilt"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <xs:simpleType name="moeteregistreringsstatus">
@@ -279,10 +259,7 @@
     <xs:annotation>
       <xs:documentation>M056</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Gjeldende"/>
-      <xs:enumeration value="Foreldet"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <!-- M080-M099:	Typer -->
@@ -291,13 +268,7 @@
     <xs:annotation>
       <xs:documentation>M082</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Inngående dokument"/>
-      <xs:enumeration value="Utgående dokument"/>
-      <xs:enumeration value="Organinternt dokument for oppfølging"/>
-      <xs:enumeration value="Organinternt dokument uten oppfølging"/>
-      <xs:enumeration value="Saksframlegg"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <xs:simpleType name="dokumenttype">
@@ -332,14 +303,7 @@
     <xs:annotation>
       <xs:documentation>M087</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Avsender"/>
-      <xs:enumeration value="Mottaker"/>
-      <xs:enumeration value="Kopimottaker"/>
-      <xs:enumeration value="Gruppemottaker"/>
-      <xs:enumeration value="Intern avsender"/>
-      <xs:enumeration value="Intern mottaker"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <xs:simpleType name="moetesakstype">
@@ -353,11 +317,7 @@
     <xs:annotation>
       <xs:documentation>M089</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Sletting av produksjonsformat"/>
-      <xs:enumeration value="Sletting av tidligere versjon"/>
-      <xs:enumeration value="Sletting av variant med sladdet informasjon"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <!-- M100-M199:	Datoer -->
@@ -515,10 +475,7 @@
     <xs:annotation>
       <xs:documentation>M217</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Hoveddokument"/>
-      <xs:enumeration value="Vedlegg"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <xs:simpleType name="referanseDokumentfil">
@@ -569,11 +526,7 @@
     <xs:annotation>
       <xs:documentation>M300</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Fysisk arkiv"/>
-      <xs:enumeration value="Elektronisk arkiv"/>
-      <xs:enumeration value="Blandet fysisk og elektronisk arkiv"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <xs:simpleType name="oppbevaringssted">
@@ -761,11 +714,7 @@
     <xs:annotation>
       <xs:documentation>M450</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Bevares"/>
-      <xs:enumeration value="Kasseres"/>
-      <xs:enumeration value="Vurderes senere"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <xs:simpleType name="bevaringstid">
@@ -795,9 +744,7 @@
     <xs:annotation>
       <xs:documentation>M500</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Unntatt offentlighet"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <xs:simpleType name="skjermingshjemmel">
@@ -811,30 +758,14 @@
     <xs:annotation>
       <xs:documentation>M502</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Skjerming klasseID"/>
-      <xs:enumeration value="Skjerming tittel klasse"/>
-      <xs:enumeration value="Skjerming tittel mappe - unntatt første linje"/>
-      <xs:enumeration value="Skjerming tittel mappe - utvalgte ord"/>
-      <xs:enumeration value="Skjerming navn part i sak"/>
-      <xs:enumeration value="Skjerming tittel registrering - unntatt første linje"/>
-      <xs:enumeration value="Skjerming tittel registrering - utvalgte ord"/>
-      <xs:enumeration value="Skjerming navn avsender"/>
-      <xs:enumeration value="Skjerming navn mottaker"/>
-      <xs:enumeration value="Skjerming tittel dokumentbeskrivelse"/>
-      <xs:enumeration value="Skjerming merknadstekst"/>
-      <xs:enumeration value="Midlertidig skjerming"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <xs:simpleType name="skjermingDokument">
     <xs:annotation>
       <xs:documentation>M503</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Skjerming av hele dokumentet"/>
-      <xs:enumeration value="Skjerming av deler av dokumentet"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <xs:simpleType name="skjermingsvarighet">
@@ -855,36 +786,21 @@
     <xs:annotation>
       <xs:documentation>M506</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Strengt hemmelig (sikkerhetsgrad)"/>
-      <xs:enumeration value="Hemmelig (sikkerhetsgrad)"/>
-      <xs:enumeration value="Konfidensielt (sikkerhetsgrad)"/>
-      <xs:enumeration value="Begrenset (sikkerhetsgrad)"/>
-      <xs:enumeration value="Fortrolig (beskyttelsesgrad)"/>
-      <xs:enumeration value="Strengt fortrolig (beskyttelsesgrad)"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <xs:simpleType name="elektroniskSignaturSikkerhetsnivaa">
     <xs:annotation>
       <xs:documentation>M507</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Symmetrisk kryptert"/>
-      <xs:enumeration value="Sendt med PKI/virksomhetssertifikat"/>
-      <xs:enumeration value="Sendt med PKI/'person standard'-sertifikat"/>
-      <xs:enumeration value="Sendt med PKI/'person høy'-sertifikat"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <xs:simpleType name="elektroniskSignaturVerifisert">
     <xs:annotation>
       <xs:documentation>M508</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Signatur påført, ikke verifisert"/>
-      <xs:enumeration value="Signatur påført og verifisert"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <!-- M580-M599:	Brukeradministrasjon og administrativ oppbygning -->
@@ -1042,13 +958,7 @@
     <xs:annotation>
       <xs:documentation>M619</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Besvart med brev"/>
-      <xs:enumeration value="Besvart med e-post"/>
-      <xs:enumeration value="Besvart på telefon"/>
-      <xs:enumeration value="Tatt til etterretning"/>
-      <xs:enumeration value="Tatt til orientering"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <xs:simpleType name="tilknyttetDato">
@@ -1229,11 +1139,7 @@
     <xs:annotation>
       <xs:documentation>M700</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Produksjonsformat"/>
-      <xs:enumeration value="Arkivformat"/>
-      <xs:enumeration value="Dokument hvor deler av innholdet er skjermet"/>
-    </xs:restriction>
+    <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
   <xs:simpleType name="format">
@@ -1268,9 +1174,8 @@
     <xs:annotation>
       <xs:documentation>M707</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:integer">
+    <xs:restriction base="xs:integer"/>
       <xs:minInclusive value="0"/>
-    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="konvertertFraFormat">
