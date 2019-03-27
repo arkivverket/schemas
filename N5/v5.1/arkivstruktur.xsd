@@ -439,6 +439,8 @@
       <xs:element name="variantformat" type="n5mdk:variantformat"/>
       <xs:element name="format" type="n5mdk:format"/>
       <xs:element name="formatDetaljer" type="n5mdk:formatDetaljer" minOccurs="0"/>
+      <xs:element name="puid" type="n5mdk:pronomUnikID" minOccurs="0"/>
+      <xs:element name="mimetype" type="n5mdk:pronomMimeType" minOccurs="0"/>
       <xs:element name="opprettetDato" type="n5mdk:opprettetDato"/>
       <xs:element name="opprettetAv" type="n5mdk:opprettetAv"/>
       <xs:element name="referanseDokumentfil" type="n5mdk:referanseDokumentfil"/>
