@@ -271,11 +271,8 @@
       <xs:element name="skjerming" type="skjerming" minOccurs="0"/>
       <xs:element name="gradering" type="gradering" minOccurs="0"/>
 
-      <!-- Tillater registreringer uten forekomster av dokumentbeskrivelse og dokumentobjekt -->
-      <xs:choice>
-        <xs:element name="dokumentbeskrivelse" type="dokumentbeskrivelse" minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element name="dokumentobjekt" type="dokumentobjekt" minOccurs="0" maxOccurs="unbounded"/>
-      </xs:choice>
+      <!-- Tillater registreringer uten forekomster av dokumentbeskrivelse -->
+      <xs:element name="dokumentbeskrivelse" type="dokumentbeskrivelse" minOccurs="0" maxOccurs="unbounded"/>
 
       <xs:element name="registreringsID" type="n5mdk:registreringsID" minOccurs="0"/>
       <xs:element name="tittel" type="n5mdk:tittel"/>
