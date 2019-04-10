@@ -1350,7 +1350,7 @@
     </xs:restriction>
   </xs:simpleType>
 
-  <xs:simpleType name="formatDetaljer">
+  <xs:simpleType name="formatdetaljer">
     <xs:annotation>
       <xs:documentation>M702</xs:documentation>
     </xs:annotation>
@@ -1359,18 +1359,18 @@
     </xs:restriction>
   </xs:simpleType>
 
-  <xs:simpleType name="pronomUnikID">
+  <xs:simpleType name="pronomMIME">
     <xs:annotation>
-      <xs:documentation>M703</xs:documentation>
+      <xs:documentation>M704</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
-  <xs:simpleType name="pronomMimeType">
+  <xs:simpleType name="pronomPUID">
     <xs:annotation>
-      <xs:documentation>M704</xs:documentation>
+      <xs:documentation>M703</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:minLength value="1"/>
