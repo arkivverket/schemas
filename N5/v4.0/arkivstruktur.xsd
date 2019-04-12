@@ -428,8 +428,8 @@
       <xs:element name="konvertertAv" type="n5mdk:konvertertAv"/>
       <xs:element name="konvertertFraFormat" type="n5mdk:konvertertFraFormat"/>
       <xs:element name="konvertertTilFormat" type="n5mdk:konvertertTilFormat"/>
-      <xs:element name="konverteringsverktoey" type="n5mdk:konverteringsverktoey"/>
-      <xs:element name="konverteringskommentar" type="n5mdk:konverteringskommentar"/>      
+      <xs:element name="konverteringsverktoey" type="n5mdk:konverteringsverktoey" minOccurs="0"/>
+      <xs:element name="konverteringskommentar" type="n5mdk:konverteringskommentar" minOccurs="0"/>      
     </xs:sequence>
   </xs:complexType>
   
