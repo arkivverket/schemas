@@ -103,7 +103,7 @@
       <xs:element name="avskrivningsmaate" type="n5mdk:avskrivningsmaate" minOccurs="0"/>
       <xs:element name="referanseAvskrivesAvJournalpost" type="n5mdk:referanseAvskrivesAvJournalpost" minOccurs="0"/>
       <xs:element name="tilgangsrestriksjon" type="n5mdk:tilgangsrestriksjon" minOccurs="0"/>
-      <xs:element name="gradering" type="n5mdk:gradering" minOccurs="0"/>
+      <xs:element name="grad" type="n5mdk:grad" minOccurs="0"/>
       <xs:element name="skjermingshjemmel" type="n5mdk:skjermingshjemmel" minOccurs="0"/>
 
       <xs:element name="korrespondansepart" type="korrespondansepart" maxOccurs="unbounded"/>
