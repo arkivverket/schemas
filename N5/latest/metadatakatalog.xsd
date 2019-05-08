@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="http://www.arkivverket.no/standarder/noark5/metadatakatalog"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   targetNamespace="http://www.arkivverket.no/standarder/noark5/metadatakatalog"
-  elementFormDefault="qualified" version="4.0">
+  elementFormDefault="qualified" version="5.0">
 
   <!-- 
     Noark 5
@@ -13,11 +13,15 @@
     1. Endret version-attributtet i xs:schema fra 3.0 til 3.1.
     2. Rettet M620 - tilknyttetDato fra xs:date til xs:dateTime
     
-    2016-12-01 - Endringer fra versjon 3.1 til versjon 4.0:
-    1. Endret version-attributtet i xs:schema fra 3.1 til 4.0.
-    2. Rettet M104 - tilknyttetDato fra xs:dateTime til xs:date
-    2. Rettet M105 - tilknyttetDato fra xs:dateTime til xs:date
-    2. Rettet M619 - tilknyttetDato fra xs:date til xs:dateTime
+    2019-05-02 - Endringer fra versjon 3.1 til versjon 5.0:
+    1. Endret version-attributtet i xs:schema fra 3.1 til 5.0.
+	2. sakspartID er endret til partID.
+	3. sakspartNavn er endret til partNavn.
+	4. sakspartRolle er endret til partRolle.
+	5. Elementer med obligatoriske verdier mister begrensningen "basert på verdi".
+	6. Alle felter som krever verdi, krever innhold.
+  7. systemID og andre felter som refererer til systemID, krever uuid som data-format. Se simpleType name="ID".
+  8. M707 - filstoerrelse endrer datatype fra xs:string til xs:integer.
   -->
 
 
@@ -46,32 +50,51 @@
 
   <!-- M001-M019: Identifikasjon -->
 
-  <xs:simpleType name="systemID">
+  <xs:simpleType name="ID">
+    <xs:annotation>
+      <xs:documentation>M001-a</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:complexType name="systemID">
     <xs:annotation>
       <xs:documentation>M001</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
-  </xs:simpleType>
+    <xs:simpleContent>
+      <xs:extension base="ID">
+        <xs:attribute name="label" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
 
   <xs:simpleType name="klasseID">
     <xs:annotation>
       <xs:documentation>M002</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="mappeID">
     <xs:annotation>
       <xs:documentation>M003</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="registreringsID">
     <xs:annotation>
       <xs:documentation>M004</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="versjonsnummer">
@@ -85,7 +108,9 @@
     <xs:annotation>
       <xs:documentation>M006</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="dokumentnummer">
@@ -99,14 +124,18 @@
     <xs:annotation>
       <xs:documentation>M008</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
-  <xs:simpleType name="sakspartID">
+  <xs:simpleType name="partID">
     <xs:annotation>
       <xs:documentation>M010</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="saksaar">
@@ -150,42 +179,54 @@
     <xs:annotation>
       <xs:documentation>M020</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="beskrivelse">
     <xs:annotation>
       <xs:documentation>M021</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="noekkelord">
     <xs:annotation>
       <xs:documentation>M022</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="arkivskaperNavn">
     <xs:annotation>
       <xs:documentation>M023</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="forfatter">
     <xs:annotation>
       <xs:documentation>M024</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="offentligTittel">
     <xs:annotation>
       <xs:documentation>M025</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <!-- M050-M079: Status -->
@@ -195,8 +236,7 @@
       <xs:documentation>M050</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Opprettet"/>
-      <xs:enumeration value="Avsluttet"/>
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -205,10 +245,7 @@
       <xs:documentation>M051</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Aktiv periode"/>
-      <xs:enumeration value="Overlappingsperiode"/>
-      <xs:enumeration value="Avsluttet periode"/>
-      <xs:enumeration value="Uaktuelle mapper"/>
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -217,9 +254,7 @@
       <xs:documentation>M052</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Under behandling"/>
-      <xs:enumeration value="Avsluttet"/>
-      <xs:enumeration value="Utgår"/>
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -228,12 +263,7 @@
       <xs:documentation>M053</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Journalført"/>
-      <xs:enumeration value="Ferdigstilt fra saksbehandler"/>
-      <xs:enumeration value="Godkjent av leder"/>
-      <xs:enumeration value="Ekspedert"/>
-      <xs:enumeration value="Arkivert"/>
-      <xs:enumeration value="Utgår"/>
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -242,8 +272,7 @@
       <xs:documentation>M054</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Dokumentet er under redigering"/>
-      <xs:enumeration value="Dokumentet er ferdigstilt"/>
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -251,16 +280,17 @@
     <xs:annotation>
       <xs:documentation>M055</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
-  <xs:simpleType name="presedensstatus">
+  <xs:simpleType name="presedensStatus">
     <xs:annotation>
       <xs:documentation>M056</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Gjeldende"/>
-      <xs:enumeration value="Foreldet"/>
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -271,11 +301,7 @@
       <xs:documentation>M082</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Inngående dokument"/>
-      <xs:enumeration value="Utgående dokument"/>
-      <xs:enumeration value="Organinternt dokument for oppfølging"/>
-      <xs:enumeration value="Organinternt dokument uten oppfølging"/>
-      <xs:enumeration value="Saksframlegg"/>
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -283,28 +309,36 @@
     <xs:annotation>
       <xs:documentation>M083</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="merknadstype">
     <xs:annotation>
       <xs:documentation>M084</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="moeteregistreringstype">
     <xs:annotation>
       <xs:documentation>M085</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="klassifikasjonstype">
     <xs:annotation>
       <xs:documentation>M086</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="korrespondanseparttype">
@@ -312,12 +346,7 @@
       <xs:documentation>M087</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Avsender"/>
-      <xs:enumeration value="Mottaker"/>
-      <xs:enumeration value="Kopimottaker"/>
-      <xs:enumeration value="Gruppemottaker"/>
-      <xs:enumeration value="Intern avsender"/>
-      <xs:enumeration value="Intern mottaker"/>
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -325,7 +354,9 @@
     <xs:annotation>
       <xs:documentation>M088</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="slettingstype">
@@ -333,10 +364,7 @@
       <xs:documentation>M089</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Sletting av produksjonsformat"/>
-      <xs:enumeration value="Sletting av tidligere versjon"/>
-      <xs:enumeration value="Sletting av variant med sladdet informasjon"/>
-      <xs:enumeration value="Sletting av hele innholdet i arkivdelen"/>
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -374,28 +402,14 @@
     <xs:annotation>
       <xs:documentation>M104</xs:documentation>
     </xs:annotation>
-    <xs:union>
-      <xs:simpleType>
-        <xs:restriction base="xs:date"/>
-      </xs:simpleType>
-      <xs:simpleType>
-        <xs:restriction base="xs:dateTime"/>
-      </xs:simpleType>
-    </xs:union>
+    <xs:restriction base="xs:dateTime"/>
   </xs:simpleType>
 
   <xs:simpleType name="sendtDato">
     <xs:annotation>
       <xs:documentation>M105</xs:documentation>
     </xs:annotation>
-    <xs:union>
-      <xs:simpleType>
-        <xs:restriction base="xs:date"/>
-      </xs:simpleType>
-      <xs:simpleType>
-        <xs:restriction base="xs:dateTime"/>
-      </xs:simpleType>
-    </xs:union>
+    <xs:restriction base="xs:dateTime"/>
   </xs:simpleType>
 
   <xs:simpleType name="utlaantDato">
@@ -460,49 +474,49 @@
     <xs:annotation>
       <xs:documentation>M202</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="ID"/>
   </xs:simpleType>
 
   <xs:simpleType name="referanseArvtaker">
     <xs:annotation>
       <xs:documentation>M203</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="ID"/>
   </xs:simpleType>
 
   <xs:simpleType name="referanseArkivdel">
     <xs:annotation>
       <xs:documentation>M208</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="ID"/>
   </xs:simpleType>
 
   <xs:simpleType name="referanseSekundaerKlassifikasjon">
     <xs:annotation>
       <xs:documentation>M209</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="ID"/>
   </xs:simpleType>
 
   <xs:simpleType name="referanseTilMappe">
     <xs:annotation>
       <xs:documentation>M210</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="ID"/>
   </xs:simpleType>
 
   <xs:simpleType name="referanseTilRegistrering">
     <xs:annotation>
       <xs:documentation>M212</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="ID"/>
   </xs:simpleType>
 
   <xs:simpleType name="referanseAvskrivesAvJournalpost">
     <xs:annotation>
       <xs:documentation>M215</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="ID"/>
   </xs:simpleType>
 
   <xs:simpleType name="tilknyttetRegistreringSom">
@@ -510,8 +524,7 @@
       <xs:documentation>M217</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Hoveddokument"/>
-      <xs:enumeration value="Vedlegg"/>
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -519,42 +532,44 @@
     <xs:annotation>
       <xs:documentation>M218</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="referanseTilKlasse">
     <xs:annotation>
       <xs:documentation>M219</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="ID"/>
   </xs:simpleType>
 
   <xs:simpleType name="referanseForrigeMoete">
     <xs:annotation>
       <xs:documentation>M221</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="ID"/>
   </xs:simpleType>
 
   <xs:simpleType name="referanseNesteMoete">
     <xs:annotation>
       <xs:documentation>M222</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="ID"/>
   </xs:simpleType>
 
   <xs:simpleType name="referanseTilMoeteregistrering">
     <xs:annotation>
       <xs:documentation>M223</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="ID"/>
   </xs:simpleType>
 
   <xs:simpleType name="referanseFraMoeteregistrering">
     <xs:annotation>
       <xs:documentation>M224</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="ID"/>
   </xs:simpleType>
 
   <!-- M300-M369: Arkiv- og saksbehandlingsfunksjonalitet -->
@@ -564,9 +579,7 @@
       <xs:documentation>M300</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Fysisk medium"/>
-      <xs:enumeration value="Elektronisk arkiv"/>
-      <xs:enumeration value="Blandet fysisk og elektronisk arkiv"/>
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -574,21 +587,27 @@
     <xs:annotation>
       <xs:documentation>M301</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
-  <xs:simpleType name="sakspartNavn">
+  <xs:simpleType name="partNavn">
     <xs:annotation>
       <xs:documentation>M302</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
-  <xs:simpleType name="sakspartRolle">
+  <xs:simpleType name="partRolle">
     <xs:annotation>
       <xs:documentation>M303</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="antallVedlegg">
@@ -602,63 +621,81 @@
     <xs:annotation>
       <xs:documentation>M305</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="saksansvarlig">
     <xs:annotation>
       <xs:documentation>M306</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="saksbehandler">
     <xs:annotation>
       <xs:documentation>M307</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="journalenhet">
     <xs:annotation>
       <xs:documentation>M308</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="utlaantTil">
     <xs:annotation>
       <xs:documentation>M309</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="merknadstekst">
     <xs:annotation>
       <xs:documentation>M310</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="presedensHjemmel">
     <xs:annotation>
       <xs:documentation>M311</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="rettskildefaktor">
     <xs:annotation>
       <xs:documentation>M312</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="seleksjon">
     <xs:annotation>
       <xs:documentation>M313</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <!-- M370-M399: Møtebehandling -->
@@ -667,28 +704,36 @@
     <xs:annotation>
       <xs:documentation>M370</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="moetested">
     <xs:annotation>
       <xs:documentation>M371</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="moetedeltakerNavn">
     <xs:annotation>
       <xs:documentation>M372</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="moetedeltakerFunksjon">
     <xs:annotation>
       <xs:documentation>M373</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <!-- M400-M449:	Korrespondanse -->
@@ -697,56 +742,72 @@
     <xs:annotation>
       <xs:documentation>M400</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="postadresse">
     <xs:annotation>
       <xs:documentation>M406</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="postnummer">
     <xs:annotation>
       <xs:documentation>M407</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="poststed">
     <xs:annotation>
       <xs:documentation>M408</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="land">
     <xs:annotation>
       <xs:documentation>M409</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="epostadresse">
     <xs:annotation>
       <xs:documentation>M410</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="telefonnummer">
     <xs:annotation>
       <xs:documentation>M411</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="kontaktperson">
     <xs:annotation>
       <xs:documentation>M412</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <!-- M450-M499:	Bevaring og kassasjon -->
@@ -756,9 +817,7 @@
       <xs:documentation>M450</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Bevares"/>
-      <xs:enumeration value="Kasseres"/>
-      <xs:enumeration value="Vurderes senere"/>
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -780,7 +839,9 @@
     <xs:annotation>
       <xs:documentation>M453</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <!-- M500-M579: Skjerming og gradering -->
@@ -789,21 +850,27 @@
     <xs:annotation>
       <xs:documentation>M500</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="skjermingshjemmel">
     <xs:annotation>
       <xs:documentation>M501</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="skjermingMetadata">
     <xs:annotation>
       <xs:documentation>M502</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="skjermingDokument">
@@ -811,8 +878,7 @@
       <xs:documentation>M503</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Skjerming av hele dokumentet"/>
-      <xs:enumeration value="Skjerming av deler av dokumentet"/>
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -830,17 +896,12 @@
     <xs:restriction base="xs:date"/>
   </xs:simpleType>
 
-  <xs:simpleType name="gradering">
+  <xs:simpleType name="grad">
     <xs:annotation>
       <xs:documentation>M506</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Strengt hemmelig (sikkerhetsgrad)"/>
-      <xs:enumeration value="Hemmelig (sikkerhetsgrad)"/>
-      <xs:enumeration value="Konfidensielt (sikkerhetsgrad)"/>
-      <xs:enumeration value="Begrenset (sikkerhetsgrad)"/>
-      <xs:enumeration value="Fortrolig (beskyttelsesgrad)"/>
-      <xs:enumeration value="Strengt fortrolig (beskyttelsesgrad)"/>
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -848,7 +909,9 @@
     <xs:annotation>
       <xs:documentation>M507</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="elektroniskSignaturVerifisert">
@@ -856,8 +919,7 @@
       <xs:documentation>M508</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Signatur påført, ikke verifisert"/>
-      <xs:enumeration value="Signatur påført og verifisert"/>
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -867,42 +929,54 @@
     <xs:annotation>
       <xs:documentation>M580</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="brukerRolle">
     <xs:annotation>
       <xs:documentation>M581</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="brukerstatus">
     <xs:annotation>
       <xs:documentation>M582</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="administrativEnhetNavn">
     <xs:annotation>
       <xs:documentation>M583</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="administrativEnhetsstatus">
     <xs:annotation>
       <xs:documentation>M584</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="referanseOverordnetEnhet">
     <xs:annotation>
       <xs:documentation>M585</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <!-- M600-M659: Logging av hendelser -->
@@ -918,7 +992,9 @@
     <xs:annotation>
       <xs:documentation>M601</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="avsluttetDato">
@@ -932,7 +1008,9 @@
     <xs:annotation>
       <xs:documentation>M603</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="arkivertDato">
@@ -946,7 +1024,9 @@
     <xs:annotation>
       <xs:documentation>M605</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="antallJournalposter">
@@ -967,7 +1047,9 @@
     <xs:annotation>
       <xs:documentation>M612</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="slettetDato">
@@ -981,7 +1063,9 @@
     <xs:annotation>
       <xs:documentation>M614</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="konvertertDato">
@@ -995,7 +1079,9 @@
     <xs:annotation>
       <xs:documentation>M616</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="avskrivningsdato">
@@ -1009,7 +1095,9 @@
     <xs:annotation>
       <xs:documentation>M618</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="avskrivningsmaate">
@@ -1017,11 +1105,7 @@
       <xs:documentation>M619</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Besvart med brev"/>
-      <xs:enumeration value="Besvart med e-post"/>
-      <xs:enumeration value="Besvart på telefon"/>
-      <xs:enumeration value="Tatt til etterretning"/>
-      <xs:enumeration value="Tatt til orientering"/>
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -1036,7 +1120,9 @@
     <xs:annotation>
       <xs:documentation>M621</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="verifisertDato">
@@ -1050,7 +1136,9 @@
     <xs:annotation>
       <xs:documentation>M623</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="graderingsdato">
@@ -1064,7 +1152,9 @@
     <xs:annotation>
       <xs:documentation>M625</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="nedgraderingsdato">
@@ -1078,7 +1168,9 @@
     <xs:annotation>
       <xs:documentation>M627</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="presedensGodkjentDato">
@@ -1092,7 +1184,9 @@
     <xs:annotation>
       <xs:documentation>M629</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="kassertDato">
@@ -1106,7 +1200,9 @@
     <xs:annotation>
       <xs:documentation>M631</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <!-- M660-M679: Logging av arbeidsflyt -->
@@ -1115,7 +1211,9 @@
     <xs:annotation>
       <xs:documentation>M660</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="flytMottattDato">
@@ -1136,21 +1234,27 @@
     <xs:annotation>
       <xs:documentation>M663</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="flytMerknad">
     <xs:annotation>
       <xs:documentation>M664</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="flytFra">
     <xs:annotation>
       <xs:documentation>M665</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <!-- M680-M699: Logging av endringer -->
@@ -1159,14 +1263,18 @@
     <xs:annotation>
       <xs:documentation>M680</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="ID">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="referanseMetadata">
     <xs:annotation>
       <xs:documentation>M681</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="endretDato">
@@ -1180,21 +1288,27 @@
     <xs:annotation>
       <xs:documentation>M683</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="tidligereVerdi">
     <xs:annotation>
       <xs:documentation>M684</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="nyVerdi">
     <xs:annotation>
       <xs:documentation>M685</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <!-- M700-M799: Tekniske metadata -->
@@ -1204,9 +1318,7 @@
       <xs:documentation>M700</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Produksjonsformat"/>
-      <xs:enumeration value="Arkivformat"/>
-      <xs:enumeration value="Dokument hvor deler av innholdet er skjermet"/>
+      <xs:minLength value="1"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -1214,63 +1326,99 @@
     <xs:annotation>
       <xs:documentation>M701</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="formatDetaljer">
     <xs:annotation>
       <xs:documentation>M702</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="pronomMIME">
+    <xs:annotation>
+      <xs:documentation>M704</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="pronomPUID">
+    <xs:annotation>
+      <xs:documentation>M703</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="sjekksum">
     <xs:annotation>
       <xs:documentation>M705</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="sjekksumAlgoritme">
     <xs:annotation>
       <xs:documentation>M706</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="filstoerrelse">
     <xs:annotation>
       <xs:documentation>M707</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="konvertertFraFormat">
     <xs:annotation>
       <xs:documentation>M712</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="konvertertTilFormat">
     <xs:annotation>
       <xs:documentation>M713</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="konverteringsverktoey">
     <xs:annotation>
       <xs:documentation>M714</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="konverteringskommentar">
     <xs:annotation>
       <xs:documentation>M715</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
   </xs:simpleType>
 
 </xs:schema>
