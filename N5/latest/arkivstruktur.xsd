@@ -15,7 +15,7 @@
     2. M504 - skjermingsvarighet er endret fra obligatorisk til valgfri.
     3. M505 - skjermingOpphoererDato er endret fra obligatorisk til valgfri.
 
-		2019-XX-XX
+		2019-05-03
 		1. M011 - saksaar er endret fra valgfri til obligatorisk.
 		2. M012 - sakssekvensnummer er endret fra valgfri til obligatorisk.
 		3. moetedeltaker er endret fra obligatorisk til valgfri.
@@ -33,7 +33,8 @@
 			13.1. sakspartID er endret til partID og er endret fra valgfri til obligatorisk.
 			13.2. sakspartNavn er endret til partNavn.
 			13.2. sakspartRolle er endret til partRolle.
-    14. Endret version-attributtet i xs:schema fra 3.1 til 5.0.
+    14. M506 - endret navn fra gradering til grad for å unngå misforståelser mot foreldre-element
+    15. Endret version-attributtet i xs:schema fra 3.1 til 5.0.
   -->
 
 
