@@ -13,34 +13,15 @@
     1. Endret version-attributtet i xs:schema fra 3.0 til 3.1.
     2. Rettet M620 - tilknyttetDato fra xs:date til xs:dateTime
     
-    2013-02-14 - Endringer fra versjon 3.1 til versjon 5.0:
+    2019-05-02 - Endringer fra versjon 3.1 til versjon 5.0:
     1. Endret version-attributtet i xs:schema fra 3.1 til 5.0.
-		2. sakspartID er endret til partID.
-		3. sakspartNavn er endret til partNavn.
-		4. sakspartRolle er endret til partRolle.
-    5. M053 - journalstatus mister to obligatoriske verdier, "Ferdigstilt fra saksbehandler" og "Godkjent av leder".
-    6. M089 - slettingstype mister en obligatoriske verdi, "Sletting av hele innholdet i arkivdelen".
-    7. M300 - dokumentmedium endrer en obligatoriske verdi, "Fysisk medium" blir til "Fysisk arkiv".
-    8. M500 - tilgangsrestriksjon legger til en obligatoriske verdi, "Unntatt offentlighet".
-    9. M502 - skjermingMetadata legger til 12 obligatoriske verdier,
-        "Skjerming klasseID",
-        "Skjerming tittel klasse",
-        "Skjerming tittel mappe - unntatt første linje",
-        "Skjerming tittel mappe - utvalgte ord",
-        "Skjerming navn part i sak",
-        "Skjerming tittel registrering - unntatt første linje",
-        "Skjerming tittel registrering - utvalgte ord",
-        "Skjerming navn avsender",
-        "Skjerming navn mottaker",
-        "Skjerming tittel dokumentbeskrivelse",
-        "Skjerming merknadstekst",
-        "Midlertidig skjerming".
-    10. M507 - elektroniskSignaturSikkerhetsnivaa legger til 4 obligatoriske verdier,
-        "Symmetrisk kryptert",
-        "Sendt med PKI/virksomhetssertifikat",
-        "Sendt med PKI/'person standard'-sertifikat",
-        "Sendt med PKI/'person høy'-sertifikat".
-    11. M707 - filstoerrelse endrer datatype fra xs:string til xs:integer.
+	2. sakspartID er endret til partID.
+	3. sakspartNavn er endret til partNavn.
+	4. sakspartRolle er endret til partRolle.
+	5. Elementer med obligatoriske verdier mister begrensningen "basert på verdi".
+	6. Alle felter som krever verdi, krever innhold.
+  7. systemID og andre felter som refererer til systemID, krever uuid som data-format. Se simpleType name="ID".
+  8. M707 - filstoerrelse endrer datatype fra xs:string til xs:integer.
   -->
 
 
