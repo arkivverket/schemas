@@ -13,8 +13,14 @@
     1. Endret version-attributtet i xs:schema fra 3.0 til 3.1.
     2. Rettet M620 - tilknyttetDato fra xs:date til xs:dateTime
     
-    2019-05-02 - Endringer fra versjon 3.1 til versjon 5.0:
-    1. Endret version-attributtet i xs:schema fra 3.1 til 5.0.
+    2016-12-01 - Endringer fra versjon 3.1 til versjon 4.0:
+    1. Endret version-attributtet i xs:schema fra 3.1 til 4.0.
+    2. Rettet M104 - tilknyttetDato fra xs:dateTime til xs:date
+    2. Rettet M105 - tilknyttetDato fra xs:dateTime til xs:date
+    2. Rettet M619 - tilknyttetDato fra xs:date til xs:dateTime
+
+    2019-05-02 - Endringer fra versjon 4.0 til versjon 5.0:
+    1. Endret version-attributtet i xs:schema fra 4.0 til 5.0.
 	2. sakspartID er endret til partID.
 	3. sakspartNavn er endret til partNavn.
 	4. sakspartRolle er endret til partRolle.

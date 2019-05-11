@@ -15,6 +15,12 @@
     2. M504 - skjermingsvarighet er endret fra obligatorisk til valgfri.
     3. M505 - skjermingOpphoererDato er endret fra obligatorisk til valgfri.
 
+    2016-12-01 - Endringer fra versjon 3.1 til versjon 4.0:
+    1. Endret version-attributtet i xs:schema fra 3.1 til 4.0.
+    2. M088 - moetesakstype er gjort valgfri og endres fra 1 til 0-1
+    3. M714 - konverteringsverktoey er endret fra obligatorisk til valgfri.
+    4. M715 - konverteringskommentar er endret fra obligatorisk til valgfri.
+
 		2019-XX-XX
 		1. M011 - saksaar er endret fra valgfri til obligatorisk.
 		2. M012 - sakssekvensnummer er endret fra valgfri til obligatorisk.
@@ -25,15 +31,12 @@
 		6. M012 - journalsekvensnummer er endret fra valgfri til obligatorisk.
 		7. M012 - journalpostnummer er endret fra valgfri til obligatorisk. 
 		8. Ny postdefinisjon arkivnotat, er spesialisering av registrering.
-		9. M088 - moetesakstype er endret fra obligatorisk til valgfri.
-		10. M001 - systemID er lagt til i dokumentobjekt som obligatorisk.
-		11. M714 - konverteringsverktoey er endret fra valgfri til obligatorisk. 
-		12. M715 - konverteringskommentar er endret fra valgfri til obligatorisk. 
-		13. sakspart er endret til part
-			13.1. sakspartID er endret til partID og er endret fra valgfri til obligatorisk.
-			13.2. sakspartNavn er endret til partNavn.
-			13.2. sakspartRolle er endret til partRolle.
-    14. Endret version-attributtet i xs:schema fra 3.1 til 5.0.
+		9. M001 - systemID er lagt til i dokumentobjekt som obligatorisk.
+		10. sakspart er endret til part
+			10.1. sakspartID er endret til partID og er endret fra valgfri til obligatorisk.
+			10.2. sakspartNavn er endret til partNavn.
+			10.2. sakspartRolle er endret til partRolle.
+    11. Endret version-attributtet i xs:schema fra 4.0 til 5.0.
   -->
 
 
