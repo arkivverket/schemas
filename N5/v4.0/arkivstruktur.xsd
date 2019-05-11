@@ -18,6 +18,8 @@
     2016-12-01 - Endringer fra versjon 3.1 til versjon 4.0:
     1. Endret version-attributtet i xs:schema fra 3.1 til 4.0.
     2. M088 - moetesakstype er gjort valgfri og endres fra 1 til 0-1
+    3. M714 - konverteringsverktoey er endret fra obligatorisk til valgfri.
+    4. M715 - konverteringskommentar er endret fra obligatorisk til valgfri.
   -->
   
   
