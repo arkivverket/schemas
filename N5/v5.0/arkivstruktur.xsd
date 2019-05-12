@@ -34,6 +34,8 @@
 			13.2. sakspartNavn er endret til partNavn.
 			13.2. sakspartRolle er endret til partRolle.
     14. Endret version-attributtet i xs:schema fra 3.1 til 5.0.
+    15. M703 - pronomPUID lagt til i dokumentobjekt som valgfri.
+    16. M704 - pronomMIME lagt til i dokumentobjekt som valgfri.
   -->
 
 
