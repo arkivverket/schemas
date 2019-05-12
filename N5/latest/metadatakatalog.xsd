@@ -1341,24 +1341,6 @@
     </xs:restriction>
   </xs:simpleType>
 
-  <xs:simpleType name="pronomMIME">
-    <xs:annotation>
-      <xs:documentation>M704</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:minLength value="1"/>
-    </xs:restriction>
-  </xs:simpleType>
-
-  <xs:simpleType name="pronomPUID">
-    <xs:annotation>
-      <xs:documentation>M703</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:minLength value="1"/>
-    </xs:restriction>
-  </xs:simpleType>
-
   <xs:simpleType name="sjekksum">
     <xs:annotation>
       <xs:documentation>M705</xs:documentation>
