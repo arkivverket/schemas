@@ -14,26 +14,41 @@
     1. Endret version-attributtet i xs:schema fra 3.0 til 3.1.
     2. M504 - skjermingsvarighet er endret fra obligatorisk til valgfri.
     3. M505 - skjermingOpphoererDato er endret fra obligatorisk til valgfri.
+    
+    2016-12-01 - Endringer fra versjon 3.1 til versjon 4.0:
+    1. Endret version-attributtet i xs:schema fra 3.1 til 4.0.
+    2. M088 - moetesakstype er gjort valgfri og endres fra 1 til 0-1
+    3. M714 - konverteringsverktoey er gjort valgfri og endres fra 1 til 0-1
+    4. M715 - konverteringskommentar er gjort valgfri og endres fra 1 til 0-1
 
-		2019-XX-XX
-		1. M011 - saksaar er endret fra valgfri til obligatorisk.
-		2. M012 - sakssekvensnummer er endret fra valgfri til obligatorisk.
-		3. moetedeltaker er endret fra obligatorisk til valgfri.
-		4. Basisregistrering er slått sammen med registrering til registrering.
-			4.1. M004 - registreringsID er endret fra obligatorisk til valgfri.
-		5. M012 - journalaar er endret fra valgfri til obligatorisk.
-		6. M012 - journalsekvensnummer er endret fra valgfri til obligatorisk.
-		7. M012 - journalpostnummer er endret fra valgfri til obligatorisk. 
-		8. Ny postdefinisjon arkivnotat, er spesialisering av registrering.
-		9. M088 - moetesakstype er endret fra obligatorisk til valgfri.
-		10. M001 - systemID er lagt til i dokumentobjekt som obligatorisk.
-		11. M714 - konverteringsverktoey er endret fra valgfri til obligatorisk. 
-		12. M715 - konverteringskommentar er endret fra valgfri til obligatorisk. 
-		13. sakspart er endret til part
-			13.1. sakspartID er endret til partID og er endret fra valgfri til obligatorisk.
-			13.2. sakspartNavn er endret til partNavn.
-			13.2. sakspartRolle er endret til partRolle.
-    14. Endret version-attributtet i xs:schema fra 3.1 til 5.0.
+		2019-05-03 - Endringer fra versjon 4.0 til versjon 5.0:
+    1. Endret version-attributtet i xs:schema fra 4.0 til 5.0.
+    2. Lagt til part som valgfritt element under mappe
+		3. M011 - saksaar er endret fra valgfri til obligatorisk.
+		4. M012 - sakssekvensnummer er endret fra valgfri til obligatorisk.
+    5. Fjernet part som element under saksmappe
+    6. Endret navn på sakspart til part
+    6.1. sakspartID er endret til partID og er endret fra valgfri til obligatorisk.
+    6.2. sakspartNavn er endret til partNavn
+    6.3. sakspartRolle er endret til partRolle
+    7. moetedeltaker er endret fra obligatorisk til valgfri.
+    8. Lagt til part som valgfritt element under registrering
+    9. Fjernet dokumentobjekt som alternativt element under registrering
+    10. Basisregistrering er slått sammen med registrering til registrering
+    10.1. M004 - registreringsID er endret fra obligatorisk til valgfri
+    11. Lagt til korrespondansepart som obligatorisk element under registrering
+    12. Journalpost er utvidet av registrering, ikke basisregistrering
+    12.1. M013 - journalaar er endret fra valgfri til obligatorisk
+    12.2. M014 - journalsekvensnummer er endret fra valgfri til obligatorisk
+    12.3. M015 - journalpostnummer er endret fra valgfri til obligatorisk
+    12.4. Fjernet korrespondansepart som obligatorisk element under journalpost
+		13. Ny postdefinisjon arkivnotat, som spesialisering av registrering
+    14. Moeteregistrering er utvidet av registrering, ikke basisregistrering
+    15. Lagt til part som valgfritt element under dokumentbeskrivelse
+    16. Lagt til systemID som obligatorisk element under dokumentobjekt
+    17. M506 - Endret navn fra gradering til grad for element under gradering, for å unngå misforståelser mot foreldre-element
+    18. M056 - Endret navn på type presedensstatus til presedensStatus for konsistens
+    
   -->
 
 

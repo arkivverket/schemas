@@ -13,16 +13,21 @@
     1. Endret version-attributtet i xs:schema fra 3.0 til 3.1.
     2. Rettet M620 - tilknyttetDato fra xs:date til xs:dateTime
     
-    2019-05-02 - Endringer fra versjon 3.1 til versjon 5.0:
-    1. Endret version-attributtet i xs:schema fra 3.1 til 5.0.
-	2. sakspartID er endret til partID.
-	3. sakspartNavn er endret til partNavn.
-	4. sakspartRolle er endret til partRolle.
-	5. Elementer med obligatoriske verdier mister begrensningen "basert på verdi".
-	6. Alle felter som krever verdi, krever innhold.
-  7. systemID og andre felter som refererer til systemID, krever uuid som data-format. Se simpleType name="ID".
-  8. M707 - filstoerrelse endrer datatype fra xs:string til xs:integer.
-  9. M506 - endret navn fra gradering til grad for å unngå misforståelser mot foreldre-element
+    2016-12-01 - Endringer fra versjon 3.1 til versjon 4.0:
+    1. Endret version-attributtet i xs:schema fra 3.1 til 4.0.
+    2. Rettet M104 - tilknyttetDato fra xs:dateTime til xs:date
+    2. Rettet M105 - tilknyttetDato fra xs:dateTime til xs:date
+    2. Rettet M619 - tilknyttetDato fra xs:date til xs:dateTime
+    
+    2019-05-02 - Endringer fra versjon 4.0 til versjon 5.0:
+    1. Endret version-attributtet i xs:schema fra 4.0 til 5.0.
+	  2. M010 - sakspartID er endret til partID.
+	  3. M302 - sakspartNavn er endret til partNavn.
+	  4. M303 - sakspartRolle er endret til partRolle.
+	  5. Elementer med obligatoriske verdier mister begrensningen "basert på verdi".
+	  6. Alle felter som krever verdi, krever innhold.
+    7. systemID og andre felter som refererer til systemID, krever uuid som data-format. Se simpleType name="ID".
+    8. M707 - filstoerrelse endrer datatype fra xs:string til xs:integer.
   -->
 
 
