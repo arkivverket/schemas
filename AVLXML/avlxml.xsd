@@ -2,18 +2,10 @@
 <!--
 NB: Dokumentasjon på http://www.arkivverket.no/standarder/avlxml
 -->
-<xs:schema xmlns="http://www.arkivverket.no/standarder/avlxml" 
-           xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://www.arkivverket.no/standarder/avlxml"
-           xmlns:avlmdk="http://www.arkivverket.no/standarder/avlxml/avlxml-mdk"
-           xmlns:avlsup="http://www.arkivverket.no/standarder/avlxml/avlsup" elementFormDefault="qualified">
-
-  <xs:import namespace="http://www.arkivverket.no/standarder/avlxml/avlxml-mdk"
-    schemaLocation="avlxml-mdk.xsd"/>
+<xs:schema xmlns="http://www.arkivverket.no/standarder/avlxml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:avlmdk="http://www.arkivverket.no/standarder/avlxml/avlxml-mdk" xmlns:avlsup="http://www.arkivverket.no/standarder/avlxml/avlsup" targetNamespace="http://www.arkivverket.no/standarder/avlxml" elementFormDefault="qualified">
+  <xs:import namespace="http://www.arkivverket.no/standarder/avlxml/avlxml-mdk" schemaLocation="avlxml-mdk.xsd"/>
   <xs:import namespace="http://www.arkivverket.no/standarder/avlxml/avlsup" schemaLocation="avlsup.xsd"/>
-
   <xs:element name="avlxml" type="avlevering"/>
-
   <xs:complexType name="avlevering">
     <xs:annotation>
       <xs:documentation>Avleveringslisten i AVLXML</xs:documentation>
@@ -27,7 +19,6 @@ NB: Dokumentasjon på http://www.arkivverket.no/standarder/avlxml
       <xs:element maxOccurs="unbounded" name="pasientjournal" type="pasientjournal"/>
     </xs:sequence>
   </xs:complexType>
-
   <xs:complexType name="avtale">
     <xs:annotation>
       <xs:documentation>Avtale som ligger til grunn for avlevering</xs:documentation>
@@ -39,7 +30,6 @@ NB: Dokumentasjon på http://www.arkivverket.no/standarder/avlxml
       <xs:element name="virksomhet" type="virksomhet"/>
     </xs:sequence>
   </xs:complexType>
-
   <xs:complexType name="virksomhet">
     <xs:annotation>
       <xs:documentation>Virksomhet tilknyttet avtalen</xs:documentation>
@@ -50,7 +40,6 @@ NB: Dokumentasjon på http://www.arkivverket.no/standarder/avlxml
       <xs:element name="organisasjonsnummer" type="avlmdk:organisasjonsnummer"/>
     </xs:sequence>
   </xs:complexType>
-
   <xs:complexType name="diagnose">
     <xs:annotation>
       <xs:documentation>Diagnoser tilknyttet pasientjournal</xs:documentation>
@@ -62,7 +51,6 @@ NB: Dokumentasjon på http://www.arkivverket.no/standarder/avlxml
       <xs:element minOccurs="0" name="diagnosekodeverk" type="avlmdk:diagnosekodeverk"/>
     </xs:sequence>
   </xs:complexType>
-
   <xs:complexType name="pasientjournal">
     <xs:annotation>
       <xs:documentation>Pasientjournal i en avleveringsliste</xs:documentation>
@@ -82,11 +70,8 @@ NB: Dokumentasjon på http://www.arkivverket.no/standarder/avlxml
       <xs:element minOccurs="0" name="sistekontakt" type="avlmdk:sistekontakt"/>
       <xs:element minOccurs="0" name="merknad" type="avlmdk:merknad"/>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="diagnose" type="diagnose"/>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="lagringsenhet"
-        type="avlmdk:lagringsenhet"/>
-      <xs:element minOccurs="0" name="supplerendeopplysninger" type="avlsup:supplerendeopplysninger"
-      />
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="lagringsenhet" type="avlmdk:lagringsenhet"/>
+      <xs:element minOccurs="0" name="supplerendeopplysninger" type="avlsup:supplerendeopplysninger"/>
     </xs:sequence>
   </xs:complexType>
-
 </xs:schema>
