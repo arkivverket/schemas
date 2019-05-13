@@ -58,7 +58,7 @@
 
   <xs:simpleType name="ID">
     <xs:annotation>
-      <xs:documentation>M001-a</xs:documentation>
+      <xs:documentation>M016</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:pattern value="[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"/>
