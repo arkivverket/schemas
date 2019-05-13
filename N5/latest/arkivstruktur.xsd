@@ -36,7 +36,7 @@
     9. Fjernet dokumentobjekt som alternativt element under registrering
     10. Basisregistrering er slått sammen med registrering til registrering
     10.1. M004 - registreringsID er endret fra obligatorisk til valgfri
-    11. Lagt til korrespondansepart som obligatorisk element under registrering
+    11. Lagt til korrespondansepart som valgfri element under registrering
     12. Journalpost er utvidet av registrering, ikke basisregistrering
     12.1. M013 - journalaar er endret fra valgfri til obligatorisk
     12.2. M014 - journalsekvensnummer er endret fra valgfri til obligatorisk
@@ -301,7 +301,7 @@
 
       <xs:element name="merknad" type="merknad" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="kryssreferanse" type="kryssreferanse" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="korrespondansepart" type="korrespondansepart" maxOccurs="unbounded"/>
+      <xs:element name="korrespondansepart" type="korrespondansepart" minOccurs="0" maxOccurs="unbounded"/>
 
     </xs:sequence>
   </xs:complexType>
