@@ -281,7 +281,6 @@
       <xs:element name="arkivertAv" type="n5mdk:arkivertAv"/>
       <xs:element name="referanseArkivdel" type="n5mdk:referanseArkivdel" minOccurs="0" maxOccurs="unbounded"/>
 
-      <xs:element name="part" type="part" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="kassasjon" type="kassasjon" minOccurs="0"/>
       <xs:element name="skjerming" type="skjerming" minOccurs="0"/>
       <xs:element name="gradering" type="gradering" minOccurs="0"/>
