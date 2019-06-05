@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema 	xmlns="http://www.arkivverket.no/standarder/nha/avlxml/avlsup-mdk" 
+<xs:schema 	xmlns="http://www.arkivverket.no/standarder/avlxml/avlsup-mdk" 
 			xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-			targetNamespace="http://www.arkivverket.no/standarder/nha/avlxml/avlsup-mdk" 
+			targetNamespace="http://www.arkivverket.no/standarder/avlxml/avlsup-mdk" 
 			elementFormDefault="qualified">
 
 <!-- 
