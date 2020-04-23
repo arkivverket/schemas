@@ -5,6 +5,8 @@ XML-skjema for avleveringsliste til Norsk helsearkiv
 https://www.arkivverket.no/om-oss/norsk-helsearkiv/avlevering-av-fysiske-arkiver-avleveringsliste
 
 ******************************************************************************** 
+2020-04-23 - Opprettet branch for utvikling av versjon 2.3 av skjemaet, for NHAREG v3.
+
 2018-10-04 - Opprettet (jengle)
 
 avlxml-mdk.xsd - Skjema for metadatakatalog - grunnleggende opplysninger
