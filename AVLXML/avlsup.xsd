@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns="http://www.arkivverket.no/standarder/avlxml/avlsup" 
-	   targetNamespace="http://www.arkivverket.no/standarder/avlxml/avlsup" 
+<xs:schema xmlns="http://www.arkivverket.no/standarder/nha/avlxml/avlsup" 
+	   targetNamespace="http://www.arkivverket.no/standarder/nha/avlxml/avlsup" 
 	   xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-	   xmlns:avlmdk="http://www.arkivverket.no/standarder/avlxml/avlxml-mdk" 
-	   xmlns:supmdk="http://www.arkivverket.no/standarder/avlxml/avlsup-mdk" 
+	   xmlns:avlmdk="http://www.arkivverket.no/standarder/nha/avlxml/avlxml-mdk" 
+	   xmlns:supmdk="http://www.arkivverket.no/standarder/nha/avlxml/avlsup-mdk" 
 	   elementFormDefault="qualified">
 			
-  <xs:import namespace="http://www.arkivverket.no/standarder/avlxml/avlxml-mdk" schemaLocation="avlxml-mdk.xsd" />
-  <xs:import namespace="http://www.arkivverket.no/standarder/avlxml/avlsup-mdk" schemaLocation="avlsup-mdk.xsd" />
+  <xs:import namespace="http://www.arkivverket.no/standarder/nha/avlxml/avlxml-mdk" schemaLocation="avlxml-mdk.xsd" />
+  <xs:import namespace="http://www.arkivverket.no/standarder/nha/avlxml/avlsup-mdk" schemaLocation="avlsup-mdk.xsd" />
  
   <xs:element name="avlsup" type="supplerendeopplysninger" />
   

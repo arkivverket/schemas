@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-NB: Dokumentasjon på http://www.arkivverket.no/standarder/avlxml
--->
-<xs:schema xmlns="http://www.arkivverket.no/standarder/avlxml" 
+<xs:schema xmlns="http://www.arkivverket.no/standarder/nha/avlxml" 
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://www.arkivverket.no/standarder/avlxml"
-           xmlns:avlmdk="http://www.arkivverket.no/standarder/avlxml/avlxml-mdk"
-           xmlns:avlsup="http://www.arkivverket.no/standarder/avlxml/avlsup" elementFormDefault="qualified">
+           targetNamespace="http://www.arkivverket.no/standarder/nha/avlxml"
+           xmlns:avlmdk="http://www.arkivverket.no/standarder/nha/avlxml/avlxml-mdk"
+           xmlns:avlsup="http://www.arkivverket.no/standarder/nha/avlxml/avlsup" elementFormDefault="qualified">
 
-  <xs:import namespace="http://www.arkivverket.no/standarder/avlxml/avlxml-mdk"
+  <xs:import namespace="http://www.arkivverket.no/standarder/nha/avlxml/avlxml-mdk"
     schemaLocation="avlxml-mdk.xsd"/>
-  <xs:import namespace="http://www.arkivverket.no/standarder/avlxml/avlsup" schemaLocation="avlsup.xsd"/>
+  <xs:import namespace="http://www.arkivverket.no/standarder/nha/avlxml/avlsup" schemaLocation="avlsup.xsd"/>
 
   <xs:element name="avlxml" type="avlevering"/>
 
@@ -22,6 +19,7 @@ NB: Dokumentasjon på http://www.arkivverket.no/standarder/avlxml
       <xs:element name="avlxmlversjon" type="avlmdk:avlxmlversjon"/>
       <xs:element name="avleveringsidentifikator" type="avlmdk:avleveringsidentifikator"/>
       <xs:element name="avleveringsbeskrivelse" type="avlmdk:avleveringsbeskrivelse"/>
+      <xs:element minOccurs="0" name="generertdato" type="avlmdk:generertdato"/>
       <xs:element name="arkivskaper" type="avlmdk:arkivskaper"/>
       <xs:element name="avtale" type="avtale"/>
       <xs:element maxOccurs="unbounded" name="pasientjournal" type="pasientjournal"/>
@@ -70,6 +68,7 @@ NB: Dokumentasjon på http://www.arkivverket.no/standarder/avlxml
     <xs:sequence>
       <xs:element name="journalidentifikator" type="avlmdk:journalidentifikator"/>
       <xs:element minOccurs="0" name="fanearkidentifikator" type="avlmdk:fanearkidentifikator"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="arkivskaper" type="avlmdk:arkivskaper"/>
       <xs:element minOccurs="0" name="lopenummer" type="avlmdk:lopenummer"/>
       <xs:element minOccurs="0" name="journalnummer" type="avlmdk:journalnummer"/>
       <xs:element minOccurs="0" name="fodselsnummer" type="avlmdk:fodselsnummer"/>
