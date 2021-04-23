@@ -235,6 +235,136 @@
     </xs:restriction>
   </xs:simpleType>
 
+  <xs:simpleType name="kommunenummer">
+    <xs:annotation>
+      <xs:documentation>M030</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="gaardsnummer">
+    <xs:annotation>
+      <xs:documentation>M031</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="bruksnummer">
+    <xs:annotation>
+      <xs:documentation>M032</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="festenummer">
+    <xs:annotation>
+      <xs:documentation>M033</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="seksjonsnummer">
+    <xs:annotation>
+      <xs:documentation>M034</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="bygningsnummer">
+    <xs:annotation>
+      <xs:documentation>M035</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="endringsloepenummer">
+    <xs:annotation>
+      <xs:documentation>M036</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="fylkesnummer">
+    <xs:annotation>
+      <xs:documentation>M037</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="landkode">
+    <xs:annotation>
+      <xs:documentation>M038</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="planidentifikasjon">
+    <xs:annotation>
+      <xs:documentation>M039</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="x">
+    <xs:annotation>
+      <xs:documentation>M040</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="y">
+    <xs:annotation>
+      <xs:documentation>M041</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="z">
+    <xs:annotation>
+      <xs:documentation>M042</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="koordinatsystem">
+    <xs:annotation>
+      <xs:documentation>M043</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="personID">
+    <xs:annotation>
+      <xs:documentation>M048</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="organisasjonsID">
+    <xs:annotation>
+      <xs:documentation>M049</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
   <!-- M050-M079: Status -->
 
   <xs:simpleType name="arkivstatus">
