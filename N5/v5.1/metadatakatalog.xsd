@@ -902,7 +902,7 @@
     <xs:restriction base="xs:date"/>
   </xs:simpleType>
 
-  <xs:simpleType name="grad">
+  <xs:simpleType name="graderingskode">
     <xs:annotation>
       <xs:documentation>M506</xs:documentation>
     </xs:annotation>
