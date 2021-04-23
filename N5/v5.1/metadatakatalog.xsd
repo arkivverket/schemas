@@ -604,6 +604,20 @@
     <xs:restriction base="xs:dateTime"/>
   </xs:simpleType>
 
+  <xs:simpleType name="avleveringspakkeStartDato">
+    <xs:annotation>
+      <xs:documentation>M114</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:dateTime"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="avleveringspakkeSluttDato">
+    <xs:annotation>
+      <xs:documentation>M115</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:dateTime"/>
+  </xs:simpleType>
+
   <!-- M200-M299:	Referanser -->
 
   <xs:simpleType name="referanseForloeper">
@@ -706,6 +720,48 @@
       <xs:documentation>M224</xs:documentation>
     </xs:annotation>
     <xs:restriction base="ID"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="referanseOpprettetAv">
+    <xs:annotation>
+      <xs:documentation>M225</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="systemID"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="referanseOppdatertAv">
+    <xs:annotation>
+      <xs:documentation>M226</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="systemID"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="referanseAvsluttetAv">
+    <xs:annotation>
+      <xs:documentation>M227</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="systemID"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="referanseArkivertAv">
+    <xs:annotation>
+      <xs:documentation>M228</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="systemID"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="referanseForelderMappe">
+    <xs:annotation>
+      <xs:documentation>M229</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="systemID"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="referanseEndretAv">
+    <xs:annotation>
+      <xs:documentation>M230</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="systemID"/>
   </xs:simpleType>
 
   <!-- M300-M369: Arkiv- og saksbehandlingsfunksjonalitet -->
@@ -1335,6 +1391,22 @@
   <xs:simpleType name="kassertAv">
     <xs:annotation>
       <xs:documentation>M631</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="oppdatertDato">
+    <xs:annotation>
+      <xs:documentation>M632</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:dateTime"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="oppdatertAv">
+    <xs:annotation>
+      <xs:documentation>M633</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:minLength value="1"/>
