@@ -224,6 +224,10 @@
           <xs:element name="referanseSekundaerKlassifikasjon" type="n5mdk:referanseSekundaerKlassifikasjon" minOccurs="0" maxOccurs="unbounded"/>
 
           <xs:element name="presedens" type="presedens" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="matrikkelnummer" type="presedens" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="byggident" type="presedens" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="planident" type="presedens" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="posisjon" type="presedens" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -242,6 +246,8 @@
       <xs:element name="epostadresse" type="n5mdk:epostadresse" minOccurs="0"/>
       <xs:element name="telefonnummer" type="n5mdk:telefonnummer" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="kontaktperson" type="n5mdk:kontaktperson" minOccurs="0"/>
+      <xs:element name="personID" type="n5mdk:personID" minOccurs="0"/>
+      <xs:element name="organisasjonsID" type="n5mdk:organisasjonsID" minOccurs="0"/>
       <xs:element name="virksomhetsspesifikkeMetadata" type="xs:anyType" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
@@ -350,6 +356,8 @@
       <xs:element name="kontaktperson" type="n5mdk:kontaktperson" minOccurs="0"/>
       <xs:element name="administrativEnhet" type="n5mdk:administrativEnhet" minOccurs="0"/>
       <xs:element name="saksbehandler" type="n5mdk:saksbehandler" minOccurs="0"/>
+      <xs:element name="personID" type="n5mdk:personID" minOccurs="0"/>
+      <xs:element name="organisasjonsID" type="n5mdk:organisasjonsID" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -569,6 +577,45 @@
       <xs:element name="elektroniskSignaturVerifisert" type="n5mdk:elektroniskSignaturVerifisert"/>
       <xs:element name="verifisertDato" type="n5mdk:verifisertDato"/>
       <xs:element name="verifisertAv" type="n5mdk:verifisertAv"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <xs:complexType name="matrikkelnummer">
+    <xs:sequence>
+      <xs:element name="kommunenummer" type="n5mdk:kommunenummer" minOccurs="0"/>
+      <xs:element name="gaardsnummer" type="n5mdk:gaardsnummer"/>
+      <xs:element name="bruksnummer" type="n5mdk:bruksnummer"/>
+      <xs:element name="festenummer" type="n5mdk:festenummer" minOccurs="0"/>
+      <xs:element name="seksjonsnummer" type="n5mdk:seksjonsnummer" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <xs:complexType name="byggident">
+    <xs:sequence>
+      <xs:element name="bygningsnummer" type="n5mdk:bygningsnummer"/>
+      <xs:element name="endringsloepenummer" type="n5mdk:endringsloepenummer" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <xs:complexType name="planident">
+    <xs:sequence>
+      <xs:element name="landkode" type="n5mdk:landkode" minOccurs="0"/>
+      <xs:element name="fylkesnummer" type="n5mdk:fylkesnummer" minOccurs="0"/>
+      <xs:element name="kommunenummer" type="n5mdk:kommunenummer" minOccurs="0"/>
+      <xs:element name="planidentifikasjon" type="n5mdk:planidentifikasjon"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <xs:complexType name="posisjon">
+    <xs:sequence>
+      <xs:element name="koordinatsystem" type="n5mdk:koordinatsystem"/>
+      <xs:element name="x" type="n5mdk:x"/>
+      <xs:element name="y" type="n5mdk:y"/>
+      <xs:element name="z" type="n5mdk:z" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
