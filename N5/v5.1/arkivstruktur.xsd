@@ -558,7 +558,7 @@
       <xs:element name="presedensGodkjentAv" type="n5mdk:presedensGodkjentAv" minOccurs="0"/>
       <xs:element name="avsluttetDato" type="n5mdk:avsluttetDato" minOccurs="0"/>
       <xs:element name="avsluttetAv" type="n5mdk:avsluttetAv" minOccurs="0"/>
-      <xs:element name="presedensStatus" type="n5mdk:presedensStatus" minOccurs="0"/>
+      <xs:element name="presedensstatus" type="n5mdk:presedensstatus" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
