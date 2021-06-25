@@ -78,6 +78,7 @@
       <xs:element name="opprettetAv" type="n5mdk:opprettetAv"/>
       <xs:element name="avsluttetDato" type="n5mdk:avsluttetDato"/>
       <xs:element name="avsluttetAv" type="n5mdk:avsluttetAv"/>
+      <xs:element name="virksomhetsspesifikkeMetadata" type="xs:anyType" minOccurs="0"/>
 
       <xs:element name="arkivskaper" type="arkivskaper" maxOccurs="unbounded"/>
 
@@ -115,6 +116,7 @@
       <xs:element name="arkivperiodeSluttDato" type="n5mdk:arkivperiodeSluttDato" minOccurs="0"/>
       <xs:element name="referanseForloeper" type="n5mdk:referanseForloeper" minOccurs="0"/>
       <xs:element name="referanseArvtaker" type="n5mdk:referanseArvtaker" minOccurs="0"/>
+      <xs:element name="virksomhetsspesifikkeMetadata" type="xs:anyType" minOccurs="0"/>
 
       <xs:element name="kassasjon" type="kassasjon" minOccurs="0"/>
       <xs:element name="utfoertKassasjon" type="utfoertKassasjon" minOccurs="0"/>
@@ -142,6 +144,7 @@
       <xs:element name="opprettetAv" type="n5mdk:opprettetAv"/>
       <xs:element name="avsluttetDato" type="n5mdk:avsluttetDato" minOccurs="0"/>
       <xs:element name="avsluttetAv" type="n5mdk:avsluttetAv" minOccurs="0"/>
+      <xs:element name="virksomhetsspesifikkeMetadata" type="xs:anyType" minOccurs="0"/>
 
       <xs:element name="klasse" type="klasse" maxOccurs="unbounded"/>
     </xs:sequence>
@@ -159,6 +162,7 @@
       <xs:element name="opprettetAv" type="n5mdk:opprettetAv"/>
       <xs:element name="avsluttetDato" type="n5mdk:avsluttetDato" minOccurs="0"/>
       <xs:element name="avsluttetAv" type="n5mdk:avsluttetAv" minOccurs="0"/>
+      <xs:element name="virksomhetsspesifikkeMetadata" type="xs:anyType" minOccurs="0"/>
 
       <xs:element name="kryssreferanse" type="kryssreferanse" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="kassasjon" type="kassasjon" minOccurs="0"/>
@@ -358,6 +362,7 @@
       <xs:element name="saksbehandler" type="n5mdk:saksbehandler" minOccurs="0"/>
       <xs:element name="personID" type="n5mdk:personID" minOccurs="0"/>
       <xs:element name="organisasjonsID" type="n5mdk:organisasjonsID" minOccurs="0"/>
+      <xs:element name="virksomhetsspesifikkeMetadata" type="xs:anyType" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -438,6 +443,7 @@
       <xs:element name="dokumentnummer" type="n5mdk:dokumentnummer"/>
       <xs:element name="tilknyttetDato" type="n5mdk:tilknyttetDato"/>
       <xs:element name="tilknyttetAv" type="n5mdk:tilknyttetAv"/>
+      <xs:element name="virksomhetsspesifikkeMetadata" type="xs:anyType" minOccurs="0"/>
 
       <xs:element name="part" type="part" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="merknad" type="merknad" minOccurs="0" maxOccurs="unbounded"/>
@@ -466,6 +472,8 @@
       <xs:element name="sjekksumAlgoritme" type="n5mdk:sjekksumAlgoritme"/>
       <xs:element name="filstoerrelse" type="n5mdk:filstoerrelse"/>
       <xs:element name="mimeType" type="n5mdk:mimeType" minOccurs="0"/>
+      <xs:element name="virksomhetsspesifikkeMetadata" type="xs:anyType" minOccurs="0"/>
+
       <xs:element name="elektroniskSignatur" type="elektroniskSignatur" minOccurs="0"/>
 
       <xs:element name="konvertering" type="konvertering" minOccurs="0" maxOccurs="unbounded"/>
