@@ -465,6 +465,7 @@
       <xs:element name="sjekksum" type="n5mdk:sjekksum"/>
       <xs:element name="sjekksumAlgoritme" type="n5mdk:sjekksumAlgoritme"/>
       <xs:element name="filstoerrelse" type="n5mdk:filstoerrelse"/>
+      <xs:element name="mimeType" type="n5mdk:mimeType" minOccurs="0"/>
       <xs:element name="elektroniskSignatur" type="elektroniskSignatur" minOccurs="0"/>
 
       <xs:element name="konvertering" type="konvertering" minOccurs="0" maxOccurs="unbounded"/>
@@ -548,7 +549,7 @@
 
   <xs:complexType name="gradering">
     <xs:sequence>
-      <xs:element name="grad" type="n5mdk:grad"/>
+      <xs:element name="graderingskode" type="n5mdk:graderingskode"/>
       <xs:element name="graderingsdato" type="n5mdk:graderingsdato"/>
       <xs:element name="gradertAv" type="n5mdk:gradertAv"/>
       <xs:element name="nedgraderingsdato" type="n5mdk:nedgraderingsdato" minOccurs="0"/>
