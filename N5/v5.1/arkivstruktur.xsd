@@ -198,6 +198,7 @@
       <xs:element name="kassasjon" type="kassasjon" minOccurs="0"/>
       <xs:element name="skjerming" type="skjerming" minOccurs="0"/>
       <xs:element name="gradering" type="gradering" minOccurs="0"/>
+      <xs:element name="nasjonalIdentifikator" type="nasjonalIdentifikator" minOccurs="0" maxOccurs="unbounded"/>
 
       <!-- Tillater mapper uten forekomster av (under)mappe og registrering -->
       <xs:choice>
@@ -224,10 +225,6 @@
           <xs:element name="referanseSekundaerKlassifikasjon" type="n5mdk:referanseSekundaerKlassifikasjon" minOccurs="0" maxOccurs="unbounded"/>
 
           <xs:element name="presedens" type="presedens" minOccurs="0" maxOccurs="unbounded"/>
-          <xs:element name="matrikkelnummer" type="presedens" minOccurs="0" maxOccurs="unbounded"/>
-          <xs:element name="byggident" type="presedens" minOccurs="0" maxOccurs="unbounded"/>
-          <xs:element name="planident" type="presedens" minOccurs="0" maxOccurs="unbounded"/>
-          <xs:element name="posisjon" type="presedens" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -308,6 +305,7 @@
       <xs:element name="merknad" type="merknad" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="kryssreferanse" type="kryssreferanse" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="korrespondansepart" type="korrespondansepart" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="nasjonalIdentifikator" type="nasjonalIdentifikator" minOccurs="0" maxOccurs="unbounded"/>
 
     </xs:sequence>
   </xs:complexType>
@@ -586,42 +584,84 @@
   </xs:complexType>
 
 
+  <xs:complexType name="nasjonalIdentifikator">
+  </xs:complexType>
+
+
   <xs:complexType name="matrikkelnummer">
-    <xs:sequence>
-      <xs:element name="kommunenummer" type="n5mdk:kommunenummer" minOccurs="0"/>
-      <xs:element name="gaardsnummer" type="n5mdk:gaardsnummer"/>
-      <xs:element name="bruksnummer" type="n5mdk:bruksnummer"/>
-      <xs:element name="festenummer" type="n5mdk:festenummer" minOccurs="0"/>
-      <xs:element name="seksjonsnummer" type="n5mdk:seksjonsnummer" minOccurs="0"/>
-    </xs:sequence>
+    <xs:complexContent>
+      <xs:extension base="nasjonalIdentifikator">
+        <xs:sequence>
+          <xs:element name="kommunenummer" type="n5mdk:kommunenummer" minOccurs="0"/>
+          <xs:element name="gaardsnummer" type="n5mdk:gaardsnummer"/>
+          <xs:element name="bruksnummer" type="n5mdk:bruksnummer"/>
+          <xs:element name="festenummer" type="n5mdk:festenummer" minOccurs="0"/>
+          <xs:element name="seksjonsnummer" type="n5mdk:seksjonsnummer" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 
 
   <xs:complexType name="byggident">
-    <xs:sequence>
-      <xs:element name="bygningsnummer" type="n5mdk:bygningsnummer"/>
-      <xs:element name="endringsloepenummer" type="n5mdk:endringsloepenummer" minOccurs="0"/>
-    </xs:sequence>
+    <xs:complexContent>
+      <xs:extension base="nasjonalIdentifikator">
+        <xs:sequence>
+          <xs:element name="bygningsnummer" type="n5mdk:bygningsnummer"/>
+          <xs:element name="endringsloepenummer" type="n5mdk:endringsloepenummer" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 
 
   <xs:complexType name="planident">
-    <xs:sequence>
-      <xs:element name="landkode" type="n5mdk:landkode" minOccurs="0"/>
-      <xs:element name="fylkesnummer" type="n5mdk:fylkesnummer" minOccurs="0"/>
-      <xs:element name="kommunenummer" type="n5mdk:kommunenummer" minOccurs="0"/>
-      <xs:element name="planidentifikasjon" type="n5mdk:planidentifikasjon"/>
-    </xs:sequence>
+    <xs:complexContent>
+      <xs:extension base="nasjonalIdentifikator">
+        <xs:sequence>
+          <xs:element name="landkode" type="n5mdk:landkode" minOccurs="0"/>
+          <xs:element name="fylkesnummer" type="n5mdk:fylkesnummer" minOccurs="0"/>
+          <xs:element name="kommunenummer" type="n5mdk:kommunenummer" minOccurs="0"/>
+          <xs:element name="planidentifikasjon" type="n5mdk:planidentifikasjon"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 
 
   <xs:complexType name="posisjon">
-    <xs:sequence>
-      <xs:element name="koordinatsystem" type="n5mdk:koordinatsystem"/>
-      <xs:element name="x" type="n5mdk:x"/>
-      <xs:element name="y" type="n5mdk:y"/>
-      <xs:element name="z" type="n5mdk:z" minOccurs="0"/>
-    </xs:sequence>
+    <xs:complexContent>
+      <xs:extension base="nasjonalIdentifikator">
+        <xs:sequence>
+          <xs:element name="koordinatsystem" type="n5mdk:koordinatsystem"/>
+          <xs:element name="x" type="n5mdk:x"/>
+          <xs:element name="y" type="n5mdk:y"/>
+          <xs:element name="z" type="n5mdk:z" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+
+  <xs:complexType name="personidentifikator">
+    <xs:complexContent>
+      <xs:extension base="nasjonalIdentifikator">
+        <xs:sequence>
+          <xs:element name="personID" type="n5mdk:personID"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+
+  <xs:complexType name="enhetsidentifikator">
+    <xs:complexContent>
+      <xs:extension base="nasjonalIdentifikator">
+        <xs:sequence>
+          <xs:element name="organisasjonsID" type="n5mdk:organisasjonsID"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 
 </xs:schema>
