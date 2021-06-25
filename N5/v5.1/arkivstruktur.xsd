@@ -479,6 +479,10 @@
       <xs:element name="konvertertAv" type="n5mdk:konvertertAv"/>
       <xs:element name="konvertertFraFormat" type="n5mdk:konvertertFraFormat"/>
       <xs:element name="konvertertTilFormat" type="n5mdk:konvertertTilFormat"/>
+      <xs:element name="konvertertFraSjekksum" type="n5mdk:konvertertFraSjekksum" minOccurs="0"/>
+      <xs:element name="konvertertFraSjekksumAlgoritme" type="n5mdk:konvertertFraSjekksumAlgoritme" minOccurs="0"/>
+      <xs:element name="konvertertTilSjekksum" type="n5mdk:konvertertTilSjekksum" minOccurs="0"/>
+      <xs:element name="konvertertTilSjekksumAlgoritme" type="n5mdk:konvertertTilSjekksumAlgoritme" minOccurs="0"/>
       <xs:element name="konverteringsverktoey" type="n5mdk:konverteringsverktoey" minOccurs="0"/>
       <xs:element name="konverteringskommentar" type="n5mdk:konverteringskommentar" minOccurs="0"/>
     </xs:sequence>

@@ -1539,6 +1539,42 @@
     </xs:restriction>
   </xs:simpleType>
 
+  <xs:simpleType name="konvertertFraSjekksum">
+    <xs:annotation>
+      <xs:documentation>M717</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="konvertertFraSjekksumAlgoritme">
+    <xs:annotation>
+      <xs:documentation>M718</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="konvertertTilSjekksum">
+    <xs:annotation>
+      <xs:documentation>M719</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="konvertertFraSjekksumAlgoritme">
+    <xs:annotation>
+      <xs:documentation>M720</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
   <xs:simpleType name="mimeType">
     <xs:annotation>
       <xs:documentation>M716</xs:documentation>
