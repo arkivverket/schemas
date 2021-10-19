@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.w3.org/XML/1998/namespace" xmlns:ns1="http://www.tei-c.org/ns/1.0"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" vc:minVersion="1.1">
+  <xs:attribute name="lang">
+    <xs:annotation>
+      <xs:documentation>(language) indicates the language of the element content using a tag generated according to BCP 47</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:language">
+        <xs:enumeration value="ang"/>
+        <xs:enumeration value="ara"/>
+        <xs:enumeration value="cel"/>
+        <xs:enumeration value="dan"/>
+        <xs:enumeration value="dut"/>
+        <xs:enumeration value="eng"/>
+        <xs:enumeration value="est"/>
+        <xs:enumeration value="fin"/>
+        <xs:enumeration value="fre"/>
+        <xs:enumeration value="ger"/>
+        <xs:enumeration value="gre"/>
+        <xs:enumeration value="heb"/>
+        <xs:enumeration value="ita"/>
+        <xs:enumeration value="lap"/>
+        <xs:enumeration value="lat"/>
+        <xs:enumeration value="nor"/>
+        <xs:enumeration value="oic"/>
+        <xs:enumeration value="rus"/>
+        <xs:enumeration value="spa"/>
+        <xs:enumeration value="tib"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="space" fixed="preserve">
+    <xs:annotation>
+      <xs:documentation>signals an intention about how white space should be 
+        managed by applications. </xs:documentation>
+    </xs:annotation>
+  </xs:attribute>
+  <xs:attribute name="id">
+    <xs:annotation>
+      <xs:documentation>id:n för kommentarverktyget</xs:documentation>
+    </xs:annotation>
+  </xs:attribute>
+</xs:schema>
