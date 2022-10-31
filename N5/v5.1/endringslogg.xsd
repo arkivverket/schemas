@@ -3,7 +3,7 @@
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:n5mdk="http://www.arkivverket.no/standarder/noark5/metadatakatalog"
   targetNamespace="http://www.arkivverket.no/standarder/noark5/endringslogg"
-  elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0">
+  elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0.1">
 
   <!-- 
     Noark 5
