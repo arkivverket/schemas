@@ -1,0 +1,125 @@
+<!--    XML-DTD for                             -->
+<!--    ADDMML (Archives' Data Description and Manipulation Markup Language):   -->
+
+<!--    Arkivverkets standard for teknisk og logisk beskrivelse og behandling   -->
+<!--    (sjekk, analyse og konvertering) av avlevert, digitalt arkivmateriale   -->
+
+<!ELEMENT addmml (reference, structure, processes?)>
+<!ELEMENT reference (archives, series)>
+<!ELEMENT archives (ar_name)>
+<!ATTLIST archives
+            ar_id ID #REQUIRED>
+<!ELEMENT ar_name (#PCDATA)>
+<!ELEMENT series (se_name, startdate?, enddate?)>
+<!ATTLIST series
+            se_id ID #REQUIRED>
+<!ELEMENT se_name (#PCDATA)>
+<!ELEMENT startdate (#PCDATA)>
+<!ELEMENT enddate (#PCDATA)>
+<!ELEMENT structure (dataset)>
+<!ELEMENT dataset (ds_descr?, charset, chardef*, format, string_null?, integer_null?, float_null?, date_null?, nu_files, sql*, file+)>
+<!ATTLIST dataset
+            ds_id ID #REQUIRED>
+<!ELEMENT ds_descr (#PCDATA)>
+<!ELEMENT charset (#PCDATA)>
+<!ELEMENT chardef (local, iso)>
+<!ELEMENT local (#PCDATA)>
+<!ELEMENT iso (#PCDATA)>
+<!ELEMENT format (#PCDATA)>
+<!ELEMENT string_null (#PCDATA)>
+<!ELEMENT integer_null (#PCDATA)>
+<!ELEMENT float_null (#PCDATA)>
+<!ELEMENT date_null (#PCDATA)>
+<!ELEMENT nu_files (#PCDATA)>
+<!ELEMENT sql (#PCDATA)>
+<!ATTLIST sql
+            stnr ID #REQUIRED>
+<!ELEMENT file (fi_descr?, recsep, fi_format?, reclength?, delimspec?, padchar?, nu_rectypes, rectypeid?, nu_records?, nu_bytes?, rectype+)>
+<!ATTLIST file
+            name CDATA #REQUIRED
+            path CDATA #REQUIRED>
+<!ELEMENT fi_descr (#PCDATA)>
+<!ELEMENT recsep (#PCDATA)>
+<!ELEMENT fi_format (#PCDATA)>
+<!ELEMENT reclength (#PCDATA)>
+<!ELEMENT delimspec (fieldsep, quote?)>
+<!ELEMENT fieldsep (#PCDATA)>
+<!ELEMENT quote (#PCDATA)>
+<!ELEMENT padchar (#PCDATA)>
+<!ELEMENT nu_rectypes (#PCDATA)>
+<!ELEMENT rectypeid (#PCDATA)>
+<!ELEMENT nu_records (#PCDATA)>
+<!ELEMENT nu_bytes (#PCDATA)>
+<!ELEMENT rectype (rt_descr?, rt_id?, primkey?, altkey*, forkey*, rt_fixlength?, rt_minlength?, rt_maxlength?, nu_fields?, nu_recs?, fieldtype+)>
+<!ATTLIST rectype
+            name CDATA #REQUIRED>
+<!ELEMENT rt_descr (#PCDATA)>
+<!ELEMENT rt_id (#PCDATA)>
+<!ELEMENT primkey (#PCDATA)>
+<!ELEMENT altkey (#PCDATA)>
+<!ELEMENT forkey (fields, reffilerec, reffields, reltype?)>
+<!ELEMENT fields (#PCDATA)>
+<!ELEMENT reffilerec (#PCDATA)>
+<!ELEMENT reffields (#PCDATA)>
+<!ELEMENT reltype (#PCDATA)>
+<!ELEMENT rt_fixlength (#PCDATA)>
+<!ELEMENT rt_minlength (#PCDATA)>
+<!ELEMENT rt_maxlength (#PCDATA)>
+<!ELEMENT nu_fields (#PCDATA)>
+<!ELEMENT nu_recs (#PCDATA)>
+<!ELEMENT fieldtype (ft_descr?, startpos?, endpos?, ft_fixlength?, ft_minlength?, ft_maxlength?, rep?, datatype, mask?, packed?, century?, ft_nullvalue?, nonull?, unique?, code*)>
+<!ATTLIST fieldtype
+            name CDATA #REQUIRED>
+<!ELEMENT ft_descr (#PCDATA)>
+<!ELEMENT startpos (#PCDATA)>
+<!ELEMENT endpos (#PCDATA)>
+<!ELEMENT ft_fixlength (#PCDATA)>
+<!ELEMENT ft_minlength (#PCDATA)>
+<!ELEMENT ft_maxlength (#PCDATA)>
+<!ELEMENT rep EMPTY>
+<!ELEMENT datatype (#PCDATA)>
+<!ELEMENT mask (#PCDATA)>
+<!ELEMENT packed (#PCDATA)>
+<!ELEMENT century (#PCDATA)>
+<!ELEMENT ft_nullvalue (#PCDATA)>
+<!ELEMENT nonull EMPTY>
+<!ELEMENT unique EMPTY>
+<!ELEMENT code (value, explan)>
+<!ELEMENT value (#PCDATA)>
+<!ELEMENT explan (#PCDATA)>
+<!ELEMENT processes (p_dataset | p_file | p_rectype | p_fieldtype)*>
+<!ATTLIST processes
+            spc CDATA #IMPLIED>
+<!ELEMENT p_dataset (ds_analysis?, new_charset?, new_format?)>
+<!ELEMENT ds_analysis (#PCDATA)>
+<!ELEMENT new_charset (#PCDATA)>
+<!ELEMENT new_format (#PCDATA)>
+<!ELEMENT p_file (fi_check*, fi_analysis?, new_recsep?, fi_new_format?, extract*, split_rectypes?)>
+<!ATTLIST p_file
+            file CDATA #REQUIRED>
+<!ELEMENT fi_check (#PCDATA)>
+<!ELEMENT fi_analysis (#PCDATA)>
+<!ELEMENT new_recsep (#PCDATA)>
+<!ELEMENT fi_new_format (#PCDATA)>
+<!ELEMENT extract (#PCDATA)>
+<!ELEMENT split_rectypes EMPTY>
+<!ELEMENT p_rectype (rt_check*, rt_analysis?, freq_allfields?, crosstab*, split_repgroups?)>
+<!ATTLIST p_rectype
+            file CDATA #REQUIRED
+            rectype CDATA #REQUIRED>
+<!ELEMENT rt_check (#PCDATA)>
+<!ELEMENT rt_analysis (#PCDATA)>
+<!ELEMENT freq_allfields EMPTY>
+<!ELEMENT crosstab (#PCDATA)>
+<!ELEMENT split_repgroups EMPTY>
+<!ELEMENT p_fieldtype (ft_check*, ft_analysis?, freq?, (unpack?, new_datatype, new_mask)?)>
+<!ATTLIST p_fieldtype
+            file CDATA #REQUIRED
+            rectype CDATA #REQUIRED
+            fieldtype CDATA #REQUIRED>
+<!ELEMENT ft_check (#PCDATA)>
+<!ELEMENT ft_analysis EMPTY>
+<!ELEMENT freq EMPTY>
+<!ELEMENT unpack EMPTY>
+<!ELEMENT new_datatype (#PCDATA)>
+<!ELEMENT new_mask (#PCDATA)>
