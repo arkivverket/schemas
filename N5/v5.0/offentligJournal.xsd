@@ -19,6 +19,17 @@
     2019-05-03 - Endringer fra versjon 4.0 til versjon 5.0:
     1. Endret version-attributtet i xs:schema fra 4.0 til 5.0.
     2. M506 - Endret navn fra gradering til grad for element under gradering, for å unngå misforståelser mot foreldre-element
+
+    2023-11-09 - Endringer i versjon 5.5.0 - Feilretting
+	  1. M003 mappeID er lagt til som valgfri under saksmappe.
+	  2. M305 administativEnhet er lagt til som valgfri under saksmappe.
+	  3. M306 saksansvarlig er lagt til som valgfri under saksmappe.
+	  4. M500 tilgangsrestriksjon er lagt til som valgfri under saksmappe
+	  5. M501 skjermingshjemmel er lagt til som valgfri under saksmappe
+	
+	  6. M004 registreringsID er lagt til som valgfri under journalpost.
+	  7. M305 administativEnhet er lagt til som valgfri under journalpost.
+	  8. M307 saksbehandler er lagt til som valgfri under journalpost.
 -->
 
   <xs:annotation>
@@ -82,9 +93,14 @@
 
   <xs:complexType name="saksmappe">
     <xs:sequence>
+      <xs:element name="mappeID" type="n5mdk:mappeID" minOccurs="0"/>
       <xs:element name="saksaar" type="n5mdk:saksaar"/>
       <xs:element name="sakssekvensnummer" type="n5mdk:sakssekvensnummer"/>
       <xs:element name="offentligTittel" type="n5mdk:offentligTittel" minOccurs="0"/>
+      <xs:element name="administrativEnhet" type="n5mdk:administrativEnhet" minOccurs="0"/>
+      <xs:element name="saksansvarlig" type="n5mdk:saksansvarlig" minOccurs="0"/>
+      <xs:element name="tilgangsrestriksjon" type="n5mdk:tilgangsrestriksjon" minOccurs="0"/>
+      <xs:element name="skjermingshjemmel" type="n5mdk:skjermingshjemmel" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -92,6 +108,7 @@
   <xs:complexType name="journalpost">
     <xs:sequence>
       <xs:element name="systemID" type="n5mdk:systemID"/>
+      <xs:element name="registreringsID" type="n5mdk:registreringsID" minOccurs="0"/>
       <xs:element name="journalaar" type="n5mdk:journalaar"/>
       <xs:element name="journalsekvensnummer" type="n5mdk:journalsekvensnummer"/>
       <xs:element name="journalpostnummer" type="n5mdk:journalpostnummer"/>
@@ -101,6 +118,8 @@
       <xs:element name="dokumentetsDato" type="n5mdk:dokumentetsDato" minOccurs="0"/>
       <xs:element name="avskrivningsdato" type="n5mdk:avskrivningsdato" minOccurs="0"/>
       <xs:element name="avskrivningsmaate" type="n5mdk:avskrivningsmaate" minOccurs="0"/>
+      <xs:element name="administrativEnhet" type="n5mdk:administrativEnhet" minOccurs="0"/>
+      <xs:element name="saksbehandler" type="n5mdk:saksbehandler" minOccurs="0"/>
       <xs:element name="referanseAvskrivesAvJournalpost" type="n5mdk:referanseAvskrivesAvJournalpost" minOccurs="0"/>
       <xs:element name="tilgangsrestriksjon" type="n5mdk:tilgangsrestriksjon" minOccurs="0"/>
       <xs:element name="grad" type="n5mdk:grad" minOccurs="0"/>

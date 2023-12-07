@@ -49,6 +49,7 @@
     17. M506 - Endret navn fra gradering til grad for element under gradering, for å unngå misforståelser mot foreldre-element
     18. M056 - Endret navn på type presedensstatus til presedensStatus for konsistens
     
+    2023-11-09 - Endringer i versjon 5.5.0 - Vedlikehold
   -->
 
 
@@ -558,6 +559,7 @@
       <xs:element name="presedensGodkjentAv" type="n5mdk:presedensGodkjentAv" minOccurs="0"/>
       <xs:element name="avsluttetDato" type="n5mdk:avsluttetDato" minOccurs="0"/>
       <xs:element name="avsluttetAv" type="n5mdk:avsluttetAv" minOccurs="0"/>
+		<!-- Endre status til obligatorisk, enten er den gjeldende eller ikke. -->
       <xs:element name="presedensStatus" type="n5mdk:presedensStatus" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
