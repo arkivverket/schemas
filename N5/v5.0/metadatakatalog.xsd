@@ -28,6 +28,9 @@
 	  6. Alle felter som krever verdi, krever innhold.
     7. systemID og andre felter som refererer til systemID, krever uuid som data-format. Se simpleType name="ID".
     8. M707 - filstoerrelse endrer datatype fra xs:string til xs:integer.
+
+    2023-11-09 - Endringer i versjon 5.5.0 - Vedlikehold
+	  1. Gjennomgått og kontrollert, ingen endring
   -->
 
 
