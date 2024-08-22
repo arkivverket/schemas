@@ -28,7 +28,7 @@ jobs:
     env:
       IMAGE_VERSION: ${{ format('{0}-{1}', needs.pre_job.outputs.date, github.sha) }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Login to Docker container registry
         uses: docker/login-action@v2.1.0
@@ -60,7 +60,7 @@ jobs:
       REPO: ${{ github.repository }}
       IMAGE_VERSION: ${{ format('{0}-{1}', needs.pre_job.outputs.date, github.sha) }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: ${{ format('{0}-k8s-config', github.repository) }}
           token: ${{ secrets.GITOPS_PAT }}
