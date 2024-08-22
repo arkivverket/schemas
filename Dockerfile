@@ -1,2 +1,2 @@
-FROM nginx:1.27.1
+FROM arkivverket.azurecr.io/nginx:1.23.3
 COPY --chown=nonroot . /usr/share/nginx/html/
