@@ -1,0 +1,112 @@
+<!--	DTD for EmiprotML - XML-filer med data fra emigrantprotokoller i Arkivverket 1867-1975.
+	Versjon 1.0, Arkivverket, 19.11.2024 (utarbeidet av Lars Nygaard)
+-->
+
+<!-- Overordnet element: -->
+<!ELEMENT emiprot (meta, liste)>
+<!ATTLIST emiprot
+		versjon CDATA #FIXED "1.0">		<!-- Versjonsnummer av EmiprotML -->
+
+
+<!-- Felles feltelementer for flere postelementer: -->
+<!ELEMENT gruppenr (#PCDATA)>				<!-- Reisegruppens nummer i kilden -->
+<!ELEMENT aar (#PCDATA)>				<!-- Gruppens utreiseaar i protokollen -->
+<!ELEMENT merknader (#PCDATA)>				<!-- Evt. merknader til kilden, registreringen, reisegruppen eller personer -->
+<!ELEMENT linje (#PCDATA)>				<!-- Navn paa skipslinjen -->
+<!ELEMENT skip (#PCDATA)>				<!-- Navn paa skipet -->
+<!ELEMENT urn_id (#PCDATA)>				<!-- bildeID til skannet bilde i Digitalarkivet -->
+
+
+<!-- Metadata: -->
+<!ELEMENT meta (kilde, registrering)>
+
+
+<!-- Dokumentasjon om den aktuelle emigrantprotokollen: -->
+<!ELEMENT kilde (kategori, kommune, kommnr, ktype, startaar, sluttaar, signatur?, oppbsted?, merknader?)>
+<!ATTLIST kilde
+		kildeid CDATA #REQUIRED>		<!-- Kildens ID i Digitalarkivet -->
+<!ELEMENT kategori (#PCDATA)>				<!-- Kildens kategori og subkategori (tekst) -->
+<!ATTLIST kategori
+		type CDATA #REQUIRED
+		subtype CDATA #REQUIRED>		<!-- Tallkoder for type og subtype -->
+<!ELEMENT kommune (#PCDATA)>				<!-- Byens/politikammerets navn -->
+<!ELEMENT kommnr (#PCDATA)>				<!-- Kommunenummer til byen -->
+<!ELEMENT ktype (#PCDATA)>				<!-- Kildetype ): EMPR -->
+<!ELEMENT startaar (#PCDATA)>				<!-- Startaaret for protokollen (4 siffer) -->
+<!ELEMENT sluttaar (#PCDATA)>				<!-- Sluttaaret for protokollen (4 siffer) -->
+<!ELEMENT signatur (#PCDATA)>				<!-- Arkivsignatur ): katalognummer i Arkivverket -->
+<!ELEMENT oppbsted (#PCDATA)>				<!-- Oppbevaringssted for originalkilden ): statsarkivkode -->
+
+
+<!-- Dokumentasjon om transkripsjonen (registreringen): -->
+<!ELEMENT registrering (reg_av?, reg_naar?, korr_av?, korr_naar?, foretak, grunnlag?, program?, fildato?, merknader?)>
+<!ELEMENT reg_av (#PCDATA)>				<!-- Navn paa person(er) eller foretak som har registrert kilden -->
+<!ELEMENT reg_naar (#PCDATA)>				<!-- Aar for eller annen tidfesting av registreringsarbeidet -->
+<!ELEMENT korr_av (#PCDATA)>				<!-- Navn paa person(er) eller foretak som har korrekturlest kilden -->
+<!ELEMENT korr_naar (#PCDATA)>				<!-- Aar for eller annen tidfesting av korrekturarbeidet -->
+<!ELEMENT foretak (#PCDATA)>				<!-- Organisasjon/institusjon eller person som staar bak
+								registreringen; rettighetshaver -->
+<!ELEMENT grunnlag (#PCDATA)>				<!-- Kildegrunnlag for registreringen ): Papirkopi, Mikrofilm, Mikrofiche,
+								Skanning eller Original -->
+<!ELEMENT program (#PCDATA)>				<!-- Registreringsprogram ): Access, Excel osv. -->
+<!ELEMENT fildato (#PCDATA)>				<!-- Dato for ferdigstilling av datafilen, format: "yyyy-mm-dd" -->
+
+
+<!-- Innholdsdata: -->
+<!ELEMENT liste (post+)>
+
+
+<!-- Reisegruppe: -->
+<!ELEMENT post (gruppenr, utreisehavn, dato, skip?, linje?, lopenr_i_gruppe, antall_i_gruppe, merknader?, urn_id?, person+)>
+<!ATTLIST post
+		id CDATA #IMPLIED>			<!-- Globalt unik postID for gruppeposten -->
+<!ELEMENT utreisehavn (#PCDATA)>			<!-- Navnet paa byen/politikammeret for protokollen -->
+<!ELEMENT dato (#PCDATA)>				<!-- Hendelsesdatoen for personene i gruppen -->
+<!ELEMENT lopenr_i_gruppe (#PCDATA)>			<!-- Lopenummerintervall for personene i gruppen -->
+<!ELEMENT antall_i_gruppe (#PCDATA)>			<!-- Antall personer i gruppen -->
+
+
+<!-- Person: -->
+<!ELEMENT person (gruppenr, personnr, aar, lopenr, sidenr?, linjenr?, fornavn, etternavn?, kjonn,
+familiestilling?, sivilstand?, yrke_stilling?, alder?, fodselsdato?, fodselsaar?, fodested?,
+hjemsted?, statsborgerskap?, innvandret?, agent?, kontraktsdato?, ekspdato?, utreisedato?, reisemaal?,
+familie?, aarsak?, nytt_yrke?, betalingsoppl?, frakt?, medbr_penger?, avgift?, pass?, tillatelser?,
+utgaar?, merknader?, hendelsesdato?, urn_id?)>
+<!ATTLIST person
+		id CDATA #IMPLIED>			<!-- Globalt unik postID for personposten -->
+<!ELEMENT personnr (#PCDATA)>				<!-- Personens nummer innenfor reisegruppen -->
+<!ELEMENT lopenr (#PCDATA)>				<!-- Personens loepenummer innenfor protokollaaret -->
+<!ELEMENT sidenr (#PCDATA)>				<!-- Personens sidenummer i protokollen, evt. fiktivt -->
+<!ELEMENT linjenr (#PCDATA)>				<!-- Personens linjenummer innenfor siden -->
+<!ELEMENT fornavn (#PCDATA)>				<!-- Personens fornavn og evt. mellomnavn -->
+<!ELEMENT etternavn (#PCDATA)>				<!-- Personens etternavn -->
+<!ELEMENT kjonn (#PCDATA)>				<!-- Personens kjoenn. Lovlige verdiar: m, k, u, m!!, k!! -->
+<!ELEMENT familiestilling (#PCDATA)>			<!-- Personens stilling i familien -->
+<!ELEMENT sivilstand (#PCDATA)>				<!-- Personens sivilstand (ekteskapelige stilling) -->
+<!ELEMENT yrke_stilling (#PCDATA)>			<!-- Personens yrke, naeringsvei, stilling etc. -->
+<!ELEMENT alder (#PCDATA)>				<!-- Personens alder oppgitt i kilden -->
+<!ELEMENT fodselsdato (#PCDATA)>			<!-- Personens foedselsdato paa format 'mm-dd' -->
+<!ELEMENT fodselsaar (#PCDATA)>				<!-- Personens foedselsaar paa format 'yyyy' -->
+<!ATTLIST fodselsaar
+		grunnlag CDATA #IMPLIED>		<!-- Grunnlag for verdien i 'fodselsaar', f.eks. 'alder' -->
+<!ELEMENT fodested (#PCDATA)>				<!-- Personens foedested -->
+<!ELEMENT hjemsted (#PCDATA)>				<!-- Personens hjemsted eller bosted -->
+<!ELEMENT statsborgerskap (#PCDATA)>			<!-- Personens statsborgerskap (borger) -->
+<!ELEMENT innvandret (#PCDATA)>				<!-- Tidspunkt for seneste innvandring til Norge -->
+<!ELEMENT agent (#PCDATA)>				<!-- Agent benyttet for emigrasjonsreisen -->
+<!ELEMENT kontraktsdato (#PCDATA)>			<!-- Kontraktsdato for emigrasjonsreisen-->
+<!ELEMENT ekspdato (#PCDATA)>				<!-- Ekspedisjonsdato eller forevisningsdato for emigrasjonsreisen-->
+<!ELEMENT utreisedato (#PCDATA)>			<!-- Utreisedatoen -->
+<!ELEMENT reiser_via (#PCDATA)>				<!-- Personen reiser fra annen utreisehavn -->
+<!ELEMENT reisemaal (#PCDATA)>				<!-- Personens reisemaal/bestemmelsessted -->
+<!ELEMENT familie (#PCDATA)>				<!-- Reiser personen med familie? -->
+<!ELEMENT aarsak (#PCDATA)>				<!-- Personens aarsak til / hensikt med utreisen -->
+<!ELEMENT nytt_yrke (#PCDATA)>				<!-- Personens oenske om nytt yrke i Amerika -->
+<!ELEMENT betalingsoppl (#PCDATA)>			<!-- Opplysninger om (betalingen av) billetten etc. -->
+<!ELEMENT frakt (#PCDATA)>				<!-- Prisen (avgift) for reisen (fraktpris for personen) -->
+<!ELEMENT medbr_penger (#PCDATA)>			<!-- Personens medbrakte penger paa reisen -->
+<!ELEMENT avgift (#PCDATA)>				<!-- Avgift eller gebyr til Staten -->
+<!ELEMENT pass (#PCDATA)>				<!-- Har personen pass? -->
+<!ELEMENT tillatelser (#PCDATA)>			<!-- Pesonens reisetillatelser -->
+<!ELEMENT utgaar (#PCDATA)>				<!-- Utgaar: Koder erstattet med fulltekstverdier -->
+<!ELEMENT hendelsesdato (#PCDATA)>			<!-- Hendelsesdato for personen: 1) utreise 2) ekspedisjon 3) kontrakt -->
