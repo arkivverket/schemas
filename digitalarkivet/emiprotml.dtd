@@ -1,10 +1,11 @@
 <!--	DTD for EmiprotML - XML-filer med data fra emigrantprotokoller i Arkivverket 1867-1975.
-	Versjon 1.0, Arkivverket, 19.11.2024 (utarbeidet av Lars Nygaard)
+	Rotelementet maa vaere <da> for generisk import og publisering i GPAPUM.
+	Versjon 1.0, Arkivverket, 04.12.2024 (utarbeidet av Lars Nygaard)
 -->
 
 <!-- Overordnet element: -->
-<!ELEMENT emiprot (meta, liste)>
-<!ATTLIST emiprot
+<!ELEMENT da (meta, liste)>
+<!ATTLIST da
 		versjon CDATA #FIXED "1.0">		<!-- Versjonsnummer av EmiprotML -->
 
 
