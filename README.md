@@ -1,5 +1,7 @@
 # Schemas
-schema.digitalarkivet.no
+Inneholder skjemaer brukt av Arkivverket, Digitalarkivet og Norsk Helsearkiv
+
+https://schema.arkivverket.no
 
 ## Deploy
 
