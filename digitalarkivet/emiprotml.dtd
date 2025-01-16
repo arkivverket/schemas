@@ -1,6 +1,9 @@
 <!--	DTD for EmiprotML - XML-filer med data fra emigrantprotokoller i Arkivverket 1867-1975.
 	Rotelementet maa vaere <da> for generisk import og publisering i GPAPUM.
-	Versjon 1.0, Arkivverket, 04.12.2024 (utarbeidet av Lars Nygaard)
+	Versjon 1.0, Arkivverket, 04.12.2024 (utarbeidet av Lars Nygaard).
+	Versjon 1.0.a utvidet med elementet <hendelsesaar> under elementet <person> den 19.12.2024.
+	Versjon 1.0.b utvidet med elementet <aar> under elementet <post> den 20.12.2024.
+	Offisielt fortsatt versjon 1.0
 -->
 
 <!-- Overordnet element: -->
@@ -11,7 +14,7 @@
 
 <!-- Felles feltelementer for flere postelementer: -->
 <!ELEMENT gruppenr (#PCDATA)>				<!-- Reisegruppens nummer i kilden -->
-<!ELEMENT aar (#PCDATA)>				<!-- Gruppens utreiseaar i protokollen -->
+<!ELEMENT aar (#PCDATA)>				<!-- Hendelsesaaret for personene i gruppen og Protokollaar -->
 <!ELEMENT merknader (#PCDATA)>				<!-- Evt. merknader til kilden, registreringen, reisegruppen eller personer -->
 <!ELEMENT linje (#PCDATA)>				<!-- Navn paa skipslinjen -->
 <!ELEMENT skip (#PCDATA)>				<!-- Navn paa skipet -->
@@ -58,11 +61,11 @@
 
 
 <!-- Reisegruppe: -->
-<!ELEMENT post (gruppenr, utreisehavn, dato, skip?, linje?, lopenr_i_gruppe, antall_i_gruppe, merknader?, urn_id?, person+)>
+<!ELEMENT post (gruppenr, utreisehavn, dato, aar, skip?, linje?, lopenr_i_gruppe, antall_i_gruppe, merknader?, urn_id?, person+)>
 <!ATTLIST post
 		id CDATA #IMPLIED>			<!-- Globalt unik postID for gruppeposten -->
 <!ELEMENT utreisehavn (#PCDATA)>			<!-- Navnet paa byen/politikammeret for protokollen -->
-<!ELEMENT dato (#PCDATA)>				<!-- Hendelsesdatoen for personene i gruppen -->
+<!ELEMENT dato (#PCDATA)>				<!-- Hendelsesdatoen (mm-dd) for personene i gruppen -->
 <!ELEMENT lopenr_i_gruppe (#PCDATA)>			<!-- Lopenummerintervall for personene i gruppen -->
 <!ELEMENT antall_i_gruppe (#PCDATA)>			<!-- Antall personer i gruppen -->
 
@@ -72,7 +75,7 @@
 familiestilling?, sivilstand?, yrke_stilling?, alder?, fodselsdato?, fodselsaar?, fodested?,
 hjemsted?, statsborgerskap?, innvandret?, agent?, kontraktsdato?, ekspdato?, utreisedato?, reisemaal?,
 familie?, aarsak?, nytt_yrke?, betalingsoppl?, frakt?, medbr_penger?, avgift?, pass?, tillatelser?,
-utgaar?, merknader?, hendelsesdato?, urn_id?)>
+utgaar?, merknader?, hendelsesdato?, hendelsesaar?, urn_id?)>
 <!ATTLIST person
 		id CDATA #IMPLIED>			<!-- Globalt unik postID for personposten -->
 <!ELEMENT personnr (#PCDATA)>				<!-- Personens nummer innenfor reisegruppen -->
@@ -110,4 +113,5 @@ utgaar?, merknader?, hendelsesdato?, urn_id?)>
 <!ELEMENT pass (#PCDATA)>				<!-- Har personen pass? -->
 <!ELEMENT tillatelser (#PCDATA)>			<!-- Pesonens reisetillatelser -->
 <!ELEMENT utgaar (#PCDATA)>				<!-- Utgaar: Koder erstattet med fulltekstverdier -->
-<!ELEMENT hendelsesdato (#PCDATA)>			<!-- Hendelsesdato for personen: 1) utreise 2) ekspedisjon 3) kontrakt -->
+<!ELEMENT hendelsesdato (#PCDATA)>			<!-- Hendelsesdato (mm-dd) for personen: 1) utreise 2) ekspedisjon 3) kontrakt -->
+<!ELEMENT hendelsesaar (#PCDATA)>			<!-- Hendelsesaar  (yyyy)  for personen: 1) utreise 2) ekspedisjon 3) kontrakt -->
